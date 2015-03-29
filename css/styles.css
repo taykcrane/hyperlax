@@ -1,0 +1,24 @@
+.header {
+	text-align: center;
+}
+
+.container {
+	margin: 0 10%;
+}
+
+h1 {
+	color: red;
+}
+
+.video, .metadata {
+	width: 50%;
+	text-align: center;
+}
+
+.video {
+	float: left;
+}
+
+.metadata {
+	float: right;
+}
