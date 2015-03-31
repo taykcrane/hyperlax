@@ -41,28 +41,17 @@ function addMetadataToUI (i) {
 	$(".caption").text(caption);
 
 	var username = myVideoObjects[i].user.username;
-	$(".credit a").text(username);
+	$(".credit a").text("@" + username);
 
 	var profileLink = "http://instagram.com/" + username;
 	$(".credit a").attr("href", profileLink);
 
-
+	var unixTime = myVideoObjects[i].created_time * 1000;
+	var timeAgo = moment(unixTime).fromNow();
+	$(".timestamp").text(timeAgo);
 };
 
-function unixToTimestamp (postTime) {
-	var currentTime = Date.now();
-	var timeDifference = currentTime - postTime;
-	var timeInSeconds = Math.floor(timeDifference/1000);
-	console.log(timeInSeconds);
 
-	// if (timeInSeconds > 2*24*3600) {
-	// 	return "more than 2 days ago";
-	// } else if (timeInSeconds > 24*3600) {
-	// 	return "about a day ago";
-	// } else if (timeInSeconds > 5) {
-
-	// }
-};
 
 
 
