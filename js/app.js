@@ -49,8 +49,33 @@ function addMetadataToUI (i) {
 	var unixTime = myVideoObjects[i].created_time * 1000;
 	var timeAgo = moment(unixTime).fromNow();
 	$(".timestamp").text(timeAgo);
+
+	var position = "";
+	if (myVideoObjects[i].location == null) {
+		position = null;
+	} else {
+		var lat = myVideoObjects[i].location.latitude;
+		var lng = myVideoObjects[i].location.longitude;
+		position = lat + "," + lng;
+		console.log(position);
+		console.log(reverseGeocode(position));
+	}
 };
 
+var testVar = "test";
+function reverseGeocode (position) {
+	$.ajax({
+		url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position,
+	}).done(function (result) {
+		console.log(result);
+		testVar = result.results[0].formatted_address;
+		// console.log(testVar);
+	}).fail(function (error) {
+		console.log("error!");
+		console.log(error);
+	})
+	return testVar;
+}
 
 
 

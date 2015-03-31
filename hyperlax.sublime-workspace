@@ -1,0 +1,484 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"my",
+				"myQuestions"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"move",
+				"moveQuestions"
+			],
+			[
+				"question",
+				"question6"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"checks",
+				"checksAnswer"
+			],
+			[
+				"width",
+				"widthStart"
+			],
+			[
+				"wid",
+				"widthStart"
+			],
+			[
+				"q",
+				"qNum"
+			],
+			[
+				"check",
+				"checksAnswer"
+			],
+			[
+				"corre",
+				"correctAnswer"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"border",
+				"border"
+			],
+			[
+				"backgroun",
+				"background-color"
+			],
+			[
+				"Tran",
+				"translateY"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"trans",
+				"translateY"
+			],
+			[
+				"border-",
+				"border-radius"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"tran",
+				"translateY"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"bac",
+				"background-image"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"mari",
+				"margin-bottom"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1401,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/styles.css",
+			"settings":
+			{
+				"buffer_size": 249,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/app.js",
+			"settings":
+			{
+				"buffer_size": 1630,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Install P",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/taylorcrane/Desktop/Projects/hyperlax"
+	],
+	"file_history":
+	[
+		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/app.js",
+		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/index.html",
+		"/Users/taylorcrane/Desktop/Projects/crane-game/js/script.js",
+		"/Users/taylorcrane/Desktop/Projects/crane-game/css/reset.css",
+		"/Users/taylorcrane/Desktop/Projects/jquery-streetfighter/css/main.css",
+		"/Users/taylorcrane/Desktop/Projects/startup-landing-page-clone/landing.html",
+		"/Users/taylorcrane/Desktop/Projects/about-me-page/about-me.sublime-project",
+		"/Users/taylorcrane/Desktop/Projects/personal-website/index.html",
+		"/Users/taylorcrane/Desktop/Projects/about-me-page/CSS/styles.css",
+		"/Users/taylorcrane/Desktop/Projects/about-me-page/index.html",
+		"/Users/taylorcrane/Desktop/Projects/About Me Page/index.html",
+		"/Users/taylorcrane/Desktop/Projects/About Me Page/CSS/style.css",
+		"/Users/taylorcrane/Desktop/Projects/startup-landing-page-clone/CSS/styles.css",
+		"/Users/taylorcrane/Desktop/Projects/startup-landing-page-clone/images/karma-logo copy.svg",
+		"/Users/taylorcrane/Google Drive/Projects/Smells_Like-Bakin/index.html",
+		"/Users/taylorcrane/Google Drive/Projects/Smells_Like-Bakin/style.css",
+		"/Users/taylorcrane/Desktop/citibikeusodumb.html",
+		"/Users/taylorcrane/Google Drive/Projects/Codecademy Projects/Project 2 - Business Review/index.html",
+		"/Users/taylorcrane/Desktop/codecademy - Minimal/Project 2 - Business Review/style.css",
+		"/Users/taylorcrane/Desktop/codecademy - Minimal/Project 2 - Business Review/index.html",
+		"/Users/taylorcrane/Desktop/codecademy - Minimal/style.css",
+		"/Users/taylorcrane/Desktop/codecademy - Minimal/index.html",
+		"/Users/taylorcrane/Desktop/triscuit-application-email.html",
+		"/Users/taylorcrane/Desktop/triscuit-application-form.html",
+		"/Users/taylorcrane/Desktop/recap-reminder-email-2.html",
+		"/Users/taylorcrane/Desktop/recap-form-2.html",
+		"/Users/taylorcrane/Desktop/recap-form.html",
+		"/Users/taylorcrane/Desktop/ATT-post-1-delay-email 2.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"transform",
+			"20px",
+			"2px",
+			"’"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								189,
+								189
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "css/styles.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/app.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1630,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "hyperlax.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
