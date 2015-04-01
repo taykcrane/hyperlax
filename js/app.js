@@ -1,5 +1,20 @@
 $(document).ready(function () {
 	getVideoObjects();
+
+	//When the next button is hit, move to the next video in the videoObjects
+	
+
+	var videoPosition = 0;
+	$(".next").on("click", function () {
+		videoPosition++;
+		addVideoToUI(videoPosition);
+		addMetadataToUI(videoPosition);
+	});
+	$(".prev").on("click", function () {
+		videoPosition--;
+		addVideoToUI(videoPosition);
+		addMetadataToUI(videoPosition);
+	})
 });
 
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
@@ -14,7 +29,12 @@ function getVideoObjects () {
 	.done(function (result) {
 		console.log("success!");
 		console.log(result);
-		myVideoObjects = result.data;
+		var returnedObjects = result.data;
+		for (i = 0; i < returnedObjects.length; i++) {
+			if (returnedObjects[i].type == "video") {
+				myVideoObjects.push(returnedObjects[i]);
+			}
+		}
 		console.log(myVideoObjects);
 		addVideoToUI(0);
 		addMetadataToUI(0);
@@ -36,20 +56,29 @@ function addVideoToUI (i) {
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
+	//adds the video's caption
 	var caption = myVideoObjects[i].caption.text;
 	console.log("caption: " + caption);
+	$(".caption").empty();
 	$(".caption").text(caption);
 
+	//adds the username
 	var username = myVideoObjects[i].user.username;
+	$(".credit").empty();
 	$(".credit").html('Taken by <a href="#" target="_blank">@' + username + '</a>');
 
+	//adds a link to the user's profile
 	var profileLink = "http://instagram.com/" + username;
 	$(".credit a").attr("href", profileLink);
 
+	// adds the unit of time since the video was uploaded
 	var unixTime = myVideoObjects[i].created_time * 1000;
 	var timeAgo = moment(unixTime).fromNow();
+	$(".timestamp").empty();
 	$(".timestamp").text(timeAgo);
 
+	//adds the location
+	$(".location").empty();
 	var position = "";
 	if (myVideoObjects[i].location == null) {
 		position = null;
@@ -62,6 +91,8 @@ function addMetadataToUI (i) {
 	}
 };
 
+//This function gets called when adding Metadata to the UI, and takes the longitude and latitude
+// of a video and converts it to an address: locality, administrative_level_1, country
 function reverseGeocode (position) {
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position,
@@ -71,7 +102,7 @@ function reverseGeocode (position) {
 		var addressComponents = result.results[0].address_components
 		var strippedAddress = "";
 		for (i = 0; i < addressComponents.length; i++) {
-			if (addressComponents[i].types[0] == "locality") {
+			if (addressComponents[i].types[0] == "locality" || addressComponents[i].types[0] == "sublocality_level_1") {
 				strippedAddress += addressComponents[i].long_name;
 			} else if (addressComponents[i].types[0] == "administrative_area_level_1") {
 				strippedAddress += ", " + addressComponents[i].long_name;
@@ -86,10 +117,6 @@ function reverseGeocode (position) {
 	})
 	
 }
-
-
-
-// locality, administrative area level one, country
 
 
 
