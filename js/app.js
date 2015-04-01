@@ -31,7 +31,7 @@ function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video").empty();
-	$(".video").append('<video height="640" width="640" autoplay controls><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video").append('<video height="640" width="640" autoplay controls muted><source src="' + videoLink + '" type="video/mp4"></video>');
 };
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
@@ -41,7 +41,7 @@ function addMetadataToUI (i) {
 	$(".caption").text(caption);
 
 	var username = myVideoObjects[i].user.username;
-	$(".credit a").text("@" + username);
+	$(".credit").html('Taken by <a href="#" target="_blank">@' + username + '</a>');
 
 	var profileLink = "http://instagram.com/" + username;
 	$(".credit a").attr("href", profileLink);
@@ -58,28 +58,38 @@ function addMetadataToUI (i) {
 		var lng = myVideoObjects[i].location.longitude;
 		position = lat + "," + lng;
 		console.log(position);
-		console.log(reverseGeocode(position));
+		reverseGeocode(position);
 	}
 };
 
-var testVar = "test";
 function reverseGeocode (position) {
 	$.ajax({
 		url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position,
 	}).done(function (result) {
 		console.log(result);
-		testVar = result.results[0].formatted_address;
-		// console.log(testVar);
+		var fullAddress = result.results[0].formatted_address;
+		var addressComponents = result.results[0].address_components
+		var strippedAddress = "";
+		for (i = 0; i < addressComponents.length; i++) {
+			if (addressComponents[i].types[0] == "locality") {
+				strippedAddress += addressComponents[i].long_name;
+			} else if (addressComponents[i].types[0] == "administrative_area_level_1") {
+				strippedAddress += ", " + addressComponents[i].long_name;
+			} else if (addressComponents[i].types[0] == "country") {
+				strippedAddress += ", " + addressComponents[i].long_name;
+			}
+		}
+		$(".location").text(strippedAddress);
 	}).fail(function (error) {
 		console.log("error!");
 		console.log(error);
 	})
-	return testVar;
+	
 }
 
 
 
-
+// locality, administrative area level one, country
 
 
 
