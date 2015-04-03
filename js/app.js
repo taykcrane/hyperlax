@@ -1,28 +1,39 @@
 $(document).ready(function () {
 	getVideoObjects();
 
-	//When the next button is hit, move to the next video in the videoObjects
-	
-
-	var videoPosition = 0;
+	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		videoPosition++;
 		addVideoToUI(videoPosition);
 		addMetadataToUI(videoPosition);
+		$('.prev').prop("disabled", false);
+		if (videoPosition == myVideoObjects.length - 2) {
+			getMoreVideoObjects();
+		}
 	});
 	$(".prev").on("click", function () {
 		videoPosition--;
 		addVideoToUI(videoPosition);
 		addMetadataToUI(videoPosition);
+		if (videoPosition == 0) {
+			$('.prev').prop("disabled", true);
+		}
 	})
 });
+
+var videoPosition = 0;
+function updateVideoPosition () {
+	$(".videoNum").text(videoPosition + 1);
+	$(".totalVideos span").text(myVideoObjects.length)
+}
 
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
 //Stores these objects in the myVideoObjects array
 var myVideoObjects = [];
+var callbackURL = "";
 function getVideoObjects () {
 	$.ajax({
-		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
+		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?count=33&client_id=425a6039c8274956bc10387bba3597e8",
 		dataType: "jsonp",
 		type: "GET",
 	})
@@ -38,12 +49,41 @@ function getVideoObjects () {
 		console.log(myVideoObjects);
 		addVideoToUI(0);
 		addMetadataToUI(0);
+		callbackURL = result.pagination.next_url;
+		console.log("callback URL: " + callbackURL);
 	})
 	.fail(function (error) {
 		console.log("failure!");
 		console.log(error);
 	});
 };
+
+
+//When called, will add more videos to the myVideoObjects array
+function getMoreVideoObjects () {
+	$.ajax({
+		url: callbackURL,
+		dataType: "jsonp",
+		type: "GET",
+	})
+	.done(function (result) {
+		console.log("success!");
+		console.log(result);
+		var returnedObjects = result.data;
+		for (i = 0; i < returnedObjects.length; i++) {
+			if (returnedObjects[i].type == "video") {
+				myVideoObjects.push(returnedObjects[i]);
+			}
+		}
+		console.log(myVideoObjects);
+		callbackURL = result.pagination.next_url;
+		console.log("callback URL: " + callbackURL);
+	})
+	.fail(function (error) {
+		console.log("failure!");
+		console.log(error);
+	});
+}
 
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
@@ -57,8 +97,8 @@ function addVideoToUI (i) {
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
 	//adds the video's caption
-	var caption = myVideoObjects[i].caption.text;
-	console.log("caption: " + caption);
+	var fullCaption = myVideoObjects[i].caption.text;
+	var caption = fullCaption.substring(0, 247) + "...";
 	$(".caption").empty();
 	$(".caption").text(caption);
 
@@ -89,6 +129,9 @@ function addMetadataToUI (i) {
 		console.log(position);
 		reverseGeocode(position);
 	}
+
+	//adds the video count and total number of videos
+	updateVideoPosition();
 };
 
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
