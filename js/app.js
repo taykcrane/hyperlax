@@ -91,14 +91,17 @@ function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video").empty();
-	$(".video").append('<video height="640" width="640" autoplay controls muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video").append('<video height="100%" width="100%" autoplay controls muted><source src="' + videoLink + '" type="video/mp4"></video>');
 };
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
 	//adds the video's caption
 	var fullCaption = myVideoObjects[i].caption.text;
-	var caption = fullCaption.substring(0, 247) + "...";
+	var caption = fullCaption.substring(0, 247);
+	if (fullCaption.length >= 247) {
+		caption += "...";
+	}
 	$(".caption").empty();
 	$(".caption").text(caption);
 

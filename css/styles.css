@@ -1,29 +1,43 @@
+body {
+	background-color: #000;
+	color: white;
+}
+
+.flexcontainer {
+	display: -webkit-flex;
+	display: flex;
+}
+
+.video-box {
+	width: 99.6vh;
+	height: 99.6vh;
+}
+
+.video {
+	height: 100%;
+	width: 100%;
+}
+
+.flexitem {
+	-webkit-flex: 1;
+    flex: 1;
+    text-align: center;
+
+}
+
 .header {
-	text-align: center;
+	outline: 1px solid red;
+}
+
+.content {
+	outline: 1px solid red;
 }
 
 .container {
 	margin: 0 10%;
+	outline: 1px solid red;
 }
 
 h1 {
 	color: red;
-}
-
-.video-box, .metadata {
-	width: 50%;
-	text-align: center;
-}
-
-.video-box {
-	float: left;
-}
-
-.video {
-	height: 640px;
-	width: 640px;
-}
-
-.metadata {
-	float: right;
 }
