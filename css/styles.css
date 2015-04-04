@@ -1,6 +1,7 @@
 body {
 	background-color: #000;
-	color: white;
+	color: #eee;
+	font-family: sans-serif;
 }
 
 .flexcontainer {
@@ -21,23 +22,93 @@ body {
 .flexitem {
 	-webkit-flex: 1;
     flex: 1;
-    text-align: center;
 
 }
 
 .header {
-	outline: 1px solid red;
+	text-align: center;
+	margin: 3em 0;
 }
 
 .content {
-	outline: 1px solid red;
+	
 }
 
 .container {
 	margin: 0 10%;
-	outline: 1px solid red;
+	
 }
 
-h1 {
-	color: red;
+.header h1 {
+	font-size: 2em;
+}
+
+.header h1 span {
+	text-shadow: 
+		-1px -1px 0px red,
+         0px -1px 0px red,
+         1px -1px 0px red,
+        -1px  0px 0px red,
+         1px  0px 0px red,
+        -1px  1px 0px red,
+         0px  1px 0px red,
+         1px  1px 0px red;
+     font-style: italic;
+}
+
+.header h3 .fa-forward {
+	padding: 0 .2em;
+}
+
+.caption {
+	height: 3em;
+	padding-bottom: 2em; 
+}
+
+.caption .fa-quote-left {
+	width: 20%;
+	text-align: center;
+}
+
+.caption p {
+	display: inline-block;
+	float: right;
+	width: 80%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.timestamp, .credit {
+	text-align: right;
+}
+
+.credit a {
+	color: #fff;
+}
+
+.location {
+	text-align: center;
+}
+
+.myMap {
+	position: relative;
+	width: 500px;
+	height: 300px;
+}
+
+.controls {
+	text-align: center;
+}
+
+button:focus {
+	outline: none;
+}
+
+.next, .prev {
+	background-color: #000;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 1em;
+	padding: 1em 4em;
 }

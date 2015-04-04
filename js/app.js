@@ -98,12 +98,12 @@ function addVideoToUI (i) {
 function addMetadataToUI (i) {
 	//adds the video's caption
 	var fullCaption = myVideoObjects[i].caption.text;
-	var caption = fullCaption.substring(0, 247);
-	if (fullCaption.length >= 247) {
+	var caption = fullCaption.substring(0, 170);
+	if (fullCaption.length >= 170) {
 		caption += "...";
 	}
-	$(".caption").empty();
-	$(".caption").text(caption);
+	$(".caption p").empty();
+	$(".caption p").text(caption);
 
 	//adds the username
 	var username = myVideoObjects[i].user.username;
@@ -163,6 +163,10 @@ function reverseGeocode (position) {
 	})
 	
 }
+
+var map = new Datamap({
+	element: document.getElementById('myMap')
+});
 
 
 
