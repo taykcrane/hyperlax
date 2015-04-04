@@ -19,6 +19,32 @@ $(document).ready(function () {
 			$('.prev').prop("disabled", true);
 		}
 	})
+	
+	var myMap = new Datamap({
+		element: document.getElementById('myMap'),
+		height: null,
+		fills: {
+			defaultFill: "#fff",
+			"bubbleFill": "red",
+		},
+		geographyConfig: {
+			popupOnHover: false,
+			highlightOnHover: false,
+			borderColor: "#000",
+		},
+		data: {
+			"bubbleFill": {fillKey: "bubbleFill"},
+		}
+	})
+	var myBubble = [{
+		radius: 5,
+		latitude: 40.7142,
+		longitude: -74.0064,
+		fillKey: "bubbleFill",
+		borderColor: "#000",
+		borderWidth: 1,
+	}];
+	myMap.bubbles(myBubble);
 });
 
 var videoPosition = 0;
@@ -163,10 +189,6 @@ function reverseGeocode (position) {
 	})
 	
 }
-
-// var map = new Datamap({
-// 	element: document.getElementById('myMap')
-// });
 
 
 
