@@ -20,32 +20,26 @@ $(document).ready(function () {
 		}
 	})
 	
-	var myMap = new Datamap({
-		element: document.getElementById('myMap'),
-		height: null,
-		fills: {
-			defaultFill: "#fff",
-			"bubbleFill": "red",
-		},
-		geographyConfig: {
-			popupOnHover: false,
-			highlightOnHover: false,
-			borderColor: "#000",
-		},
-		data: {
-			"bubbleFill": {fillKey: "bubbleFill"},
-		}
-	})
-	var myBubble = [{
-		radius: 5,
-		latitude: 40.7142,
-		longitude: -74.0064,
-		fillKey: "bubbleFill",
-		borderColor: "#000",
-		borderWidth: 1,
-	}];
-	myMap.bubbles(myBubble);
+
 });
+
+var myMap = new Datamap({
+	element: document.getElementById('myMap'),
+	height: null,
+	fills: {
+		defaultFill: "#fff",
+		"bubbleFill": "red",
+	},
+	geographyConfig: {
+		popupOnHover: false,
+		highlightOnHover: false,
+		borderColor: "#000",
+	},
+	data: {
+		"bubbleFill": {fillKey: "bubbleFill"},
+	}
+})
+var myBubble = [];
 
 var videoPosition = 0;
 function updateVideoPosition () {
@@ -151,12 +145,23 @@ function addMetadataToUI (i) {
 	var position = "";
 	if (myVideoObjects[i].location == null) {
 		position = null;
+		myBubble = [];
+		myMap.bubbles(myBubble);
 	} else {
 		var lat = myVideoObjects[i].location.latitude;
 		var lng = myVideoObjects[i].location.longitude;
 		position = lat + "," + lng;
 		console.log(position);
 		reverseGeocode(position);
+		myBubble = [{
+			radius: 5,
+			latitude: lat,
+			longitude: lng,
+			fillKey: "bubbleFill",
+			borderColor: "#000",
+			borderWidth: 1,
+		}];
+		myMap.bubbles(myBubble);
 	}
 
 	//adds the video count and total number of videos
