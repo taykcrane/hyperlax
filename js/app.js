@@ -147,6 +147,7 @@ function addMetadataToUI (i) {
 		position = null;
 		myBubble = [];
 		myMap.bubbles(myBubble);
+		$(".location").text("Mystery location!");
 	} else {
 		var lat = myVideoObjects[i].location.latitude;
 		var lng = myVideoObjects[i].location.longitude;
