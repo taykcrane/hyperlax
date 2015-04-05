@@ -20,7 +20,9 @@ $(document).ready(function () {
 		}
 	})
 	
-
+	$(".video").on("ended", "video", function () {
+		console.log("this video ended!");
+	})
 });
 
 var myMap = new Datamap({
@@ -195,7 +197,6 @@ function reverseGeocode (position) {
 	})
 	
 }
-
 
 
 
