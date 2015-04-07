@@ -174,28 +174,40 @@ function addMetadataToUI (i) {
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
 // of a video and converts it to an address: locality, administrative_level_1, country
 function reverseGeocode (position) {
-	$.ajax({
-		url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position,
-	}).done(function (result) {
+	loadGoogleResults(position, function (result) {
 		console.log(result);
-		var fullAddress = result.results[0].formatted_address;
-		var addressComponents = result.results[0].address_components
-		var strippedAddress = "";
-		for (i = 0; i < addressComponents.length; i++) {
-			if (addressComponents[i].types[0] == "locality" || addressComponents[i].types[0] == "sublocality_level_1") {
-				strippedAddress += addressComponents[i].long_name;
-			} else if (addressComponents[i].types[0] == "administrative_area_level_1") {
-				strippedAddress += ", " + addressComponents[i].long_name;
-			} else if (addressComponents[i].types[0] == "country") {
-				strippedAddress += ", " + addressComponents[i].long_name;
-			}
-		}
-		$(".location").text(strippedAddress);
-	}).fail(function (error) {
+		$(".location").text(getAddressString(result));
+	});
+}
+
+function getAddressString (result) {
+	var fullAddress = result.results[0].formatted_address;
+	var addressParts = [];
+	addressParts.push(getResultEntryOfType(result, "locality"));
+	addressParts.push(getResultEntryOfType(result, "sublocality_level_1"));
+	addressParts.push(getResultEntryOfType(result, "administrative_area_level_1"));
+	addressParts.push(getResultEntryOfType(result, "country"));
+	addressParts = _.compact(addressParts);
+	var strippedAddress = addressParts.join(", ");
+	return strippedAddress;
+}
+
+function loadGoogleResults (position, callback) {
+	$.ajax({url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position})
+	 .done(callback)
+	 .fail(function (error) {
 		console.log("error!");
 		console.log(error);
-	})
-	
+	});
+}
+
+function getResultEntryOfType (result, type) {
+	var addressComponents = result.results[0].address_components;
+	for (i = 0; i < addressComponents.length; i++) {
+		if (addressComponents[i].types[0] == type) {
+			return addressComponents[i].long_name;
+		}
+	}
 }
 
 
