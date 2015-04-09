@@ -19,10 +19,6 @@ $(document).ready(function () {
 			$('.prev').prop("disabled", true);
 		}
 	})
-	
-	$(".video").on("ended", "video", function () {
-		console.log("this video ended!");
-	})
 });
 
 var myMap = new Datamap({
@@ -49,6 +45,20 @@ function updateVideoPosition () {
 	$(".totalVideos span").text(myVideoObjects.length)
 }
 
+function initializeContent () {
+	addVideoToUI(0);
+	addMetadataToUI(0);
+	console.log("content initialized");
+}
+
+function addEndedListener () {
+	var v = document.getElementsByTagName("video")[0];
+	console.log('video: ', v);
+	v.addEventListener("ended", function() { 
+		console.log('Ended listener added');
+	}, true);
+}
+
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
 //Stores these objects in the myVideoObjects array
 var myVideoObjects = [];
@@ -69,8 +79,8 @@ function getVideoObjects () {
 			}
 		}
 		console.log(myVideoObjects);
-		addVideoToUI(0);
-		addMetadataToUI(0);
+		initializeContent();
+		addEndedListener();
 		callbackURL = result.pagination.next_url;
 		console.log("callback URL: " + callbackURL);
 	})
@@ -79,7 +89,6 @@ function getVideoObjects () {
 		console.log(error);
 	});
 };
-
 
 //When called, will add more videos to the myVideoObjects array
 function getMoreVideoObjects () {
