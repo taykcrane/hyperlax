@@ -22,7 +22,6 @@ body {
 .flexitem {
 	-webkit-flex: 1;
     flex: 1;
-
 }
 
 .header {
@@ -36,7 +35,6 @@ body {
 
 .container {
 	margin: 0 10%;
-	
 }
 
 .header h1 {
@@ -107,10 +105,56 @@ button:focus {
 	outline: none;
 }
 
-.next, .prev {
+.next, .prev, .pause-play {
 	background-color: #000;
 	color: #fff;
 	border: 1px solid #fff;
 	border-radius: 1em;
 	padding: 1em 4em;
 }
+
+.pause-play i {
+	width: 19px;
+}
+
+.music-player {
+	background-color: #333;
+	height: 3em;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+
+.music-player .container {
+	margin: 0 0 0 5%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-block;
+	font-size: 0;
+}
+
+.music-pause-play, .music-next, .music-data {
+	vertical-align: middle;
+}
+
+.music-pause-play, .music-next {
+	background-color: #333;
+	color: #fff;
+	border: 1px solid #fff;
+/*	padding: .5em 2em;*/
+}
+
+.music-data {
+	font-size: 1rem;
+	display: inline-block;
+	border: 1px solid #fff;
+	width: 25em;
+}
+
+
+
+
+
+
+

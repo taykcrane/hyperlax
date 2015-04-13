@@ -1,25 +1,57 @@
 $(document).ready(function () {
 	getVideoObjects();
-
+	getPlaylist(405726);
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
-		videoPosition++;
-		addVideoToUI(videoPosition);
-		addMetadataToUI(videoPosition);
-		$('.prev').prop("disabled", false);
-		if (videoPosition == myVideoObjects.length - 2) {
-			getMoreVideoObjects();
-		}
+		nextVideo();
 	});
+	$(".pause-play").on("click", function () {
+		pauseAndPlay();
+	})
 	$(".prev").on("click", function () {
-		videoPosition--;
-		addVideoToUI(videoPosition);
-		addMetadataToUI(videoPosition);
-		if (videoPosition == 0) {
-			$('.prev').prop("disabled", true);
-		}
+		prevVideo();
 	})
 });
+
+var videoPosition = 0;
+function nextVideo () {
+	videoPosition++;
+	addVideoToUI(videoPosition);
+	addMetadataToUI(videoPosition);
+	toPauseButton();
+	$('.prev').prop("disabled", false);
+	if (videoPosition == myVideoObjects.length - 2) {
+		getMoreVideoObjects();
+	}
+}
+
+function prevVideo () {
+	videoPosition--;
+	addVideoToUI(videoPosition);
+	addMetadataToUI(videoPosition);
+	toPauseButton();
+	if (videoPosition == 0) {
+		$('.prev').prop("disabled", true);
+	}
+}
+
+function pauseAndPlay () {
+	if ($("video").get(0).paused) {
+		toPauseButton();
+		$("video").get(0).play();
+	} else {
+		toPlayButton();
+		$("video").get(0).pause();
+	}
+}
+
+function toPauseButton () {
+	$(".pause-play i").removeClass("fa-play").addClass("fa-pause");
+}
+
+function toPlayButton () {
+	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
+}
 
 var myMap = new Datamap({
 	element: document.getElementById('myMap'),
@@ -39,23 +71,18 @@ var myMap = new Datamap({
 })
 var myBubble = [];
 
-var videoPosition = 0;
-function updateVideoPosition () {
-	$(".videoNum").text(videoPosition + 1);
-	$(".totalVideos span").text(myVideoObjects.length)
-}
-
 function initializeContent () {
 	addVideoToUI(0);
 	addMetadataToUI(0);
 	console.log("content initialized");
 }
 
-function addEndedListener () {
+function continuousVideo () {
 	var v = document.getElementsByTagName("video")[0];
 	console.log('video: ', v);
 	v.addEventListener("ended", function() { 
 		console.log('Ended listener added');
+		nextVideo();
 	}, true);
 }
 
@@ -80,7 +107,6 @@ function getVideoObjects () {
 		}
 		console.log(myVideoObjects);
 		initializeContent();
-		addEndedListener();
 		callbackURL = result.pagination.next_url;
 		console.log("callback URL: " + callbackURL);
 	})
@@ -122,7 +148,8 @@ function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video").empty();
-	$(".video").append('<video height="100%" width="100%" autoplay controls muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	continuousVideo();
 };
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
@@ -166,7 +193,7 @@ function addMetadataToUI (i) {
 		console.log(position);
 		reverseGeocode(position);
 		myBubble = [{
-			radius: 5,
+			radius: 10,
 			latitude: lat,
 			longitude: lng,
 			fillKey: "bubbleFill",
@@ -177,7 +204,6 @@ function addMetadataToUI (i) {
 	}
 
 	//adds the video count and total number of videos
-	updateVideoPosition();
 };
 
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
@@ -218,6 +244,34 @@ function getResultEntryOfType (result, type) {
 		}
 	}
 }
+
+//SOUNDCLOUD API
+// 405726
+var soundcloudTracks = [];
+function getPlaylist (playlistID, callback) {
+	$.ajax({
+		url: "http://api.soundcloud.com/playlists/" + playlistID + ".json?client_id=0e790e28fcdf924f78f80375ad74fcb8",
+		dataType: "jsonp",
+		type: "GET",
+	})
+	.done(function (result) {
+		console.log(result);
+		soundcloudTracks = result.tracks;
+		initializePlaylist();
+	})
+	.fail(function (error) {
+		console.log("error: " + error);
+	})
+}
+
+// function initializePlaylist () {
+// 	SC.initialize({
+// 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
+// 	});
+// 	SC.stream("/tracks/" + soundcloudTracks[0].id, function (sound) {
+// 		sound.play();
+// 	})
+// }
 
 
 
