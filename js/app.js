@@ -92,9 +92,12 @@ var myVideoObjects = [];
 var callbackURL = "";
 function getVideoObjects () {
 	$.ajax({
-		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?count=33&client_id=425a6039c8274956bc10387bba3597e8",
+		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
 		dataType: "jsonp",
 		type: "GET",
+		data: {
+			count: 33
+		}
 	})
 	.done(function (result) {
 		console.log("success!");
