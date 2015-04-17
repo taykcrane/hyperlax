@@ -10,8 +10,8 @@ body {
 }
 
 .video-box {
-	width: 99.6vh;
-	height: 99.6vh;
+	width: 99.5vh;
+	height: 99.5vh;
 }
 
 .video {
@@ -118,39 +118,94 @@ button:focus {
 }
 
 .music-player {
-	background-color: #333;
-	height: 3em;
-	width: 100%;
+	background-color: #222;
+	height: 4em;
 	position: fixed;
 	bottom: 0;
+	width: 100%;
 }
 
 .music-player .container {
-	margin: 0 0 0 5%;
+	display: inline-block;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
-	display: inline-block;
-	font-size: 0;
+	border: 1px solid #000;
+	background-color: #333;
+	border-radius: 3px;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06);
 }
 
 .music-pause-play, .music-next, .music-data {
-	vertical-align: middle;
+	float: left;
+	height: 2.5em;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06); 
 }
 
 .music-pause-play, .music-next {
-	background-color: #333;
-	color: #fff;
-	border: 1px solid #fff;
-/*	padding: .5em 2em;*/
+	width: 2.5em;
+	text-align: center;
+	border-right: 1px solid #000;
 }
 
 .music-data {
-	font-size: 1rem;
-	display: inline-block;
-	border: 1px solid #fff;
-	width: 25em;
+	width: 30em;
 }
+
+.music-pause-play i, .music-next i, .music-text {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.music-text {
+	float: left;
+	width: 75%;
+	padding-left: 5%;
+}
+
+.music-text .title {
+	font-size: .9em;
+}
+
+.music-text span {
+	margin-left: 1em;
+}
+
+.music-text .uploader {
+	font-size: .7em;
+}
+
+.sc-logo {
+	background-image: url('https://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png');
+	width: 20%;
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	display: inline;
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

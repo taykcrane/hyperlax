@@ -11,6 +11,14 @@ $(document).ready(function () {
 	$(".prev").on("click", function () {
 		prevVideo();
 	})
+
+	//music controls
+	$(".music-pause-play").on("click", function () {
+		musicPauseAndPlay();
+	})
+	$(".music-next").on("click", function () {
+		scNextStream();
+	})
 });
 
 var videoPosition = 0;
@@ -251,7 +259,9 @@ function getResultEntryOfType (result, type) {
 //SOUNDCLOUD API
 // 405726
 var soundcloudTracks = [];
-function getPlaylist (playlistID, callback) {
+var currentSound = "";
+var songPosition = 0;
+function getPlaylist (playlistID) {
 	$.ajax({
 		url: "http://api.soundcloud.com/playlists/" + playlistID + ".json?client_id=0e790e28fcdf924f78f80375ad74fcb8",
 		dataType: "jsonp",
@@ -267,14 +277,54 @@ function getPlaylist (playlistID, callback) {
 	})
 }
 
-// function initializePlaylist () {
-// 	SC.initialize({
-// 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
-// 	});
-// 	SC.stream("/tracks/" + soundcloudTracks[0].id, function (sound) {
-// 		sound.play();
-// 	})
-// }
+function scStream (songPosition) {
+	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
+		currentSound = sound;
+		currentSound.play();
+	})
+}
+
+function scStopStream () {
+	currentSound.stop();
+}
+
+function scTogglePause () {
+	currentSound.togglePause();
+}
+
+function musicPauseAndPlay () {
+	if (currentSound.paused) {
+		scTogglePause();
+		toMusicPauseButton();
+	} else {
+		scTogglePause();
+		toMusicPlayButton();
+	}
+}
+
+function toMusicPauseButton () {
+	$(".music-pause-play i").removeClass("fa-play").addClass("fa-pause");
+}
+
+function toMusicPlayButton () {
+	$(".music-pause-play i").removeClass("fa-pause").addClass("fa-play");
+}
+
+function scNextStream () {
+	scStopStream();
+	songPosition++;
+	scStream(songPosition);
+	toMusicPauseButton();
+}
+
+function initializePlaylist () {
+	SC.initialize({
+	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
+	});
+	scStream(0);
+}
+
+
 
 
 
