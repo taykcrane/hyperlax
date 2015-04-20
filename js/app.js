@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	getVideoObjects();
-	getPlaylist(405726);
+	// getPlaylist(405726);
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -19,6 +19,9 @@ $(document).ready(function () {
 	$(".music-next").on("click", function () {
 		scNextStream();
 	})
+
+	//adds padding to the map after the map finishes loading and gets its stupid dimensions
+	$("#myMap").css("padding", "1%");
 });
 
 var videoPosition = 0;
@@ -65,7 +68,7 @@ var myMap = new Datamap({
 	element: document.getElementById('myMap'),
 	height: null,
 	fills: {
-		defaultFill: "#fff",
+		defaultFill: "#999",
 		"bubbleFill": "red",
 	},
 	geographyConfig: {
@@ -190,13 +193,13 @@ function addMetadataToUI (i) {
 	$(".timestamp").text(timeAgo);
 
 	//adds the location
-	$(".location").empty();
+	$(".location-text").empty();
 	var position = "";
 	if (myVideoObjects[i].location == null) {
 		position = null;
 		myBubble = [];
 		myMap.bubbles(myBubble);
-		$(".location").text("Mystery location!");
+		$(".location-text").text("Mystery location!");
 	} else {
 		var lat = myVideoObjects[i].location.latitude;
 		var lng = myVideoObjects[i].location.longitude;
@@ -222,7 +225,7 @@ function addMetadataToUI (i) {
 function reverseGeocode (position) {
 	loadGoogleResults(position, function (result) {
 		console.log(result);
-		$(".location").text(getAddressString(result));
+		$(".location-text").text(getAddressString(result));
 	});
 }
 
