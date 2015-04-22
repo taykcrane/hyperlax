@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	getVideoObjects();
-	// getPlaylist(405726);
+	getPlaylist(9875415);
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -260,14 +260,14 @@ function getResultEntryOfType (result, type) {
 }
 
 //SOUNDCLOUD API
-// 405726
+// 9875415
 var soundcloudTracks = [];
 var currentSound = "";
 var songPosition = 0;
 function getPlaylist (playlistID) {
 	$.ajax({
 		url: "http://api.soundcloud.com/playlists/" + playlistID + ".json?client_id=0e790e28fcdf924f78f80375ad74fcb8",
-		dataType: "jsonp",
+		dataType: "json",
 		type: "GET",
 	})
 	.done(function (result) {
@@ -283,7 +283,11 @@ function getPlaylist (playlistID) {
 function scStream (songPosition) {
 	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
 		currentSound = sound;
-		currentSound.play();
+		currentSound.play({
+			onfinish: function () {
+				scNextStream();
+			}
+		});
 	})
 }
 
@@ -314,10 +318,17 @@ function toMusicPlayButton () {
 }
 
 function scNextStream () {
-	scStopStream();
-	songPosition++;
-	scStream(songPosition);
-	toMusicPauseButton();
+	if (songPosition < soundcloudTracks.length - 1) {
+		scStopStream();
+		songPosition++;
+		scStream(songPosition);
+		toMusicPauseButton();
+	} else {
+		scStopStream();
+		songPosition = 0;
+		scStream(songPosition);
+		toMusicPauseButton();
+	}
 }
 
 function initializePlaylist () {
