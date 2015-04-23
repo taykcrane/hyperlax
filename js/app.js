@@ -303,9 +303,13 @@ function musicPauseAndPlay () {
 	if (currentSound.paused) {
 		scTogglePause();
 		toMusicPauseButton();
+		//uses Pause JS library to resume the songProgress animation
+		$(".music-text").resume();
 	} else {
 		scTogglePause();
 		toMusicPlayButton();
+		//uses Pause JS library to pause the songProgress animation
+		$(".music-text").pause();
 	}
 }
 
@@ -350,8 +354,21 @@ function addSongMetadataToUI (i) {
 
 	var sourceLink = soundcloudTracks[i].permalink_url;
 	$(".sc-logo").attr("href", sourceLink);
+
+
+	// Resets the songProgress bar
+	$(".music-text").finish();
+	$(".music-text").css("background-position", "100% 0%");
+	// Calls the songProgress method to start tracking progress
+	songProgress(i);
 }
 
+function songProgress (i) {
+	var songTime = soundcloudTracks[i].duration; //time in milliseconds
+	$(".music-text").animate({
+		"background-position": "0%"
+	}, songTime, "linear");
+}
 
 
 

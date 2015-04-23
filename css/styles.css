@@ -210,7 +210,13 @@ button:focus {
 .music-text {
 	float: left;
 	width: 75%;
+	height: 100%;
 	padding-left: 5%;
+	border-right: 1px solid #000;
+	box-shadow: 1px 0px 0 rgba(255,255,255,0.16);
+	background-size: 200% 100%;
+	background-position: 100% 0;
+	background-image: linear-gradient(to right, #666 50%, rgba(0,0,0,0) 50%);
 }
 
 .music-text .title {
@@ -226,7 +232,7 @@ button:focus {
 
 .sc-logo {
 	background-image: url('../img/soundcloud-white.png');
-	width: 20%;
+	width: 19%;
 	height: 100%;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -239,7 +245,21 @@ button:focus {
 	background-image: url('../img/soundcloud-orange.png');
 }
 
+/*@-webkit-keyframes animateProgress {
+	to { background-position: 0 0; }
+}
 
+@-moz-keyframes animateProgress {
+	to { background-position: 0 0; }
+}
+
+@-o-keyframes animateProgress {
+	to { background-position: 0 0; }
+}
+
+@keyframes animateProgress {
+	to { background-position: 0 0; }
+}*/
 
 
 
