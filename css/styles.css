@@ -215,10 +215,9 @@ button:focus {
 
 .music-text .title {
 	font-size: .9em;
-}
-
-.music-text span {
-	margin-left: 1em;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
 }
 
 .music-text .uploader {
@@ -226,7 +225,7 @@ button:focus {
 }
 
 .sc-logo {
-	background-image: url('https://developers.soundcloud.com/assets/logo_big_white-bdafb3beba25fb86c2df365d05674e64.png');
+	background-image: url('../img/soundcloud-white.png');
 	width: 20%;
 	height: 100%;
 	background-size: contain;
@@ -236,7 +235,9 @@ button:focus {
 	float: right;
 }
 
-
+.sc-logo:hover {
+	background-image: url('../img/soundcloud-orange.png');
+}
 
 
 

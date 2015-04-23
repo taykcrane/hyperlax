@@ -322,11 +322,13 @@ function scNextStream () {
 		scStopStream();
 		songPosition++;
 		scStream(songPosition);
+		addSongMetadataToUI(songPosition);
 		toMusicPauseButton();
 	} else {
 		scStopStream();
 		songPosition = 0;
 		scStream(songPosition);
+		addSongMetadataToUI(songPosition);
 		toMusicPauseButton();
 	}
 }
@@ -336,8 +338,19 @@ function initializePlaylist () {
 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
 	});
 	scStream(0);
+	addSongMetadataToUI(0);
 }
 
+function addSongMetadataToUI (i) {
+	var songTitle = soundcloudTracks[i].title;
+	$(".title").text(songTitle);
+
+	var uploader = soundcloudTracks[i].user.username;
+	$(".uploader").text("Uploaded by: " + uploader);
+
+	var sourceLink = soundcloudTracks[i].permalink_url;
+	$(".sc-logo").attr("href", sourceLink);
+}
 
 
 
