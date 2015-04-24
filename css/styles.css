@@ -167,66 +167,78 @@ button:focus {
 }
 
 .music-player {
-	background-color: #222;
-	height: 4em;
+/*	background-color: #222;
+*/	height: 4em;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
 }
 
 .music-player .container {
-	display: inline-block;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+	text-align: center;
+}
+
+.music-box {
+	display: inline-block;
 	border: 1px solid #000;
 	background-color: #333;
 	border-radius: 3px;
 	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06);
 }
 
-.music-pause-play, .music-next, .music-data {
+.volume, .music-pause-play, .music-next, .music-data {
 	float: left;
 	height: 2.5em;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06); 
 }
 
-.music-pause-play, .music-next {
+.volume, .music-pause-play, .music-next {
 	width: 2.5em;
 	text-align: center;
-	border-right: 1px solid #000;
+	/*border-right: 1px solid #000;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06); */
+}
+
+.volume:hover, .music-pause-play:hover, .music-next:hover {
+	background-color: #666;
 }
 
 .music-data {
-	width: 30em;
+	width: 25em;
 }
 
-.music-pause-play i, .music-next i, .music-text {
+.music-pause-play i, .music-next i, .music-text, .volume i {
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.music-text {
+.music-text-bg {
 	float: left;
-	width: 75%;
+	width: 80%;
 	height: 100%;
-	padding-left: 5%;
-	border-right: 1px solid #000;
-	box-shadow: 1px 0px 0 rgba(255,255,255,0.16);
+	border-right: 1px solid rgba(255,255,255,0.08);
+	box-shadow: -1px 0px 0 #000 inset;
 	background-size: 200% 100%;
 	background-position: 100% 0;
 	background-image: linear-gradient(to right, #666 50%, rgba(0,0,0,0) 50%);
 }
 
-.music-text .title {
+.music-text {
+	padding-left: 5%;
+}
+
+.title {
 	font-size: .9em;
 	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
+  	padding-bottom: .25em;
 }
 
-.music-text .uploader {
+.uploader {
 	font-size: .7em;
 }
 
@@ -245,21 +257,7 @@ button:focus {
 	background-image: url('../img/soundcloud-orange.png');
 }
 
-/*@-webkit-keyframes animateProgress {
-	to { background-position: 0 0; }
-}
 
-@-moz-keyframes animateProgress {
-	to { background-position: 0 0; }
-}
-
-@-o-keyframes animateProgress {
-	to { background-position: 0 0; }
-}
-
-@keyframes animateProgress {
-	to { background-position: 0 0; }
-}*/
 
 
 
