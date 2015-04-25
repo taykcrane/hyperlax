@@ -22,6 +22,11 @@ $(document).ready(function () {
 
 	//adds padding to the map after the map finishes loading and gets its stupid dimensions
 	$("#myMap").css("padding", "1%");
+
+	//Toggles mute when the mute button is hit. Also adds the mute class to the button, which gets evaluated every time a new song loads
+	$(".volume").on("click", function () {
+		toggleMute();
+	})
 });
 
 var videoPosition = 0;
@@ -273,6 +278,7 @@ function getPlaylist (playlistID) {
 	.done(function (result) {
 		console.log(result);
 		soundcloudTracks = result.tracks;
+		shuffle(soundcloudTracks);
 		initializePlaylist();
 	})
 	.fail(function (error) {
@@ -280,9 +286,15 @@ function getPlaylist (playlistID) {
 	})
 }
 
+function shuffle (o) {
+	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
 function scStream (songPosition) {
 	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
 		currentSound = sound;
+		checkMute();
 		currentSound.play({
 			onfinish: function () {
 				scNextStream();
@@ -370,7 +382,22 @@ function songProgress (i) {
 	}, songTime, "linear");
 }
 
+function toggleMute () {
+	currentSound.toggleMute();
+	$(".volume").toggleClass("muted");
+	if ($(".volume i").hasClass("fa-volume-up")) {
+		$(".volume i").removeClass("fa-volume-up").addClass("fa-volume-off");
+	} else {
+		$(".volume i").removeClass("fa-volume-off").addClass("fa-volume-up");
+	}
+}
 
+function checkMute () {
+	var volumeButton = $(".volume")
+	if (volumeButton.hasClass("muted")) {
+		currentSound.mute();
+	}
+}
 
 
 
