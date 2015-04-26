@@ -27,6 +27,11 @@ $(document).ready(function () {
 	$(".volume").on("click", function () {
 		toggleMute();
 	})
+
+	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
+	// setInterval(function () {
+	// 	console.log("set interval!");
+	// }, 3000);
 });
 
 var videoPosition = 0;
@@ -161,6 +166,67 @@ function getMoreVideoObjects () {
 	});
 }
 
+//when called in the setInterval, will get the newest instagram videos and check for any new ones
+// Then, will push the new ones to the array
+function getNewestVideoObjects () {
+	$.ajax({
+		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
+		dataType: "jsonp",
+		type: "GET",
+		data: {
+			count: 33
+		}
+	})
+	.done(function (result) {
+		var returnedObjects = result.data;
+		var videosToCompare = [];
+		for (i = 0; i < returnedObjects.length; i++) {
+			if (returnedObjects[i].type == "video") {
+				videosToCompare.push(returnedObjects[i]);
+			}
+		}
+		var newestVideos = comparesVideoArrays(videosToCompare, myVideoObjects);
+		console.log("newestVideos: ");
+		console.log(newestVideos);
+
+	})
+	.fail(function (error) {
+		console.log("failure!");
+		console.log(error);
+	});
+}
+
+//given two arrays, it grabs the IDs from each array, compares them for uniques,
+// and then returns a new array of just the new video objects
+function comparesVideoArrays (newArray, mainArray) {
+	var newArrayIDs = getVideoIDs(newArray);
+	var mainArrayIDs = getVideoIDs(mainArray);
+	var uniqueIDs = _.difference(newArrayIDs, mainArrayIDs);
+	var uniqueVideos = [];
+	for (i = 0; i < uniqueIDs.length; i++) {
+		for (j = 0; j < newArray.length; j++) {
+			if (uniqueIDs[i] == newArray[j].id) {
+				uniqueVideos.push(newArray[j]);
+			}
+		}
+	}
+	return uniqueVideos;
+}
+
+//given an array a video objects, create a new array of just the video IDs for comparison
+function getVideoIDs (videoArray) {
+	var idArray = [];
+	for (i = 0; i < videoArray.length; i++) {
+		var id = videoArray[i].id;
+		idArray.push(id);
+	}
+	return idArray;
+}
+
+//inserts newest videos a few postitions after the user's current videoPosition
+// function insertNewVideos (newestVideos) {
+// 	var insertPosition = videoPosition + 
+// }
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
 function addVideoToUI (i) {
@@ -221,8 +287,6 @@ function addMetadataToUI (i) {
 		}];
 		myMap.bubbles(myBubble);
 	}
-
-	//adds the video count and total number of videos
 };
 
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
@@ -398,6 +462,8 @@ function checkMute () {
 		currentSound.mute();
 	}
 }
+
+
 
 
 
