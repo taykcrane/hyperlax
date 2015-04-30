@@ -57,9 +57,9 @@ function prevVideo () {
 }
 
 function pauseAndPlay () {
-	if ($("video").get(0).paused) {
+	if ($(".video-active video").get(0).paused) {
 		toPauseButton();
-		$("video").get(0).play();
+		$(".video-active video").get(0).play();
 	} else {
 		toPlayButton();
 		$("video").get(0).pause();
@@ -67,8 +67,11 @@ function pauseAndPlay () {
 }
 
 function insertHiddenVideo () {
-	$(".active").hide();
-	$(".hidden").show();
+	$(".video-active").hide();
+	$(".video-hidden").show();
+	$(".video-hidden video").get(0).play();
+	$('video-active').remove();
+	$(".video-hidden").removeClass(".video-hidden").addClass(".video-active");
 }
 
 function toPauseButton () {
@@ -247,8 +250,8 @@ function insertNewVideos (newestVideos) {
 function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
-	$(".video").empty();
-	$(".video").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video-active").empty();
+	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
 };
 

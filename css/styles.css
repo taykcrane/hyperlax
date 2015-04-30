@@ -14,19 +14,15 @@ body {
 	height: 99.5vh;
 }
 
-.video {
+.video-active {
 	height: 100%;
 	width: 100%;
 }
 
-.hidden {
+.video-hidden {
 	display: none;
-}
-
-.test-box {
-	background-color: red;
-	height: 99.5vh;
-	width: 99.5vh;
+	height: 100%;
+	width: 100%;
 }
 
 .flexitem {
