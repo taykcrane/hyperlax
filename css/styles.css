@@ -19,6 +19,16 @@ body {
 	width: 100%;
 }
 
+.hidden {
+	display: none;
+}
+
+.test-box {
+	background-color: red;
+	height: 99.5vh;
+	width: 99.5vh;
+}
+
 .flexitem {
 	-webkit-flex: 1;
     flex: 1;
@@ -156,6 +166,10 @@ button:focus {
 
 .prev, .pause-play {
 	border-right: 1px solid #000;
+}
+
+.prev {
+	pointer-events: none;
 }
 
 .pause-play i {

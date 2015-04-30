@@ -29,18 +29,18 @@ $(document).ready(function () {
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
-	// setInterval(function () {
-	// 	console.log("set interval!");
-	// }, 3000);
+	setInterval(function () {
+		getNewestVideoObjects();
+	}, 300000);
 });
 
 var videoPosition = 0;
 function nextVideo () {
 	videoPosition++;
-	addVideoToUI(videoPosition);
-	addMetadataToUI(videoPosition);
+	// addVideoToUI(videoPosition);
+	addMetadataToUI(videoPos.ition);
 	toPauseButton();
-	$('.prev').prop("disabled", false);
+	$('.prev').css("pointer-events", "auto");
 	if (videoPosition == myVideoObjects.length - 2) {
 		getMoreVideoObjects();
 	}
@@ -48,11 +48,11 @@ function nextVideo () {
 
 function prevVideo () {
 	videoPosition--;
-	addVideoToUI(videoPosition);
+	// addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
 	toPauseButton();
 	if (videoPosition == 0) {
-		$('.prev').prop("disabled", true);
+		$('.prev').css("pointer-events", "none");
 	}
 }
 
@@ -64,6 +64,11 @@ function pauseAndPlay () {
 		toPlayButton();
 		$("video").get(0).pause();
 	}
+}
+
+function insertHiddenVideo () {
+	$(".active").hide();
+	$(".hidden").show();
 }
 
 function toPauseButton () {
@@ -188,7 +193,8 @@ function getNewestVideoObjects () {
 		var newestVideos = comparesVideoArrays(videosToCompare, myVideoObjects);
 		console.log("newestVideos: ");
 		console.log(newestVideos);
-
+		console.log("newestVideos length is: " + newestVideos.length);
+		insertNewVideos(newestVideos);
 	})
 	.fail(function (error) {
 		console.log("failure!");
@@ -224,9 +230,18 @@ function getVideoIDs (videoArray) {
 }
 
 //inserts newest videos a few postitions after the user's current videoPosition
-// function insertNewVideos (newestVideos) {
-// 	var insertPosition = videoPosition + 
-// }
+function insertNewVideos (newestVideos) {
+	console.log("myVideoObjects length before:" + myVideoObjects.length)
+	// just a couple positions after the current video to avoid any weird bugs
+	var insertPosition = videoPosition + 2;
+	if (newestVideos.length > 0) {
+		for (i = 0; i < newestVideos.length; i++) {
+			myVideoObjects.splice(insertPosition, 0, newestVideos[i]);
+			insertPosition++;
+		}
+	}
+	console.log("myVideoObjects length after:" + myVideoObjects.length)
+}
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
 function addVideoToUI (i) {
