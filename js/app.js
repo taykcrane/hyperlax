@@ -38,7 +38,9 @@ var videoPosition = 0;
 function nextVideo () {
 	videoPosition++;
 	// addVideoToUI(videoPosition);
-	addMetadataToUI(videoPos.ition);
+	addMetadataToUI(videoPosition);
+	switchHiddenToActive();
+	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
 	$('.prev').css("pointer-events", "auto");
 	if (videoPosition == myVideoObjects.length - 2) {
@@ -48,8 +50,10 @@ function nextVideo () {
 
 function prevVideo () {
 	videoPosition--;
-	// addVideoToUI(videoPosition);
+	addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
+	$(".video-hidden").remove();
+	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
 	if (videoPosition == 0) {
 		$('.prev').css("pointer-events", "none");
@@ -70,7 +74,7 @@ function insertHiddenVideo () {
 	$(".video-active").hide();
 	$(".video-hidden").show();
 	$(".video-hidden video").get(0).play();
-	$('video-active').remove();
+	$('.video-active').remove();
 	$(".video-hidden").removeClass(".video-hidden").addClass(".video-active");
 }
 
@@ -103,16 +107,8 @@ var myBubble = [];
 function initializeContent () {
 	addVideoToUI(0);
 	addMetadataToUI(0);
+	addHiddenVideo(1);
 	console.log("content initialized");
-}
-
-function continuousVideo () {
-	var v = document.getElementsByTagName("video")[0];
-	console.log('video: ', v);
-	v.addEventListener("ended", function() { 
-		console.log('Ended listener added');
-		nextVideo();
-	}, true);
 }
 
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
@@ -246,6 +242,15 @@ function insertNewVideos (newestVideos) {
 	console.log("myVideoObjects length after:" + myVideoObjects.length)
 }
 
+function continuousVideo () {
+	// var v = document.getElementById('video-active').getElementsByTagName("video")[0];
+	var v = document.querySelector(".video-active video");
+	v.addEventListener("ended", function() { 
+		console.log('Ended listener added');
+		nextVideo();
+	}, true);
+}
+
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
 function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
@@ -254,6 +259,23 @@ function addVideoToUI (i) {
 	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
 };
+
+//Adds the next video to the UI but hidden behind the active video
+function addHiddenVideo (i) {
+	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
+	console.log("hidden video link: " + videoLink);
+	$(".video-box").append('<div class="video-hidden"><video height="100%" width="100%" muted><source src="' + videoLink + '" type="video/mp4"></video></div>')
+}
+
+//Switches hidden video to active video and gets rid of the current active video
+function switchHiddenToActive () {
+	$(".video-active").hide();
+	$(".video-hidden").show();
+	$(".video-hidden video").get(0).play();
+	$('.video-active').remove();
+	$(".video-hidden").removeClass("video-hidden").addClass("video-active");
+	continuousVideo();
+}
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
