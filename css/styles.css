@@ -31,6 +31,28 @@ body {
     position: relative;
 }
 
+.nav-items {
+	text-align: center;
+	outline: 1px solid red;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.nav-items li {
+	display: inline-block;
+	outline: 1px solid red;
+	width: 20%;
+	padding: .5rem 0;
+}
+
+.nav-items a {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	color: white;
+	outline: 1px solid red;
+}
+
 .header {
 	text-align: center;
 	margin: 3em 0;
