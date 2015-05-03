@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	getVideoObjects();
-	getPlaylist(9875415);
+	// getPlaylist(9875415);
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -26,6 +26,10 @@ $(document).ready(function () {
 	//Toggles mute when the mute button is hit. Also adds the mute class to the button, which gets evaluated every time a new song loads
 	$(".volume").on("click", function () {
 		toggleMute();
+	})
+
+	$(".nav-items li").on("click", function () {
+		selectedNav($(this));
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -505,8 +509,14 @@ function checkMute () {
 
 
 
+//A bunch of functions related to the UI
 
-
+//This function adds a class "selected" to the nav tab that has been selected
+function selectedNav (navClicked) {
+	$(".nav-items .selected").removeClass("selected");
+	$(navClicked).addClass("selected");
+	console.log("item was clicked");
+}
 
 
 

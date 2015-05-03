@@ -31,26 +31,86 @@ body {
     position: relative;
 }
 
+.nav {
+	background-color: #222;
+	border-bottom: 1px solid #000;
+/*	border-radius: 3px;*/
+	box-shadow: 0 1px 0 rgba(255,255,255,0.16);
+}
+
 .nav-items {
 	text-align: center;
-	outline: 1px solid red;
-	width: 100%;
+/*	outline: 1px solid red;
+*/	width: 100%;
 	margin: 0 auto;
 }
 
 .nav-items li {
 	display: inline-block;
-	outline: 1px solid red;
-	width: 20%;
-	padding: .5rem 0;
+	position: relative;
+/*	outline: 1px solid red;
+*/	width: 20%;
+	vertical-align: middle;
+	border-bottom: .33rem solid #222;
+	color: #999;
 }
 
 .nav-items a {
-	display: block;
+	display: inline-block;
 	width: 100%;
 	text-decoration: none;
-	color: white;
-	outline: 1px solid red;
+	color: inherit;
+	padding: .75rem 0 .42rem;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+	/*outline: 1px solid red;*/
+}
+
+.nav-items i {
+	padding-right: .33rem;
+}
+
+.nav-items a:hover, .nav-items .selected {
+	color: #fff;
+}
+
+.nav-items li:after {
+	content: '';
+	position: absolute;
+	bottom: -.33rem;
+	left: 0;
+	height: 0px;
+	width: 100%;
+	background: transparent;
+	-webkit-transition: all ease 0.15s;
+	-moz-transition: all ease 0.15s;
+	transition: all ease 0.15s;
+}
+.nav-items li:hover:after {
+	height: .33rem;
+	background: #fff;
+}
+
+.nav-items .selected:after {
+	content: '';
+	position: absolute;
+	bottom: -.33rem;
+	left: 0;
+	height: .33rem;
+	width: 100%;
+	background: #fff;
+}
+
+.fa-heart {
+	color: #999;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+#heart:hover .fa-heart {
+	color: red;
 }
 
 .header {
