@@ -113,6 +113,10 @@ body {
 	color: red;
 }
 
+.selected .fa-heart {
+	color: red;
+}
+
 .header {
 	text-align: center;
 	margin: 3em 0;
