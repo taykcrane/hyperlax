@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	getVideoObjects();
-	// getPlaylist(9875415);
+	getPlaylist(9875415);
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();

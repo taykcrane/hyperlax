@@ -1,6 +1,6 @@
 body {
 	background-color: #111;
-	color: #fff;
+	color: #999;
 	font-family: sans-serif;
 }
 
@@ -33,9 +33,8 @@ body {
 
 .nav {
 	background-color: #222;
-	border-bottom: 1px solid #000;
-/*	border-radius: 3px;*/
-	box-shadow: 0 1px 0 rgba(255,255,255,0.16);
+	/*border-bottom: 1px solid #000;*/
+	box-shadow: 0 1px 0px rgba(255,255,255,0.16);
 }
 
 .nav-items {
@@ -52,7 +51,6 @@ body {
 */	width: 20%;
 	vertical-align: middle;
 	border-bottom: .33rem solid #222;
-	color: #999;
 }
 
 .nav-items a {
@@ -68,7 +66,7 @@ body {
 }
 
 .nav-items i {
-	padding-right: .33rem;
+	padding-right: .5rem;
 }
 
 .nav-items a:hover, .nav-items .selected {
@@ -259,11 +257,13 @@ button:focus {
 }
 
 .music-player {
-/*	background-color: #222;
-*/	height: 4em;
+	background-color: #222;
+	height: 2.5rem;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+	/*border-top: 1px solid #000;*/
+	box-shadow: 0 -1px 0 rgba(255,255,255,0.16);
 }
 
 .music-player .container {
@@ -271,34 +271,37 @@ button:focus {
 	top: 50%;
 	transform: translateY(-50%);
 	text-align: center;
+	height: 2.5rem;
 }
 
 .music-box {
 	display: inline-block;
-	border: 1px solid #000;
-	background-color: #333;
-	border-radius: 3px;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06);
+	background-color: #222;
 }
 
 .volume, .music-pause-play, .music-next, .music-data {
 	float: left;
-	height: 2.5em;
+	height: 2.5rem;
 }
 
-.volume, .music-pause-play, .music-next {
-	width: 2.5em;
+.volume, .music-pause-play, .music-next, .sc-logo {
+	width: 2.5rem;
 	text-align: center;
-	/*border-right: 1px solid #000;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06); */
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
 }
 
 .volume:hover, .music-pause-play:hover, .music-next:hover {
-	background-color: #666;
+	color: #fff;
+}
+
+.sc-logo:hover {
+	color: #ff6600;
 }
 
 .music-data {
-	width: 25em;
+	width: 25rem;
 }
 
 .music-pause-play i, .music-next i, .music-text, .volume i {
@@ -311,11 +314,12 @@ button:focus {
 	float: left;
 	width: 80%;
 	height: 100%;
-	border-right: 1px solid rgba(255,255,255,0.08);
-	box-shadow: -1px 0px 0 #000 inset;
 	background-size: 200% 100%;
 	background-position: 100% 0;
-	background-image: linear-gradient(to right, #666 50%, rgba(0,0,0,0) 50%);
+	background-image: linear-gradient(to right, #444 50%, rgba(0,0,0,0) 50%);
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
 }
 
 .music-text {
@@ -335,19 +339,22 @@ button:focus {
 	font-size: .7em;
 }
 
-.sc-logo {
-	background-image: url('../img/soundcloud-white.png');
-	width: 19%;
-	height: 100%;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
-	display: inline;
-	float: right;
+.music-text-bg:hover .title, .music-text-bg:hover .uploader {
+	color: #fff;
 }
 
-.sc-logo:hover {
-	background-image: url('../img/soundcloud-orange.png');
+.sc-logo {
+	width: 19%;
+	border-left: 1px solid rgba(255,255,255,0.16);
+	box-shadow: -1px 0px 0 #000;
+	display: inline;
+	float: right;
+	font-size: 2.5rem;
+	color: inherit;
+}
+
+.fa-soundcloud {
+	
 }
 
 
