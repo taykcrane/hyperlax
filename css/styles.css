@@ -29,6 +29,8 @@ body {
 	-webkit-flex: 1;
     flex: 1;
     position: relative;
+    height: 99.5vh;
+    outline: 1px solid red;
 }
 
 .nav {
@@ -254,6 +256,21 @@ button:focus {
 
 .pause-play i {
 	width: 19px;
+}
+
+.home-page, .location-page, .music-page, .about-page {
+	display: none;
+	position: relative;
+	outline: 1px solid red;
+	height: 100%;
+}
+
+.location-page p {
+	height: 80%;
+}
+
+.active-page {
+	display: initial;
 }
 
 .music-player {

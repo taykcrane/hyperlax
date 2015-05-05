@@ -30,6 +30,7 @@ $(document).ready(function () {
 
 	$(".nav-items li").on("click", function () {
 		selectedNav($(this));
+		activePage($(this));
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -515,9 +516,27 @@ function checkMute () {
 function selectedNav (navClicked) {
 	$(".nav-items .selected").removeClass("selected");
 	$(navClicked).addClass("selected");
-	console.log("item was clicked");
 }
 
-
+//this function displays the correct page that was selected in the nav by toggling
+//the active-page class
+function activePage (navClicked) {
+	var pageClass = "";
+	if (navClicked.hasClass("home-nav")) {
+		pageClass = ".home-page";
+		console.log("home-nav was selected");
+	} else if (navClicked.hasClass("location-nav")) {
+		pageClass = ".location-page";
+		console.log("location-nav was selected");
+	} else if (navClicked.hasClass("music-nav")) {
+		pageClass = ".music-page";
+		console.log("music-nav was selected");
+	} else if (navClicked.hasClass("about-nav")) {
+		pageClass = ".about-page";
+		console.log("about-nav was selected");
+	}
+	$(".active-page").removeClass("active-page");
+	$(pageClass).addClass("active-page");
+}
 
 
