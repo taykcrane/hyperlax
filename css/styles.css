@@ -30,13 +30,14 @@ body {
     flex: 1;
     position: relative;
     height: 99.5vh;
-    outline: 1px solid red;
-}
+/*    outline: 1px solid red;
+*/}
 
 .nav {
 	background-color: #222;
 	/*border-bottom: 1px solid #000;*/
 	box-shadow: 0 1px 0px rgba(255,255,255,0.16);
+	height: 5%;
 }
 
 .nav-items {
@@ -44,6 +45,7 @@ body {
 /*	outline: 1px solid red;
 */	width: 100%;
 	margin: 0 auto;
+	height: 100%;
 }
 
 .nav-items li {
@@ -52,7 +54,8 @@ body {
 /*	outline: 1px solid red;
 */	width: 20%;
 	vertical-align: middle;
-	border-bottom: .33rem solid #222;
+	/*border-bottom: .33rem solid #222;*/
+	height: 100%;
 }
 
 .nav-items a {
@@ -60,11 +63,14 @@ body {
 	width: 100%;
 	text-decoration: none;
 	color: inherit;
-	padding: .75rem 0 .42rem;
+	/*padding: .75rem 0 .42rem;*/
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;
 	/*outline: 1px solid red;*/
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .nav-items i {
@@ -78,7 +84,7 @@ body {
 .nav-items li:after {
 	content: '';
 	position: absolute;
-	bottom: -.33rem;
+	bottom: -0.0rem;
 	left: 0;
 	height: 0px;
 	width: 100%;
@@ -95,7 +101,7 @@ body {
 .nav-items .selected:after {
 	content: '';
 	position: absolute;
-	bottom: -.33rem;
+	bottom: -0.0rem;
 	left: 0;
 	height: .33rem;
 	width: 100%;
@@ -262,11 +268,10 @@ button:focus {
 	display: none;
 	position: relative;
 	outline: 1px solid red;
-	height: 100%;
 }
 
 .location-page p {
-	height: 80%;
+	height: 90%;
 }
 
 .active-page {
@@ -275,7 +280,7 @@ button:focus {
 
 .music-player {
 	background-color: #222;
-	height: 2.5rem;
+	height: 5%;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -284,21 +289,19 @@ button:focus {
 }
 
 .music-player .container {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	text-align: center;
-	height: 2.5rem;
+	height: 100%;
 }
 
 .music-box {
 	display: inline-block;
 	background-color: #222;
+	height: 100%;
 }
 
 .volume, .music-pause-play, .music-next, .music-data {
 	float: left;
-	height: 2.5rem;
+	height: 100%;
 }
 
 .volume, .music-pause-play, .music-next, .sc-logo {
@@ -368,10 +371,9 @@ button:focus {
 	float: right;
 	font-size: 2.5rem;
 	color: inherit;
-}
-
-.fa-soundcloud {
-	
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 
