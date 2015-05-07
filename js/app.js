@@ -535,8 +535,17 @@ function activePage (navClicked) {
 		pageClass = ".about-page";
 		console.log("about-nav was selected");
 	}
+	$(".active-page .content-animation").css("top", "-100%");
 	$(".active-page").removeClass("active-page");
 	$(pageClass).addClass("active-page");
 }
 
+function animatePageDown () {
+	$(".location-page .content-animation").animate({
+		"top": "0"
+	}, 1000, "easeOutBounce");
+}
 
+// function resetAnimatePageDown () {
+// 	$(".active-page").
+// }

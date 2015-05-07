@@ -38,6 +38,8 @@ body {
 	/*border-bottom: 1px solid #000;*/
 	box-shadow: 0 1px 0px rgba(255,255,255,0.16);
 	height: 5%;
+	position: relative;
+	z-index: 1000;
 }
 
 .nav-items {
@@ -265,8 +267,8 @@ button:focus {
 }
 
 .home-page, .location-page, .music-page, .about-page {
-/*	display: none;
-*/	position: relative;
+	display: none;
+	position: relative;
 	height: 100%;
 	outline: 1px solid red;
 }
@@ -280,6 +282,13 @@ button:focus {
 /*	outline: 1px solid red;
 */	position: relative;
 	top: -90%;
+}
+
+.content-animation {
+	height: 100%;
+	outline: 1px solid red;
+	position: relative;
+	top: -100%;
 }
 
 .location-page p, .music-page p, .about-page p {
