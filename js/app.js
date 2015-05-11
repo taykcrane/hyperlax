@@ -31,6 +31,7 @@ $(document).ready(function () {
 	$(".nav-items li").on("click", function () {
 		selectedNav($(this));
 		activePage($(this));
+		animatePageDown($(this));
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -518,9 +519,8 @@ function selectedNav (navClicked) {
 	$(navClicked).addClass("selected");
 }
 
-//this function displays the correct page that was selected in the nav by toggling
-//the active-page class
-function activePage (navClicked) {
+//This funtion returns the pageClass for a given nav element that was clicked
+function navToPageClass (navClicked) {
 	var pageClass = "";
 	if (navClicked.hasClass("home-nav")) {
 		pageClass = ".home-page";
@@ -535,17 +535,26 @@ function activePage (navClicked) {
 		pageClass = ".about-page";
 		console.log("about-nav was selected");
 	}
+	return pageClass;
+}
+
+//this function displays the correct page that was selected in the nav by toggling
+//the active-page class
+
+function activePage (navClicked) {
+	var pageClass = navToPageClass(navClicked);
+	// This resets the work done by the animatePageDown() function
 	$(".active-page .content-animation").css("top", "-100%");
+
 	$(".active-page").removeClass("active-page");
 	$(pageClass).addClass("active-page");
 }
 
-function animatePageDown () {
-	$(".location-page .content-animation").animate({
+//When called, slides the content from a tab into view. Within the activePage function,
+//The slide gets reset to the top
+function animatePageDown (navClicked) {
+	var pageClass = navToPageClass(navClicked);
+	$(pageClass + " .content-animation").animate({
 		"top": "0"
 	}, 1000, "easeOutBounce");
 }
-
-// function resetAnimatePageDown () {
-// 	$(".active-page").
-// }
