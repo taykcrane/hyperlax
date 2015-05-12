@@ -34,6 +34,10 @@ $(document).ready(function () {
 		animatePageDown($(this));
 	})
 
+	$(".location-nav").one("click", function () {
+		addMapToUI(videoPosition);
+	})
+
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
 		getNewestVideoObjects();
@@ -45,6 +49,7 @@ function nextVideo () {
 	videoPosition++;
 	// addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
+	updatesLocation(videoPosition);
 	switchHiddenToActive();
 	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
@@ -58,6 +63,7 @@ function prevVideo () {
 	videoPosition--;
 	addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
+	updatesLocation(videoPosition);
 	$(".video-hidden").remove();
 	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
@@ -92,23 +98,23 @@ function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
 }
 
-var myMap = new Datamap({
-	element: document.getElementById('myMap'),
-	height: null,
-	fills: {
-		defaultFill: "#999",
-		"bubbleFill": "red",
-	},
-	geographyConfig: {
-		popupOnHover: false,
-		highlightOnHover: false,
-		borderColor: "#000",
-	},
-	data: {
-		"bubbleFill": {fillKey: "bubbleFill"},
-	}
-})
-var myBubble = [];
+// var myMap = new Datamap({
+// 	element: document.getElementById('myMap'),
+// 	height: null,
+// 	fills: {
+// 		defaultFill: "#999",
+// 		"bubbleFill": "red",
+// 	},
+// 	geographyConfig: {
+// 		popupOnHover: false,
+// 		highlightOnHover: false,
+// 		borderColor: "#000",
+// 	},
+// 	data: {
+// 		"bubbleFill": {fillKey: "bubbleFill"},
+// 	}
+// })
+// var myBubble = [];
 
 function initializeContent () {
 	addVideoToUI(0);
@@ -308,32 +314,68 @@ function addMetadataToUI (i) {
 	var timeAgo = moment(unixTime).fromNow();
 	$(".timestamp").empty();
 	$(".timestamp").text(timeAgo);
-
-	//adds the location
-	$(".location-text").empty();
-	var position = "";
-	if (myVideoObjects[i].location == null) {
-		position = null;
-		myBubble = [];
-		myMap.bubbles(myBubble);
-		$(".location-text").text("Mystery location!");
-	} else {
-		var lat = myVideoObjects[i].location.latitude;
-		var lng = myVideoObjects[i].location.longitude;
-		position = lat + "," + lng;
-		console.log(position);
-		reverseGeocode(position);
-		myBubble = [{
-			radius: 10,
-			latitude: lat,
-			longitude: lng,
-			fillKey: "bubbleFill",
-			borderColor: "#000",
-			borderWidth: 1,
-		}];
-		myMap.bubbles(myBubble);
-	}
+	// updatesLocation(i);
 };
+
+//This function adds the map and location to the UI
+//It gets called the first time the location tab is clicked
+var myBubble = [];
+var myMap;
+var hasMapsBeenCalled = false;
+function addMapToUI (i) {
+	myMap = new Datamap({
+		element: document.getElementById('myMap'),
+		height: null,
+		fills: {
+			defaultFill: "#999",
+			"bubbleFill": "red",
+		},
+		geographyConfig: {
+			popupOnHover: false,
+			highlightOnHover: false,
+			borderColor: "#000",
+		},
+		data: {
+			"bubbleFill": {fillKey: "bubbleFill"},
+		}
+	})
+	console.log("map added to UI!");
+	// initializes the location data
+	setTimeout(function () {
+		hasMapsBeenCalled = true;
+		updatesLocation(i);
+		console.log("set timeout is working");
+	}, 1000);
+}
+
+//This function updates the map bubble and the location text
+function updatesLocation (i) {
+	if (hasMapsBeenCalled) {
+		$(".location-text").empty();
+		var position = "";
+		if (myVideoObjects[i].location == null) {
+			position = null;
+			myBubble = [];
+			myMap.bubbles(myBubble);
+			$(".location-text").text("Mystery location!");
+		} else {
+			var lat = myVideoObjects[i].location.latitude;
+			var lng = myVideoObjects[i].location.longitude;
+			position = lat + "," + lng;
+			console.log(position);
+			reverseGeocode(position);
+			myBubble = [{
+				radius: 10,
+				latitude: lat,
+				longitude: lng,
+				fillKey: "bubbleFill",
+				borderColor: "#000",
+				borderWidth: 1,
+			}];
+			myMap.bubbles(myBubble);
+		}
+	}
+}
 
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
 // of a video and converts it to an address: locality, administrative_level_1, country
@@ -556,5 +598,11 @@ function animatePageDown (navClicked) {
 	var pageClass = navToPageClass(navClicked);
 	$(pageClass + " .content-animation").animate({
 		"top": "0"
-	}, 1000, "easeOutBounce");
+	}, 1000, "easeOutBounce", function () {
+		// if (pageClass == ".location-page") {
+		// 	addMapToUI(videoPosition);
+		// } else {
+		// 	console.log("not location page");
+		// }
+	});
 }

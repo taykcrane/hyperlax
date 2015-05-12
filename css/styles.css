@@ -43,15 +43,15 @@ body {
 }
 
 .nav-items {
-	text-align: center;
-/*	outline: 1px solid red;
-*/	width: 100%;
-	margin: 0 auto;
+	/*outline: 1px solid red;*/
+	width: 100%;
+	/*margin: 0 auto;*/
 	height: 100%;
 }
 
 .nav-items li {
 	display: inline-block;
+	text-align: center;
 	position: relative;
 /*	outline: 1px solid red;
 */	width: 20%;
@@ -110,49 +110,18 @@ body {
 	background: #fff;
 }
 
-.fa-heart {
-	color: #999;
-	-webkit-transition: color ease 0.15s;
-	-moz-transition: color ease 0.15s;
-	transition: color ease 0.15s;
-}
-
-#heart:hover .fa-heart {
-	color: red;
-}
-
-.selected .fa-heart {
-	color: red;
-}
-
-.header {
+#twitter {
+	display: inline-block;
 	text-align: center;
-	margin: 3em 0;
+	position: relative;
+	width: 20%;
+	vertical-align: middle;
+	height: 100%;
+	vertical-align: baseline;
 }
 
 .container {
 	margin: 0 10%;
-}
-
-.header h1 {
-	font-size: 2em;
-}
-
-.header h1 span {
-	text-shadow: 
-		-1px -1px 0px red,
-         0px -1px 0px red,
-         1px -1px 0px red,
-        -1px  0px 0px red,
-         1px  0px 0px red,
-        -1px  1px 0px red,
-         0px  1px 0px red,
-         1px  1px 0px red;
-     font-style: italic;
-}
-
-.header h3 .fa-forward {
-	padding: 0 .2em;
 }
 
 .caption {
@@ -392,8 +361,6 @@ button:focus {
 	top: 50%;
 	transform: translateY(-50%);
 }
-
-
 
 
 
