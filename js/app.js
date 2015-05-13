@@ -34,8 +34,13 @@ $(document).ready(function () {
 		animatePageDown($(this));
 	})
 
+	//When the location nav is clicked for the first time, add the Map to the UI
+	// and then, with a callback function, update the location
 	$(".location-nav").one("click", function () {
-		addMapToUI(videoPosition);
+		addMapToUI(videoPosition, function () {
+			hasMapsBeenCalled = true;
+			updatesLocation(videoPosition);
+		});
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -97,24 +102,6 @@ function toPauseButton () {
 function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
 }
-
-// var myMap = new Datamap({
-// 	element: document.getElementById('myMap'),
-// 	height: null,
-// 	fills: {
-// 		defaultFill: "#999",
-// 		"bubbleFill": "red",
-// 	},
-// 	geographyConfig: {
-// 		popupOnHover: false,
-// 		highlightOnHover: false,
-// 		borderColor: "#000",
-// 	},
-// 	data: {
-// 		"bubbleFill": {fillKey: "bubbleFill"},
-// 	}
-// })
-// var myBubble = [];
 
 function initializeContent () {
 	addVideoToUI(0);
@@ -314,15 +301,16 @@ function addMetadataToUI (i) {
 	var timeAgo = moment(unixTime).fromNow();
 	$(".timestamp").empty();
 	$(".timestamp").text(timeAgo);
-	// updatesLocation(i);
 };
 
 //This function adds the map and location to the UI
 //It gets called the first time the location tab is clicked
 var myBubble = [];
 var myMap;
+//This variable allows the updatesLocation function to run only
+//after the map has been loaded.
 var hasMapsBeenCalled = false;
-function addMapToUI (i) {
+function addMapToUI (i, callback) {
 	myMap = new Datamap({
 		element: document.getElementById('myMap'),
 		height: null,
@@ -340,12 +328,7 @@ function addMapToUI (i) {
 		}
 	})
 	console.log("map added to UI!");
-	// initializes the location data
-	setTimeout(function () {
-		hasMapsBeenCalled = true;
-		updatesLocation(i);
-		console.log("set timeout is working");
-	}, 1000);
+	callback();
 }
 
 //This function updates the map bubble and the location text
@@ -598,11 +581,5 @@ function animatePageDown (navClicked) {
 	var pageClass = navToPageClass(navClicked);
 	$(pageClass + " .content-animation").animate({
 		"top": "0"
-	}, 1000, "easeOutBounce", function () {
-		// if (pageClass == ".location-page") {
-		// 	addMapToUI(videoPosition);
-		// } else {
-		// 	console.log("not location page");
-		// }
-	});
+	}, 1000, "easeOutBounce");
 }

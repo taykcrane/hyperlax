@@ -148,13 +148,17 @@ body {
 	transform: translateY(-50%);
 }
 
-.timestamp, .credit {
-	text-align: right;
-	color: #666;
+.attribution {
+	z-index: 1000;
+	position: fixed;
+	bottom: 6%;
+	padding-left: .5rem;
+	color: #444;
+	font-size: .9rem;
 }
 
 .credit a {
-	color: #999;
+	color: #666;
 }
 
 .location-group {
