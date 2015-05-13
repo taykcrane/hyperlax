@@ -34,6 +34,8 @@ $(document).ready(function () {
 		animatePageDown($(this));
 	})
 
+	$(".active-page .content-animation").css("top", "0%");
+
 	//When the location nav is clicked for the first time, add the Map to the UI
 	// and then, with a callback function, update the location
 	$(".location-nav").one("click", function () {
