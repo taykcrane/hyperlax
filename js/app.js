@@ -12,6 +12,15 @@ $(document).ready(function () {
 		prevVideo();
 	})
 
+	//When user hovers over the video, display the location
+	$(".video-box").on("mouseenter", function () {
+		locationTextMouseEnter();
+	})
+
+	$(".video-box").on("mouseleave", function () {
+		locationTextMouseLeave();
+	})	
+
 	//music controls
 	$(".music-pause-play").on("click", function () {
 		musicPauseAndPlay();
@@ -41,7 +50,8 @@ $(document).ready(function () {
 	$(".location-nav").one("click", function () {
 		addMapToUI(videoPosition, function () {
 			hasMapsBeenCalled = true;
-			updatesLocation(videoPosition);
+			updatesLocationText(videoPosition);
+			updatesLocationMap(videoPosition);
 		});
 	})
 
@@ -56,7 +66,8 @@ function nextVideo () {
 	videoPosition++;
 	// addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
-	updatesLocation(videoPosition);
+	updatesLocationText(videoPosition);
+	updatesLocationMap(videoPosition);
 	switchHiddenToActive();
 	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
@@ -70,7 +81,8 @@ function prevVideo () {
 	videoPosition--;
 	addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
-	updatesLocation(videoPosition);
+	updatesLocationText(videoPosition);
+	updatesLocationMap(videoPosition);
 	$(".video-hidden").remove();
 	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
@@ -108,6 +120,7 @@ function toPlayButton () {
 function initializeContent () {
 	addVideoToUI(0);
 	addMetadataToUI(0);
+	updatesLocationText(0);
 	addHiddenVideo(1);
 	console.log("content initialized");
 }
@@ -257,7 +270,7 @@ function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video-active").empty();
-	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video-active").append('<video height="100%" width="100%" muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
 };
 
@@ -309,7 +322,7 @@ function addMetadataToUI (i) {
 //It gets called the first time the location tab is clicked
 var myBubble = [];
 var myMap;
-//This variable allows the updatesLocation function to run only
+//This variable allows the updatesLocationMap function to run only
 //after the map has been loaded.
 var hasMapsBeenCalled = false;
 function addMapToUI (i, callback) {
@@ -334,21 +347,36 @@ function addMapToUI (i, callback) {
 }
 
 //This function updates the map bubble and the location text
-function updatesLocation (i) {
+var geoPosition = "";
+var lat;
+var lng;
+function updatesLocationText (i) {
+	$(".location-overlay").finish();
+	$(".location-overlay").css("opacity", "1");
+	if (myVideoObjects[i].location == null) {
+		geoPosition = null;
+		$(".location-text").text("Mystery location!");
+		$(".location-overlay-text").text("");
+	} else {
+		lat = myVideoObjects[i].location.latitude;
+		lng = myVideoObjects[i].location.longitude;
+		geoPosition = lat + "," + lng;
+		console.log(geoPosition);
+		reverseGeocode(geoPosition);
+	}
+	setTimeout(function () {
+		$(".location-overlay").animate({
+			"opacity": "0"
+		}, 3000)
+	}, 2000);
+}
+
+function updatesLocationMap (i) {
 	if (hasMapsBeenCalled) {
-		$(".location-text").empty();
-		var position = "";
-		if (myVideoObjects[i].location == null) {
-			position = null;
+		if (geoPosition === null) {
 			myBubble = [];
 			myMap.bubbles(myBubble);
-			$(".location-text").text("Mystery location!");
 		} else {
-			var lat = myVideoObjects[i].location.latitude;
-			var lng = myVideoObjects[i].location.longitude;
-			position = lat + "," + lng;
-			console.log(position);
-			reverseGeocode(position);
 			myBubble = [{
 				radius: 10,
 				latitude: lat,
@@ -362,12 +390,31 @@ function updatesLocation (i) {
 	}
 }
 
+//When called, below two functions show or hide the location text overlayed
+// on top of the video
+function locationTextMouseEnter () {
+	$(".location-overlay").stop();
+	$(".location-overlay").animate({
+		"opacity": "1"
+	}, 150);
+}
+
+function locationTextMouseLeave () {
+	$(".location-overlay").stop();
+	$(".location-overlay").animate({
+		"opacity": "0"
+	}, 150);
+}
+
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
 // of a video and converts it to an address: locality, administrative_level_1, country
 function reverseGeocode (position) {
+	$(".location-text").empty();
+	$(".location-overlay-text").empty();
 	loadGoogleResults(position, function (result) {
 		console.log(result);
 		$(".location-text").text(getAddressString(result));
+		$(".location-overlay-text").text(getAddressString(result));
 	});
 }
 
@@ -585,3 +632,36 @@ function animatePageDown (navClicked) {
 		"top": "0"
 	}, 1000, "easeOutBounce");
 }
+
+// function increaseControlOpacity () {
+// 	$(".video-box").css("pointer-events", "none");
+// 	$(".video-controls").animate({
+// 		"opacity": "1"
+// 	}, 300);
+// }
+
+// function decreaseControlOpacity () {
+// 	$(".video-box").css("pointer-events", "auto");
+// 	$(".video-controls").animate({
+// 		"opacity": "0"
+// 	}, 300);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

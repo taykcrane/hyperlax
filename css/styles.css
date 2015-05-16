@@ -12,6 +12,7 @@ body {
 .video-box {
 	width: 99.5vh;
 	height: 99.5vh;
+	position: relative;
 }
 
 .video-active {
@@ -23,6 +24,54 @@ body {
 	display: none;
 	height: 100%;
 	width: 100%;
+}
+
+.location-overlay {
+	position: absolute;
+	top: 75%;
+	font-size: 2em;
+	color: rgba(365,365,365,.5);
+	width: 100%;
+	text-align: center;
+}
+
+.video-controls {
+	position: absolute;
+	z-index: 1000;
+	top: 85%;
+	width: 100%;
+	text-align: center;
+	opacity: 0;
+	-webkit-transition: opacity linear 0.15s;
+	-moz-transition: opacity linear 0.15s;
+	transition: opacity linear 0.15s;
+}
+
+.video-box:hover .video-controls {
+	opacity: 1;
+}
+
+button:focus {
+	outline: none;
+}
+
+.next, .prev, .pause-play {
+	display: inline;
+	color: rgba(365,365,365,.4);
+	background-color: rgba(0,0,0,.4);
+	padding: 1em 3em;
+}
+
+.prev {
+	pointer-events: none;
+}
+
+.pause-play i {
+	width: 19px;
+}
+
+.next:hover, .prev:hover, .pause-play:hover {
+	color: rgba(365,365,365,.7);
 }
 
 .flexitem {
@@ -203,47 +252,10 @@ hr {
 	display: block;
 }
 
-.controls {
-	width: 100%;
-	text-align: center;
-}
-
-.buttons {
-	display: inline-block;
-	border: 1px solid #000;
-	background-color: #333;
-	border-radius: 3px;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.08),inset 1px 1px rgba(255,255,255,0.06);
-}
-
-button:focus {
-	outline: none;
-}
-
-.next, .prev, .pause-play {
-	float: left;
-	color: #fff;
-	padding: 1em 3em;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.16),inset 1px 1px rgba(255,255,255,0.12);
-}
-
-.prev, .pause-play {
-	border-right: 1px solid #000;
-}
-
-.prev {
-	pointer-events: none;
-}
-
-.pause-play i {
-	width: 19px;
-}
-
 .home-page, .location-page, .music-page, .about-page {
 	display: none;
 	position: relative;
 	height: 100%;
-	outline: 1px solid red;
 }
 
 .active-page {
@@ -259,13 +271,12 @@ button:focus {
 
 .content-animation {
 	height: 100%;
-	outline: 1px solid red;
 	position: relative;
 	top: -100%;
 }
 
 .location-page p, .music-page p, .about-page p {
-	outline: 1px solid red;
+
 }
 
 .music-player {
@@ -327,14 +338,17 @@ button:focus {
 	background-size: 200% 100%;
 	background-position: 100% 0;
 	background-image: linear-gradient(to right, #444 50%, rgba(0,0,0,0) 50%);
-	-webkit-transition: color ease 0.15s;
-	-moz-transition: color ease 0.15s;
-	transition: color ease 0.15s;
 }
 
 .music-text {
 	padding-left: 5%;
 	text-align: left;
+}
+
+.title, .uploader {
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
 }
 
 .title {
