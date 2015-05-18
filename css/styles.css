@@ -171,6 +171,36 @@ button:focus {
 
 .container {
 	margin: 0 10%;
+	height: 100%;
+}
+
+.start {
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.start h1 {
+	display: inline-block;
+	font-size: 1.5rem;
+	padding: 1.5rem 3rem;
+	background-color: #fff;
+	color: #111;
+	border-radius: 10px;
+}
+
+.start p {
+	margin-top: .2rem;
+	text-decoration: underline;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.start p:hover {
+	text-decoration: underline;
+	color: #fff;
 }
 
 .caption {

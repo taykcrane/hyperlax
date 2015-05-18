@@ -270,7 +270,7 @@ function addVideoToUI (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video-active").empty();
-	$(".video-active").append('<video height="100%" width="100%" muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
 };
 
