@@ -130,7 +130,7 @@ function toPlayButton () {
 //Adds the video to the UI, all the metadata, etc.
 //Also pauses the first video via a callback function
 function initializeContent () {
-	addVideoToUI(0);
+	addVideoToUI(0, true);
 	addMetadataToUI(0);
 	updatesLocationText(0);
 	addHiddenVideo(1);
@@ -278,12 +278,17 @@ function continuousVideo () {
 }
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
-function addVideoToUI (i) {
+function addVideoToUI (i, onFirstVideoLoad) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video-active").empty();
 	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
+	if (onFirstVideoLoad) {
+		$(".video-active video").one("play", function () {
+			pauseAndPlay();
+		})
+	}
 };
 
 //Adds the next video to the UI but hidden behind the active video

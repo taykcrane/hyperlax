@@ -4,16 +4,96 @@
 		"selected_items":
 		[
 			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"location",
+				"locationTextMouseEnter"
+			],
+			[
+				"video",
+				"videoPosition"
+			],
+			[
+				"updates",
+				"updatesLocationText"
+			],
+			[
+				"acti",
+				"activePage"
+			],
+			[
+				"home",
+				"home-nav"
+			],
+			[
+				"page",
+				"pageClass"
+			],
+			[
+				"has",
+				"hasClass"
+			],
+			[
+				"nav",
+				"navClicked"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"song",
+				"songProgress"
+			],
+			[
+				"sound",
+				"soundcloudTracks"
+			],
+			[
+				"scSt",
+				"scStopStream"
+			],
+			[
+				"backg",
+				"background-position"
+			],
+			[
+				"background",
+				"background-attachment"
+			],
+			[
+				"border",
+				"border-right"
+			],
+			[
+				"border-r",
+				"border-radius"
+			],
+			[
 				"my",
 				"myQuestions"
 			],
 			[
 				"font",
 				"font-size"
-			],
-			[
-				"marg",
-				"margin-top"
 			],
 			[
 				"fon",
@@ -56,24 +136,8 @@
 				"correctAnswer"
 			],
 			[
-				"background",
-				"background-color"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
-				"text",
-				"text-align"
-			],
-			[
 				"font-",
 				"font-size"
-			],
-			[
-				"in",
-				"inline-block"
 			],
 			[
 				"margin",
@@ -82,10 +146,6 @@
 			[
 				"inlin",
 				"inline-block"
-			],
-			[
-				"border",
-				"border"
 			],
 			[
 				"backgroun",
@@ -136,16 +196,8 @@
 				"margin"
 			],
 			[
-				"padd",
-				"padding"
-			],
-			[
 				"list",
 				"list-style-type"
-			],
-			[
-				"backg",
-				"background-color"
 			],
 			[
 				"mari",
@@ -159,7 +211,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 1401,
+				"buffer_size": 4643,
 				"line_ending": "Unix"
 			}
 		},
@@ -167,7 +219,7 @@
 			"file": "css/styles.css",
 			"settings":
 			{
-				"buffer_size": 249,
+				"buffer_size": 6531,
 				"line_ending": "Unix"
 			}
 		},
@@ -175,7 +227,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 1630,
+				"buffer_size": 18031,
 				"line_ending": "Unix"
 			}
 		}
@@ -229,6 +281,9 @@
 	],
 	"file_history":
 	[
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/pause.js",
+		"/System/Library/Frameworks/AudioUnit.framework/Versions/A/Headers/AudioCodec.h",
+		"/Users/taylorcrane/Desktop/Projects/personal/CNAME",
 		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/app.js",
 		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/index.html",
 		"/Users/taylorcrane/Desktop/Projects/crane-game/js/script.js",
@@ -274,6 +329,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"muted",
+			"updatesLocation",
+			".video-active",
+			".on(\"click",
+			"autoplay",
+			"#111",
+			"music-text",
+			"scStream",
 			"transform",
 			"20px",
 			"2px",
@@ -304,15 +367,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1401,
+						"buffer_size": 4643,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								189,
-								189
+								2115,
+								2115
 							]
 						],
 						"settings":
@@ -320,16 +383,16 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 582.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -338,15 +401,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 249,
+						"buffer_size": 6531,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2727,
+								2727
 							]
 						],
 						"settings":
@@ -354,27 +417,27 @@
 							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2484.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
 					"file": "js/app.js",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1630,
+						"buffer_size": 18031,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								7693,
+								7693
 							]
 						],
 						"settings":
@@ -382,7 +445,7 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
+						"translation.x": 1.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -420,7 +483,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.471377400116,
 			1.0
 		],
 		"rows":
@@ -468,7 +531,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
