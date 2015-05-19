@@ -1,6 +1,8 @@
 $(document).ready(function () {
+	//Sets up the videos and the music, respectively
 	getVideoObjects();
 	getPlaylist(9875415);
+	//Pauses the video and music initially
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -37,12 +39,13 @@ $(document).ready(function () {
 		toggleMute();
 	})
 
+	//When a nav button is clicked, animate the appropriate page down
 	$(".nav-items li").on("click", function () {
 		selectedNav($(this));
 		activePage($(this));
 		animatePageDown($(this));
 	})
-
+	//Sets the home page to already be displayed (skipping the animation)
 	$(".active-page .content-animation").css("top", "0%");
 
 	//When the location nav is clicked for the first time, add the Map to the UI
@@ -54,6 +57,11 @@ $(document).ready(function () {
 			updatesLocationMap(videoPosition);
 		});
 	})
+
+	//When the HIT ME button is clicked, the video and music begins
+	$(".start h1").on("click", function () {
+		console.log("clicked");
+	});
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
@@ -95,9 +103,11 @@ function pauseAndPlay () {
 	if ($(".video-active video").get(0).paused) {
 		toPauseButton();
 		$(".video-active video").get(0).play();
+		console.log("video is playing!");
 	} else {
 		toPlayButton();
-		$("video").get(0).pause();
+		$(".video-active video").get(0).pause();
+		console.log("video has been paused!");
 	}
 }
 
@@ -117,6 +127,8 @@ function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
 }
 
+//Adds the video to the UI, all the metadata, etc.
+//Also pauses the first video via a callback function
 function initializeContent () {
 	addVideoToUI(0);
 	addMetadataToUI(0);
@@ -633,19 +645,7 @@ function animatePageDown (navClicked) {
 	}, 1000, "easeOutBounce");
 }
 
-// function increaseControlOpacity () {
-// 	$(".video-box").css("pointer-events", "none");
-// 	$(".video-controls").animate({
-// 		"opacity": "1"
-// 	}, 300);
-// }
 
-// function decreaseControlOpacity () {
-// 	$(".video-box").css("pointer-events", "auto");
-// 	$(".video-controls").animate({
-// 		"opacity": "0"
-// 	}, 300);
-// }
 
 
 
