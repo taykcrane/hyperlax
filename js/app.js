@@ -60,7 +60,9 @@ $(document).ready(function () {
 
 	//When the HIT ME button is clicked, the video and music begins
 	$(".start h1").on("click", function () {
-		console.log("clicked");
+		$(".video-box").css("pointer-events", "all");
+		pauseAndPlay();
+		musicPauseAndPlay();
 	});
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -492,15 +494,19 @@ function shuffle (o) {
     return o;
 }
 
-function scStream (songPosition) {
+function scStream (songPosition, onFirstMusicLoad) {
 	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
 		currentSound = sound;
-		checkMute();
+		checkMute(); //checks to see if the music has already been muted
 		currentSound.play({
 			onfinish: function () {
 				scNextStream();
 			}
 		});
+
+		if (onFirstMusicLoad) {
+			musicPauseAndPlay();
+		}
 	})
 }
 
@@ -554,7 +560,7 @@ function initializePlaylist () {
 	SC.initialize({
 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
 	});
-	scStream(0);
+	scStream(0, true);
 	addSongMetadataToUI(0);
 }
 

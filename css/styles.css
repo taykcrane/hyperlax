@@ -13,6 +13,7 @@ body {
 	width: 99.5vh;
 	height: 99.5vh;
 	position: relative;
+	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
 }
 
 .video-active {
