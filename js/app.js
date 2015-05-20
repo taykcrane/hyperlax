@@ -65,6 +65,12 @@ $(document).ready(function () {
 		musicPauseAndPlay();
 	});
 
+	//When the "play without music?" link is clicked, only play the video
+	$(".start p").on("click", function () {
+		$(".video-box").css("pointer-events", "all");
+		pauseAndPlay();
+	});
+
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
 		getNewestVideoObjects();

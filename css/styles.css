@@ -129,7 +129,7 @@ button:focus {
 	padding-right: .5rem;
 }
 
-.nav-items a:hover, .nav-items .selected {
+.nav-items li:hover, .nav-items .selected, #twitter:hover {
 	color: #fff;
 }
 
@@ -175,10 +175,51 @@ button:focus {
 	height: 100%;
 }
 
-.start {
+.home-page {
 	text-align: center;
+}
+
+.top-box, .bottom-box {
+	height: 50%;
+}
+
+.bottom-box {
+	position: relative;
+	bottom: 0;
+}
+
+.description {
 	position: relative;
 	top: 50%;
+	transform: translateY(-50%);
+}
+
+.tagline a {
+	color: inherit;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.tagline a:hover {
+	color: #fff;
+}
+
+.instructions {
+	text-align: justify;
+}
+
+.instructions:after {
+	content: '';
+  	width: 100%; /* Ensures justification for single lines */
+  	display: inline-block;
+}
+
+.instructions li {
+	display: inline-block;
+}
+
+.start {
 	transform: translateY(-50%);
 }
 
@@ -189,6 +230,10 @@ button:focus {
 	background-color: #fff;
 	color: #111;
 	border-radius: 10px;
+}
+
+.start h1:hover, .start p:hover {
+	cursor: pointer;	
 }
 
 .start p {
