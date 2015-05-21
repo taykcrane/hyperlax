@@ -411,6 +411,10 @@ hr {
 	transition: color ease 0.15s;
 }
 
+.music-pause-play, .music-next {
+	pointer-events: none; /*gets reset to default once "HIT ME" is clicked*/
+}
+
 .volume:hover, .music-pause-play:hover, .music-next:hover {
 	color: #fff;
 }

@@ -61,6 +61,8 @@ $(document).ready(function () {
 	//When the HIT ME button is clicked, the video and music begins
 	$(".start h1").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
+		$(".music-pause-play").css("pointer-events", "all");
+		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
 		musicPauseAndPlay();
 		$(".start").fadeOut(3000);
@@ -70,6 +72,8 @@ $(document).ready(function () {
 	//When the "play without music?" link is clicked, only play the video
 	$(".start p").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
+		$(".music-pause-play").css("pointer-events", "all");
+		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
 		$(".start").fadeOut(3000);
 		$(".start").css("pointer-events", "none");
@@ -77,7 +81,7 @@ $(document).ready(function () {
 
 	//When the expand button is clicked, asks user if app can enter fullscreen
 	$(".expand").on("click", function () {
-		expandVideo();
+		toggleFullscreen();
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -144,6 +148,7 @@ function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
 }
 
+
 function expandVideo () {
 	var elem = document.getElementById("vid-expand");
 	if (elem.requestFullscreen) {
@@ -156,9 +161,26 @@ function expandVideo () {
 }
 
 function collapseVideo () {
-	document.mozCancelFullScreen();
-	document.webkitExitFullscreen();
-	document.msExitFullscreen();
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+function toggleFullscreen () {
+	if (
+	    document.fullscreenElement ||
+    	document.webkitFullscreenElement ||
+    	document.mozFullScreenElement ||
+    	document.msFullscreenElement
+	) {
+		collapseVideo();
+	} else {
+		expandVideo();
+	}
 }
 
 //Adds the video to the UI, all the metadata, etc.
