@@ -63,13 +63,22 @@ $(document).ready(function () {
 		$(".video-box").css("pointer-events", "all");
 		pauseAndPlay();
 		musicPauseAndPlay();
+		$(".start").fadeOut(3000);
+		$(".start").css("pointer-events", "none");
 	});
 
 	//When the "play without music?" link is clicked, only play the video
 	$(".start p").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
 		pauseAndPlay();
+		$(".start").fadeOut(3000);
+		$(".start").css("pointer-events", "none");
 	});
+
+	//When the expand button is clicked, asks user if app can enter fullscreen
+	$(".expand").on("click", function () {
+		expandVideo();
+	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
@@ -133,6 +142,23 @@ function toPauseButton () {
 
 function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
+}
+
+function expandVideo () {
+	var elem = document.getElementById("vid-expand");
+	if (elem.requestFullscreen) {
+	elem.requestFullscreen();
+	} else if (elem.mozRequestFullScreen) {
+	elem.mozRequestFullScreen();
+	} else if (elem.webkitRequestFullscreen) {
+	elem.webkitRequestFullscreen();
+	}
+}
+
+function collapseVideo () {
+	document.mozCancelFullScreen();
+	document.webkitExitFullscreen();
+	document.msExitFullscreen();
 }
 
 //Adds the video to the UI, all the metadata, etc.

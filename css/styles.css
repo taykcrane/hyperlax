@@ -7,6 +7,8 @@ body {
 .flexcontainer {
 	display: -webkit-flex;
 	display: flex;
+	width: 100%;
+	height: 100%;
 }
 
 .video-box {
@@ -14,6 +16,7 @@ body {
 	height: 99.5vh;
 	position: relative;
 	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
+	margin: 0 auto;
 }
 
 .video-active {
@@ -56,7 +59,7 @@ button:focus {
 	outline: none;
 }
 
-.next, .prev, .pause-play {
+.next, .prev, .pause-play, .expand {
 	display: inline;
 	color: rgba(365,365,365,.4);
 	background-color: rgba(0,0,0,.4);
@@ -71,7 +74,7 @@ button:focus {
 	width: 19px;
 }
 
-.next:hover, .prev:hover, .pause-play:hover {
+.next:hover, .prev:hover, .pause-play:hover, .expand:hover {
 	color: rgba(365,365,365,.7);
 }
 
@@ -194,6 +197,11 @@ button:focus {
 	transform: translateY(-50%);
 }
 
+.tagline {
+	font-size: 1.25rem;
+	margin-bottom: .75rem;
+}
+
 .tagline a {
 	color: inherit;
 	-webkit-transition: color ease 0.15s;
@@ -205,18 +213,25 @@ button:focus {
 	color: #fff;
 }
 
-.instructions {
-	text-align: justify;
+#text-divide {
+	font-size: .75rem;
+	color: #fff;
 }
 
-.instructions:after {
-	content: '';
-  	width: 100%; /* Ensures justification for single lines */
-  	display: inline-block;
+.instructions {
+	/*text-align: justify;*/
+	margin-top: .75rem;
 }
+
+/*.instructions:after {
+	content: '';
+  	width: 100%;  Ensures justification for single lines 
+  	display: inline-block;
+}*/
 
 .instructions li {
 	display: inline-block;
+	margin: 0 1.1rem;
 }
 
 .start {
@@ -284,6 +299,13 @@ button:focus {
 
 .credit a {
 	color: #666;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.credit a:hover {
+	color: #fff;
 }
 
 .location-group {
