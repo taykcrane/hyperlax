@@ -79,6 +79,13 @@ $(document).ready(function () {
 		$(".start").css("pointer-events", "none");
 	});
 
+	//When dark mode is clicked, hide the flexitem (content)
+	$(".dark-mode").on("click", function () {
+		toggleDarkMode();
+	})
+
+	$("")
+
 	//When the expand button is clicked, asks user if app can enter fullscreen
 	$(".expand").on("click", function () {
 		toggleFullscreen();
@@ -413,6 +420,14 @@ function addMapToUI (i, callback) {
 		},
 		data: {
 			"bubbleFill": {fillKey: "bubbleFill"},
+		},
+		bubblesConfig: {
+			borderWidth: 1,
+        	borderColor: '#000',
+        	popupOnHover: false,
+        	fillOpacity: 0.75,
+        	highlightOnHover: false,
+        	highlightFillColor: '#000',
 		}
 	})
 	console.log("map added to UI!");
@@ -710,7 +725,15 @@ function animatePageDown (navClicked) {
 	}, 1000, "easeOutBounce");
 }
 
-
+//Toggles the .flexitem when the lightbulb control is clicked
+function toggleDarkMode () {
+	$(".flexitem").toggle("300", function () {
+		$(".video-box").animate({
+			left: $(window).width() / 4
+		}, 300)
+		console.log("function complete");
+	});
+}
 
 
 

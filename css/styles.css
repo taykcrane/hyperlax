@@ -16,7 +16,11 @@ body {
 	height: 99.5vh;
 	position: relative;
 	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
-	margin: 0 auto;
+	/*margin: 0 auto;*/
+	-moz-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
 }
 
 .video-active {
@@ -59,7 +63,7 @@ button:focus {
 	outline: none;
 }
 
-.next, .prev, .pause-play, .expand {
+.next, .prev, .pause-play, .expand, .lightbulb {
 	display: inline;
 	color: rgba(365,365,365,.4);
 	background-color: rgba(0,0,0,.4);
@@ -74,7 +78,7 @@ button:focus {
 	width: 19px;
 }
 
-.next:hover, .prev:hover, .pause-play:hover, .expand:hover {
+.next:hover, .prev:hover, .pause-play:hover, .expand:hover, .lightbulb:hover {
 	color: rgba(365,365,365,.7);
 }
 
@@ -253,15 +257,25 @@ button:focus {
 
 .start p {
 	margin-top: .2rem;
+}
+
+.start p, .dark-mode {
 	text-decoration: underline;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
-	transition: color ease 0.15s;
+	transition: color ease 0.15s;	
 }
 
-.start p:hover {
+.start p:hover, .dark-mode:hover {
 	text-decoration: underline;
 	color: #fff;
+}
+
+.dark-mode {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .caption {
