@@ -31,9 +31,6 @@ $(document).ready(function () {
 		scNextStream();
 	})
 
-	//adds padding to the map after the map finishes loading and gets its stupid dimensions
-	$("#myMap").css("padding", "1%");
-
 	//Toggles mute when the mute button is hit. Also adds the mute class to the button, which gets evaluated every time a new song loads
 	$(".volume").on("click", function () {
 		toggleMute();
