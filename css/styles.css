@@ -80,6 +80,7 @@ button:focus {
 
 .next:hover, .prev:hover, .pause-play:hover, .expand:hover, .lightbulb:hover {
 	color: rgba(365,365,365,.7);
+	cursor: pointer;
 }
 
 .flexitem {
@@ -235,7 +236,7 @@ button:focus {
 
 .instructions li {
 	display: inline-block;
-	margin: 0 1.1rem;
+	margin: 0 .66rem;
 }
 
 .start {
@@ -251,7 +252,7 @@ button:focus {
 	border-radius: 10px;
 }
 
-.start h1:hover, .start p:hover {
+.start h1:hover, .start p:hover, .dark-mode:hover {
 	cursor: pointer;	
 }
 
@@ -276,6 +277,7 @@ button:focus {
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%);
+	display: none;
 }
 
 .caption {

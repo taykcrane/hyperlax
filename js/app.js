@@ -65,7 +65,9 @@ $(document).ready(function () {
 		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
 		musicPauseAndPlay();
-		$(".start").fadeOut(3000);
+		$(".start").fadeOut(3000, function () {
+			$(".dark-mode").fadeIn(3000);
+		});
 		$(".start").css("pointer-events", "none");
 	});
 
@@ -75,7 +77,9 @@ $(document).ready(function () {
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
-		$(".start").fadeOut(3000);
+		$(".start").fadeOut(3000, function () {
+			$(".dark-mode").fadeIn(3000);
+		});
 		$(".start").css("pointer-events", "none");
 	});
 
@@ -84,7 +88,9 @@ $(document).ready(function () {
 		toggleDarkMode();
 	})
 
-	$("")
+	$(".lightbulb").on("click", function () {
+		toggleDarkMode();
+	})
 
 	//When the expand button is clicked, asks user if app can enter fullscreen
 	$(".expand").on("click", function () {
@@ -157,6 +163,9 @@ function toPlayButton () {
 
 
 function expandVideo () {
+	$(".video-box").css("margin", "0 auto");
+	$(".video-box").css("left", "0");
+	$(".lightbulb").css("pointer-events", "none");
 	var elem = document.getElementById("vid-expand");
 	if (elem.requestFullscreen) {
 	elem.requestFullscreen();
@@ -168,6 +177,11 @@ function expandVideo () {
 }
 
 function collapseVideo () {
+  $(".video-box").css("margin", "0");
+  $(".lightbulb").css("pointer-events", "all");
+  if (isDarkMode) {
+  	toggleDarkMode();
+  }
   if(document.exitFullscreen) {
     document.exitFullscreen();
   } else if(document.mozCancelFullScreen) {
@@ -726,15 +740,31 @@ function animatePageDown (navClicked) {
 }
 
 //Toggles the .flexitem when the lightbulb control is clicked
+var isDarkMode = false;
 function toggleDarkMode () {
-	$(".flexitem").toggle("300", function () {
+	var halfWindowWith = $(window).width() / 2;
+	var halfVideoWidth = $(".video-box").width() / 2;
+	if (isDarkMode) {
 		$(".video-box").animate({
-			left: $(window).width() / 4
-		}, 300)
-		console.log("function complete");
-	});
+			left: 0
+		}, 300, function () {
+			//because the stupid callback function isn't working properly
+			setTimeout(function () {
+				$(".flexitem").toggle("300");
+				console.log("animation has finished");
+			}, 300)
+		})
+		console.log("animation has started");
+		isDarkMode = false;
+	} else {
+		$(".flexitem").toggle("300", function () {
+			$(".video-box").animate({
+				left: halfWindowWith - halfVideoWidth
+			}, 300)
+		});
+		isDarkMode = true;
+	}
 }
-
 
 
 
