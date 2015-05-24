@@ -94,6 +94,15 @@ $(document).ready(function () {
 		toggleFullscreen();
 	})
 
+	//Makes sure that if ESC key is hit to exit fullscreen, everything behaves as expected
+	$(document).keyup(function (e) {
+		var keycodeEsc = 27;
+		if (e.keyCode == keycodeEsc) {
+			console.log("esc key was hit");
+			collapseVideo();
+		}
+	})
+
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
 		getNewestVideoObjects();
