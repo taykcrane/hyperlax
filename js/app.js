@@ -2,7 +2,7 @@ $(document).ready(function () {
 	//Sets up the videos and the music, respectively
 	getVideoObjects();
 	getPlaylist(9875415, true);
-	//Pauses the video and music initially
+
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -52,6 +52,10 @@ $(document).ready(function () {
 			hasMapsBeenCalled = true;
 			updatesLocationText(videoPosition);
 			updatesLocationMap(videoPosition);
+		});
+		//Will truncate the caption text to a maximum of 3 lines
+		$('.caption p').trunk8({
+			lines: 3
 		});
 	})
 
@@ -115,6 +119,11 @@ $(document).ready(function () {
 		$(".playlist-choices .selected").removeClass("selected");
 		$(this).addClass("selected");
 	})
+
+	//Will truncate the caption text to a maximum of 3 lines
+	$('.caption p').trunk8({
+		lines: 3
+	});
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
@@ -406,14 +415,9 @@ function switchHiddenToActive () {
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
-	//adds the video's caption
-	var fullCaption = myVideoObjects[i].caption.text;
-	var caption = fullCaption.substring(0, 170);
-	if (fullCaption.length >= 170) {
-		caption += "...";
-	}
-	$(".caption p").empty();
-	$(".caption p").text(caption);
+	//adds the video's caption and truncates to max 3 lines
+	var caption = myVideoObjects[i].caption.text;
+	$('.caption p').trunk8('update', caption);
 
 	//adds the username
 	var username = myVideoObjects[i].user.username;
@@ -443,13 +447,13 @@ function addMapToUI (i, callback) {
 		element: document.getElementById('myMap'),
 		height: null,
 		fills: {
-			defaultFill: "#444",
+			defaultFill: "#999",
 			"bubbleFill": "red",
 		},
 		geographyConfig: {
 			popupOnHover: false,
 			highlightOnHover: false,
-			borderColor: "#000",
+			borderColor: "#111",
 		},
 		data: {
 			"bubbleFill": {fillKey: "bubbleFill"},
@@ -474,7 +478,7 @@ var lng;
 function updatesLocationText (i) {
 	$(".location-overlay").finish();
 	$(".location-overlay").css("opacity", "1");
-	if (myVideoObjects[i].location == null) {
+	if (myVideoObjects[i].location == null || myVideoObjects[i].location.latitude == undefined || myVideoObjects[i].location.longitude == undefined) {
 		geoPosition = null;
 		$(".location-text").text("Mystery location!");
 		$(".location-overlay-text").text("");
@@ -699,6 +703,7 @@ function toggleMute () {
 	} else {
 		$(".volume i").removeClass("fa-volume-off").addClass("fa-volume-up");
 	}
+	console.log("toggleMute executed");
 }
 
 function checkMute () {
