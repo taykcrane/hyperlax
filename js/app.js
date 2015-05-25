@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	//Sets up the videos and the music, respectively
 	getVideoObjects();
-	getPlaylist(9875415);
+	getPlaylist(9875415, true);
 	//Pauses the video and music initially
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
@@ -66,6 +66,8 @@ $(document).ready(function () {
 			$(".dark-mode").fadeIn(3000);
 		});
 		$(".start").css("pointer-events", "none");
+		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
+		$(".location-nav, .music-nav, .about-nav").css("pointer-events", "all");
 	});
 
 	//When the "play without music?" link is clicked, only play the video
@@ -78,6 +80,8 @@ $(document).ready(function () {
 			$(".dark-mode").fadeIn(3000);
 		});
 		$(".start").css("pointer-events", "none");
+		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
+		$(".location-nav, .music-nav, .about-nav").css("pointer-events", "all");
 	});
 
 	//When dark mode is clicked, hide the flexitem (content)
@@ -101,6 +105,15 @@ $(document).ready(function () {
 			console.log("esc key was hit");
 			collapseVideo();
 		}
+	})
+
+	//Will get the playlist ID from the playlist that was clicked in the UI and begin
+	//playing the new playlist
+	$(".playlist-choices li").on("click", function () {
+		var chosenPlaylist = $(this).attr("id");
+		switchPlaylist(chosenPlaylist);
+		$(".playlist-choices .selected").removeClass("selected");
+		$(this).addClass("selected");
 	})
 
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
@@ -430,7 +443,7 @@ function addMapToUI (i, callback) {
 		element: document.getElementById('myMap'),
 		height: null,
 		fills: {
-			defaultFill: "#999",
+			defaultFill: "#444",
 			"bubbleFill": "red",
 		},
 		geographyConfig: {
@@ -561,7 +574,7 @@ function getResultEntryOfType (result, type) {
 var soundcloudTracks = [];
 var currentSound = "";
 var songPosition = 0;
-function getPlaylist (playlistID) {
+function getPlaylist (playlistID, onFirstMusicLoad) {
 	$.ajax({
 		url: "http://api.soundcloud.com/playlists/" + playlistID + ".json?client_id=0e790e28fcdf924f78f80375ad74fcb8",
 		dataType: "json",
@@ -571,7 +584,7 @@ function getPlaylist (playlistID) {
 		console.log(result);
 		soundcloudTracks = result.tracks;
 		shuffle(soundcloudTracks);
-		initializePlaylist();
+		initializePlaylist(onFirstMusicLoad);
 	})
 	.fail(function (error) {
 		console.log("error: " + error);
@@ -645,11 +658,11 @@ function scNextStream () {
 	}
 }
 
-function initializePlaylist () {
+function initializePlaylist (onFirstMusicLoad) {
 	SC.initialize({
 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
 	});
-	scStream(0, true);
+	scStream(0, onFirstMusicLoad);
 	addSongMetadataToUI(0);
 }
 
@@ -693,6 +706,13 @@ function checkMute () {
 	if (volumeButton.hasClass("muted")) {
 		currentSound.mute();
 	}
+}
+
+//This function will switch the playlist to the one selected in the UI
+function switchPlaylist (playlistID) {
+	scStopStream();
+	getPlaylist(playlistID);
+	toMusicPauseButton();
 }
 
 

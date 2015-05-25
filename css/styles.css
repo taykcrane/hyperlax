@@ -1,5 +1,7 @@
 body {
-	background-color: #111;
+	background: #111;
+	/*background-image: -webkit-radial-gradient(circle at top right, #333, #111);
+  	background-image: radial-gradient(circle at top right, #333, #111);*/
 	color: #999;
 	font-family: sans-serif;
 }
@@ -139,6 +141,7 @@ button:focus {
 
 .nav-items li:hover, .nav-items .selected, #twitter:hover {
 	color: #fff;
+	cursor: pointer;
 }
 
 .nav-items li:after {
@@ -178,6 +181,12 @@ button:focus {
 	vertical-align: baseline;
 }
 
+/* On load, disables the other nav items until HIT ME is clicked*/
+.location-nav, .music-nav, .about-nav {
+	color: #444;
+	pointer-events: none;
+}
+
 .attribution {
 	z-index: 1000;
 	position: fixed;
@@ -203,7 +212,30 @@ button:focus {
 	height: 100%;
 }
 
-.home-page {
+.home-page, .location-page, .music-page, .about-page {
+	display: none;
+	position: relative;
+	height: 100%;
+}
+
+.active-page {
+	display: initial;
+}
+
+.content-box {
+	height: 90%;
+/*	outline: 1px solid red;
+*/	position: relative;
+	top: -90%;
+}
+
+.content-animation {
+	height: 100%;
+	position: relative;
+	top: -100%;
+}
+
+.home-page, .music-page {
 	text-align: center;
 }
 
@@ -217,7 +249,7 @@ button:focus {
 }
 
 
-.description {
+.home-page .description {
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
@@ -308,7 +340,7 @@ button:focus {
 .caption .fa-quote-left {
 	width: 20%;
 	text-align: center;
-	color: #fff;
+	color: #444;
 }
 
 .caption p {
@@ -340,7 +372,7 @@ button:focus {
 .location .fa-map-marker {
 	width: 20%;
 	text-align: center;
-	color: #fff;
+	color: #444;
 }
 
 .location-text {
@@ -360,31 +392,73 @@ button:focus {
 	display: block;
 }
 
-.home-page, .location-page, .music-page, .about-page {
-	display: none;
+.music-page .description {
 	position: relative;
-	height: 100%;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
-.active-page {
-	display: initial;
+.music-page .description a {
+	color: #999;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
 }
 
-.content-box {
-	height: 90%;
-/*	outline: 1px solid red;
-*/	position: relative;
-	top: -90%;
+.music-page .description a:hover {
+	color: #fff;
 }
 
-.content-animation {
-	height: 100%;
+.playlist-choices {
+	transform: translateY(-50%);
+	text-align: left;
+	width: 30%;
+	margin: 0 auto;
+	font-size: 1.25rem;
+}
+
+.playlist-choices li {
 	position: relative;
-	top: -100%;
+	padding: .33rem 0 .33rem .66rem;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
 }
 
-.location-page p, .music-page p, .about-page p {
+.playlist-choices li:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	background: transparent;
+	-webkit-transition: all ease 0.15s;
+	-moz-transition: all ease 0.15s;
+	transition: all ease 0.15s;
+}
+.playlist-choices li:hover:before {
+	width: .33rem;
+	background: #fff;
+}
 
+.playlist-choices li:hover, .playlist-choices .selected {
+	color: #fff;
+	cursor: pointer;
+}
+
+.playlist-choices .selected:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: .33rem;
+	background-color: #fff;
+}
+
+.num-likes {
+	float: right;
 }
 
 .music-player {
