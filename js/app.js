@@ -103,9 +103,11 @@ $(document).ready(function () {
 	})
 
 	//Makes sure that if ESC key is hit to exit fullscreen, everything behaves as expected
+	//Also does the same for the windows F11 key
 	$(document).keyup(function (e) {
 		var keycodeEsc = 27;
-		if (e.keyCode == keycodeEsc) {
+		var keycodeF11 = 122;
+		if (e.keyCode == keycodeEsc || e.keyCode == keycodeF11) {
 			console.log("esc key was hit");
 			collapseVideo();
 		}

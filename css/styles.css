@@ -305,7 +305,7 @@ button:focus {
 	border-radius: 10px;
 }
 
-.start h1:hover, .start p:hover, .dark-mode:hover {
+.start h1:hover, .start p span:hover, .dark-mode:hover {
 	cursor: pointer;	
 }
 
@@ -320,7 +320,7 @@ button:focus {
 	transition: color ease 0.15s;	
 }
 
-.start p:hover, .dark-mode:hover {
+.start p span:hover, .dark-mode:hover {
 	text-decoration: underline;
 	color: #fff;
 }
@@ -549,6 +549,44 @@ button:focus {
 
 .num-likes {
 	float: right;
+}
+
+.about-content {
+	position: absolute;
+	bottom: 0;
+	transform: translateY(50%);
+}
+
+.about-content p {
+	margin-bottom: 2rem;
+	line-height: 1.2;
+}
+
+.about-content a {
+	color: inherit;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.about-content a:hover {
+	color: #fff;
+}
+
+.email {
+	color: #ccc;
+	font-weight: bold;
+}
+
+.made {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+.fa-heart {
+	color: red;
 }
 
 .music-player {
