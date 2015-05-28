@@ -102,6 +102,11 @@ $(document).ready(function () {
 		toggleFullscreen();
 	})
 
+	//When the location toggle is turned off, stop displaying the location on top of the video
+	$(".onoffswitch-label").on("click", function () {
+		$(".location-overlay").toggle();
+	})
+
 	//Makes sure that if ESC key is hit to exit fullscreen, everything behaves as expected
 	//Also does the same for the windows F11 key
 	$(document).keyup(function (e) {

@@ -359,9 +359,10 @@ button:focus {
 }
 
 .location-group {
-	position: relative;
+	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
+	width: 100%;
 }
 
 .location {
@@ -388,6 +389,8 @@ button:focus {
 .location-overlay-toggle {
 	height: 1rem;
 	text-align: center;
+	position: relative;
+	top: 3em;
 }
 
 .location-overlay-toggle p {
@@ -396,7 +399,6 @@ button:focus {
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
-	font-size: .75rem;
 	color: #666;
 }
 
@@ -408,15 +410,18 @@ button:focus {
     -moz-user-select:none;
     -ms-user-select: none;
 }
+
 .onoffswitch-checkbox {
     display: none;
 }
+
 .onoffswitch-label {
     display: block;
     overflow: hidden;
     cursor: pointer;
     border-radius: .5rem;
 }
+
 .onoffswitch-inner {
     display: block;
     width: 200%;
@@ -426,6 +431,7 @@ button:focus {
     -o-transition: margin 0.15s ease 0s;
     transition: margin 0.15s ease 0s;
 }
+
 .onoffswitch-inner:before, .onoffswitch-inner:after {
     display: block;
     float: left;
@@ -436,7 +442,12 @@ button:focus {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    -moz-transition: all 0.15s ease 0s;
+    -webkit-transition: all 0.15s ease 0s;
+    -o-transition: all 0.15s ease 0s;
+    transition: all 0.15s ease 0s; 
 }
+
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: .5rem;
@@ -444,6 +455,7 @@ button:focus {
     color: #999;
     text-align: left;
 }
+
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: .5rem;
@@ -451,11 +463,12 @@ button:focus {
     color: #999;
     text-align: right;
 }
+
 .onoffswitch-switch {
     display: block;
     width: .5rem;
     margin: .25rem;
-    background: #999;
+    background-color: #999;
     border-radius: .5rem;
     position: absolute;
     top: 0;
@@ -466,11 +479,21 @@ button:focus {
     -o-transition: all 0.15s ease 0s;
     transition: all 0.15s ease 0s; 
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0rem; 
+}
+
+.onoffswitch-label:hover .onoffswitch-inner:before, .onoffswitch-label:hover .onoffswitch-inner:after {
+	color: #fff;
+}
+
+.onoffswitch-label:hover .onoffswitch-switch {
+	background-color: #fff;
 }
 
 #myMap {
