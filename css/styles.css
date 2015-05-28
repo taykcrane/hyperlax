@@ -3,7 +3,7 @@ body {
 	/*background-image: -webkit-radial-gradient(circle at top right, #333, #111);
   	background-image: radial-gradient(circle at top right, #333, #111);*/
 	color: #999;
-	font-family: sans-serif;
+	font-family: "raleway",sans-serif;
 }
 
 .flexcontainer {
@@ -652,10 +652,12 @@ button:focus {
 
 .volume:hover, .music-pause-play:hover, .music-next:hover {
 	color: #fff;
+	cursor: pointer;
 }
 
 .sc-logo:hover {
 	color: #ff6600;
+	cursor: pointer;
 }
 
 .music-data {
