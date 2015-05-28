@@ -8,52 +8,150 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<script src="//use.typekit.net/bvp2tss.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
 	<div class="flexcontainer">
-		<div class="video-box">
-			<div class="video">
+		<div class="video-box" id="vid-expand">
+			<div class="location-overlay">
+				<p class="location-overlay-text"></p>
+			</div>
+			<div class="video-controls">
+				<div class="lightbulb"><i class="fa fa-lightbulb-o fa-lg"></i></div><div class="prev"><i class="fa fa-backward fa-lg"></i></div><div class="pause-play"><i class="fa fa-pause fa-lg"></i></div><div class="next"><i class="fa fa-forward fa-lg"></i></div><div class="expand"><i class="fa fa-arrows-alt fa-lg"></i></div>
+			</div>
+			<div class="video-active">
 				<!-- <video height="640" width="640" autoplay controls>
 					<source src="https://scontent.cdninstagram.com/hphotos-xaf1/t50.2886-16/11107083_958420827501640_1131625644_n.mp4" type="video/mp4">
 				</video> -->
 			</div>
+			<!-- <div class="video-hidden">
+				<video height="100%" width="100%" controls>
+					<source src="https://scontent.cdninstagram.com/hphotos-xaf1/t50.2886-16/11107083_958420827501640_1131625644_n.mp4" type="video/mp4">
+				</video>
+			</div> -->
 		</div>
 		<div class="flexitem">
-			<div class="header">
-				<div class="container">
-					<h1>Hyper<span>lax</span></h1>
-					<h3>Explore faraway places just by hitting the <i class="fa fa-forward fa-lg"></i> button.</h3>
+			<div class="nav">
+				<ul class="nav-items">
+					<li class="home-nav selected"><a href="#">Hyperlax</a>
+					<li class="location-nav"><a href="#"><i class="fa fa-map-marker fa-lg"></i>location</a>
+					<li class="music-nav"><a href="#"><i class="fa fa-music fa-lg"></i>music</a>
+					<li class="about-nav"><a href="#"><i class="fa fa-info fa-lg"></i>about</a></li><a href="http://twitter.com/taykcrane" id="twitter" target="_blank"><i class="fa fa-twitter fa-lg"></i>@taykcrane</a>
+				</ul>
+			</div>
+			<div class="home-page active-page">
+				<div class="content-box">
+					<div class="content-animation">
+						<div class="container">
+							<div class="top-box">
+								<div class="description">
+									<h5 class="tagline">Enjoy a real-time feed of Instagram's latest <a href="https://itunes.apple.com/us/app/hyperlapse-from-instagram/id740146917" target="_blank">#hyperlapse</a> videos.</h5>
+									<div id="text-divide">
+										-- <i class="fa fa-instagram"></i> --
+									</div>
+									<ul class="instructions">
+										<li>Sit back</li>
+										<li>--</li>
+										<li>Relax</li>
+										<li>--</li>
+										<li>Explore faraway places</li>
+										<li>--</li>
+										<li>Feel the music</li>
+									</ul>
+								</div>
+							</div>
+							<div class="bottom-box">
+								<div class="start">
+									<h1>HIT ME</h1>
+									<p><span>Start without music?</span></p>
+								</div>
+								<p class="dark-mode">Enter dark mode?</p>
+							</div>
+						</div>	
+					</div>
 				</div>
 			</div>
-			<div class="content">
-				<div class="container">
-					<div class="metadata">
-						<div class="controls">
-							<div class="buttons">
-								<div class="prev" disabled><i class="fa fa-backward fa-lg"></i></div><div class="pause-play"><i class="fa fa-pause fa-lg"></i></div><div class="next"><i class="fa fa-forward fa-lg"></i></div>	
+			<div class="location-page">
+				<div class="content-box">
+					<div class="content-animation">
+						<div class="container">
+							<div class="top-box">
+								<div class="location-overlay-toggle">
+									<p>Display location over video?</p>
+									<div class="onoffswitch">
+									    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+									    <label class="onoffswitch-label" for="myonoffswitch">
+									        <span class="onoffswitch-inner"></span>
+									        <span class="onoffswitch-switch"></span>
+									    </label>
+									</div>
+								</div>
+								<div class="location-group">
+									<div class="location">
+										<i class="fa fa-map-marker fa-3x"></i>
+										<p class="location-text"></p>
+									</div>
+								</div>
+							</div>
+							<div class="bottom-box">
+								<div id="myMap"></div>
+								<div class="caption">
+									<i class="fa fa-quote-left fa-3x"></i>
+									<p></p>
+								</div>						
 							</div>
 						</div>
-						<h3 class="caption">
-							<i class="fa fa-quote-left fa-3x"></i>
-							<p></p>
-						</h3>
-						<p class="credit"><!-- Taken by <a href="#" target="_blank"></a> --></p>
-						<p class="timestamp"></p>
-						<div class="location-group">
-							<h3 class="location">
-								<i class="fa fa-map-marker fa-2x"></i>
-								<p class="location-text"></p>
-							</h3>
-							<!-- <hr class="rule-1" size="1" noshade color="black">
-							<hr class="rule-2" size="1" noshade color="#999"> -->
-							<div id="myMap"></div>
-						</div>
-					</div>	
-				</div>	
+					</div>
+				</div>
+			</div>
+			<div class="music-page">
+				<div class="content-box">
+					<div class="content-animation">
+						<div class="container">
+							<div class="top-box">
+								<p class="description">Hyperlax is best when watched with relaxing and chill music in the background. Choose from the playlists below, courtesy of <a href="http://soundcloud.com">Soundcloud</a>.</p>
+							</div>
+							<div class="bottom-box">
+								<ul class="playlist-choices">
+									<li class="selected" id="9875415"><span class="playlist-name">Chill</span><span class="num-likes"><i class="fa fa-heart-o"></i> 5k</span><div style="clear: both;"></div></li>
+									<li id="8382286"><span class="playlist-name">Electronic</span><span class="num-likes"><i class="fa fa-heart-o"></i> 3k</span><div style="clear: both;"></div></li>
+									<li><span class="playlist-name">Hip-hop</span><span class="num-likes"><i class="fa fa-heart-o"></i> 2k</span><div style="clear: both;"></div></li>
+									<li><span class="playlist-name">Indie/Alt</span><span class="num-likes"><i class="fa fa-heart-o"></i> 2k</span><div style="clear: both;"></div></li>
+									<li><span class="playlist-name">Study</span><span class="num-likes"><i class="fa fa-heart-o"></i> 1k</span><div style="clear: both;"></div></li>
+								</ul>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<div class="about-page">
+				<div class="content-box">
+					<div class="content-animation">
+						<div class="container">
+							<div class="top-box">
+								<div class="about-content">
+									<p>Do you see those Instagram <a href="https://itunes.apple.com/us/app/hyperlapse-from-instagram/id740146917" target="_blank">#hyperlapse</a> videos on the left? They were just posted to Instagram; it's a real-time feed. Enjoy a peak into the lives of others, from locations around the world. Hyperlax is meant to be a bit of an escape, a bit voyueristic, a bit relaxing. I think it's mesmerising. Maybe you will too!</p>
+									<p>Hyperlax was created as a way for me (<a href="https://twitter.com/taykcrane" target="_blank">@taykcrane</a>) to begin learning how to code. It was inspired by <a href="http://hypermasher.com" target="_blank">Hypermasher</a>, a site with an almost identical concept, built by Andrew Baker (<a href="https://twitter.com/andrewtorkbaker" target="_blank">@andrewtorkbaker</a>). I was drawn to <a href="http://hypermasher.com" target="_blank">Hypermasher</a>, but felt like there were a few things I could do to make it better. And thus, Hyperlax was born!</p>
+									<p>If you've read this far, I'd honestly love your feedback. Positive/negative/neutral, feature requests/bug fixes, massive donations/angry rants can all be sent to <span class="email">taylorkcrane@gmail.com</span>. I don't know if anyone is going to like this thing, so if you do, seriously let me know.</p>
+								</div>
+							</div>
+							<div class="bottom-box">
+								<p class="made">Made with <i class="fa fa-heart"></i> in NYC</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<div class="attribution">
+				<p class="credit"></p>
+				<p class="timestamp"></p>
 			</div>
 			<div class="music-player">
 				<div class="container">
-					<div class="music-pause-play"><i class="fa fa-pause fa-lg"></i></div><div class="music-next"><i class="fa fa-forward fa-lg"></i></div><div class="music-data"><div class="music-text"><p class="title"></p><p class="uploader"></p></div><a href="#" class="sc-logo" target="_blank"></a></div>
+					<div class="music-box">
+						<div class="volume"><i class="fa fa-volume-up fa-lg"></i></div><div class="music-pause-play"><i class="fa fa-pause fa-lg"></i></div><div class="music-next"><i class="fa fa-forward fa-lg"></i></div><div class="music-data"><div class="music-text-bg"><div class="music-text"><p class="title"></p><p class="uploader"></p></div></div><a href="#" class="sc-logo" target="_blank"><i class="fa fa-soundcloud"></i></a></div>
+					</div>
 				</div>
 			</div>	
 		</div>
@@ -67,8 +165,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 <script src="js/datamaps.js"></script>
+<script src="js/pause.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="http://connect.soundcloud.com/sdk.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trunk8/1.3.3/trunk8.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

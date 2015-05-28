@@ -1,6 +1,8 @@
 $(document).ready(function () {
+	//Sets up the videos and the music, respectively
 	getVideoObjects();
-	getPlaylist(9875415);
+	getPlaylist(9875415, true);
+
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -12,6 +14,15 @@ $(document).ready(function () {
 		prevVideo();
 	})
 
+	//When user hovers over the video, display the location
+	$(".video-box").on("mouseenter", function () {
+		locationTextMouseEnter();
+	})
+
+	$(".video-box").on("mouseleave", function () {
+		locationTextMouseLeave();
+	})	
+
 	//music controls
 	$(".music-pause-play").on("click", function () {
 		musicPauseAndPlay();
@@ -20,17 +31,124 @@ $(document).ready(function () {
 		scNextStream();
 	})
 
-	//adds padding to the map after the map finishes loading and gets its stupid dimensions
-	$("#myMap").css("padding", "1%");
+	//Toggles mute when the mute button is hit. Also adds the mute class to the button, which gets evaluated every time a new song loads
+	$(".volume").on("click", function () {
+		toggleMute();
+	})
+
+	//When a nav button is clicked, animate the appropriate page down
+	$(".nav-items li").on("click", function () {
+		selectedNav($(this));
+		activePage($(this));
+		animatePageDown($(this));
+	})
+	//Sets the home page to already be displayed (skipping the animation)
+	$(".active-page .content-animation").css("top", "0%");
+
+	//When the location nav is clicked for the first time, add the Map to the UI
+	// and then, with a callback function, update the location
+	$(".location-nav").one("click", function () {
+		addMapToUI(videoPosition, function () {
+			hasMapsBeenCalled = true;
+			updatesLocationText(videoPosition);
+			updatesLocationMap(videoPosition);
+		});
+		//Will truncate the caption text to a maximum of 3 lines
+		$('.caption p').trunk8({
+			lines: 3
+		});
+	})
+
+	//When the HIT ME button is clicked, the video and music begins
+	$(".start h1").on("click", function () {
+		$(".video-box").css("pointer-events", "all");
+		$(".music-pause-play").css("pointer-events", "all");
+		$(".music-next").css("pointer-events", "all");
+		pauseAndPlay();
+		musicPauseAndPlay();
+		$(".start").fadeOut(3000, function () {
+			$(".dark-mode").fadeIn(3000);
+		});
+		$(".start").css("pointer-events", "none");
+		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
+		$(".location-nav, .music-nav, .about-nav").css("pointer-events", "all");
+	});
+
+	//When the "play without music?" link is clicked, only play the video
+	$(".start p").on("click", function () {
+		$(".video-box").css("pointer-events", "all");
+		$(".music-pause-play").css("pointer-events", "all");
+		$(".music-next").css("pointer-events", "all");
+		pauseAndPlay();
+		$(".start").fadeOut(3000, function () {
+			$(".dark-mode").fadeIn(3000);
+		});
+		$(".start").css("pointer-events", "none");
+		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
+		$(".location-nav, .music-nav, .about-nav").css("pointer-events", "all");
+	});
+
+	//When dark mode is clicked, hide the flexitem (content)
+	$(".dark-mode").on("click", function () {
+		toggleDarkMode();
+	})
+
+	$(".lightbulb").on("click", function () {
+		toggleDarkMode();
+	})
+
+	//When the expand button is clicked, asks user if app can enter fullscreen
+	$(".expand").on("click", function () {
+		toggleFullscreen();
+	})
+
+	//When the location toggle is turned off, stop displaying the location on top of the video
+	$(".onoffswitch-label").on("click", function () {
+		$(".location-overlay").toggle();
+	})
+
+	//Makes sure that if ESC key is hit to exit fullscreen, everything behaves as expected
+	//Also does the same for the windows F11 key
+	$(document).keyup(function (e) {
+		var keycodeEsc = 27;
+		var keycodeF11 = 122;
+		if (e.keyCode == keycodeEsc || e.keyCode == keycodeF11) {
+			console.log("esc key was hit");
+			collapseVideo();
+		}
+	})
+
+	//Will get the playlist ID from the playlist that was clicked in the UI and begin
+	//playing the new playlist
+	$(".playlist-choices li").on("click", function () {
+		var chosenPlaylist = $(this).attr("id");
+		switchPlaylist(chosenPlaylist);
+		$(".playlist-choices .selected").removeClass("selected");
+		$(this).addClass("selected");
+	})
+
+	//Will truncate the caption text to a maximum of 3 lines
+	$('.caption p').trunk8({
+		lines: 3
+	});
+
+	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
+	setInterval(function () {
+		getNewestVideoObjects();
+	}, 300000);
 });
 
 var videoPosition = 0;
 function nextVideo () {
 	videoPosition++;
-	addVideoToUI(videoPosition);
+	// addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
+	updatesLocationText(videoPosition);
+	updatesLocationMap(videoPosition);
+	switchHiddenToActive();
+	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
-	$('.prev').prop("disabled", false);
+	$('.prev').css("pointer-events", "auto");
 	if (videoPosition == myVideoObjects.length - 2) {
 		getMoreVideoObjects();
 	}
@@ -40,20 +158,34 @@ function prevVideo () {
 	videoPosition--;
 	addVideoToUI(videoPosition);
 	addMetadataToUI(videoPosition);
+	updatesLocationText(videoPosition);
+	updatesLocationMap(videoPosition);
+	$(".video-hidden").remove();
+	addHiddenVideo(videoPosition + 1);
 	toPauseButton();
 	if (videoPosition == 0) {
-		$('.prev').prop("disabled", true);
+		$('.prev').css("pointer-events", "none");
 	}
 }
 
 function pauseAndPlay () {
-	if ($("video").get(0).paused) {
+	if ($(".video-active video").get(0).paused) {
 		toPauseButton();
-		$("video").get(0).play();
+		$(".video-active video").get(0).play();
+		console.log("video is playing!");
 	} else {
 		toPlayButton();
-		$("video").get(0).pause();
+		$(".video-active video").get(0).pause();
+		console.log("video has been paused!");
 	}
+}
+
+function insertHiddenVideo () {
+	$(".video-active").hide();
+	$(".video-hidden").show();
+	$(".video-hidden video").get(0).play();
+	$('.video-active').remove();
+	$(".video-hidden").removeClass(".video-hidden").addClass(".video-active");
 }
 
 function toPauseButton () {
@@ -64,37 +196,57 @@ function toPlayButton () {
 	$(".pause-play i").removeClass("fa-pause").addClass("fa-play");
 }
 
-var myMap = new Datamap({
-	element: document.getElementById('myMap'),
-	height: null,
-	fills: {
-		defaultFill: "#999",
-		"bubbleFill": "red",
-	},
-	geographyConfig: {
-		popupOnHover: false,
-		highlightOnHover: false,
-		borderColor: "#000",
-	},
-	data: {
-		"bubbleFill": {fillKey: "bubbleFill"},
-	}
-})
-var myBubble = [];
 
-function initializeContent () {
-	addVideoToUI(0);
-	addMetadataToUI(0);
-	console.log("content initialized");
+function expandVideo () {
+	$(".video-box").css("margin", "0 auto");
+	$(".video-box").css("left", "0");
+	$(".lightbulb").css("pointer-events", "none");
+	var elem = document.getElementById("vid-expand");
+	if (elem.requestFullscreen) {
+	elem.requestFullscreen();
+	} else if (elem.mozRequestFullScreen) {
+	elem.mozRequestFullScreen();
+	} else if (elem.webkitRequestFullscreen) {
+	elem.webkitRequestFullscreen();
+	}
 }
 
-function continuousVideo () {
-	var v = document.getElementsByTagName("video")[0];
-	console.log('video: ', v);
-	v.addEventListener("ended", function() { 
-		console.log('Ended listener added');
-		nextVideo();
-	}, true);
+function collapseVideo () {
+  $(".video-box").css("margin", "0");
+  $(".lightbulb").css("pointer-events", "all");
+  if (isDarkMode) {
+  	toggleDarkMode();
+  }
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+function toggleFullscreen () {
+	if (
+	    document.fullscreenElement ||
+    	document.webkitFullscreenElement ||
+    	document.mozFullScreenElement ||
+    	document.msFullscreenElement
+	) {
+		collapseVideo();
+	} else {
+		expandVideo();
+	}
+}
+
+//Adds the video to the UI, all the metadata, etc.
+//Also pauses the first video via a callback function
+function initializeContent () {
+	addVideoToUI(0, true);
+	addMetadataToUI(0);
+	updatesLocationText(0);
+	addHiddenVideo(1);
+	console.log("content initialized");
 }
 
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
@@ -156,26 +308,123 @@ function getMoreVideoObjects () {
 	});
 }
 
+//when called in the setInterval, will get the newest instagram videos and check for any new ones
+// Then, will push the new ones to the array
+function getNewestVideoObjects () {
+	$.ajax({
+		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
+		dataType: "jsonp",
+		type: "GET",
+		data: {
+			count: 33
+		}
+	})
+	.done(function (result) {
+		var returnedObjects = result.data;
+		var videosToCompare = [];
+		for (i = 0; i < returnedObjects.length; i++) {
+			if (returnedObjects[i].type == "video") {
+				videosToCompare.push(returnedObjects[i]);
+			}
+		}
+		var newestVideos = comparesVideoArrays(videosToCompare, myVideoObjects);
+		console.log("newestVideos: ");
+		console.log(newestVideos);
+		console.log("newestVideos length is: " + newestVideos.length);
+		insertNewVideos(newestVideos);
+	})
+	.fail(function (error) {
+		console.log("failure!");
+		console.log(error);
+	});
+}
+
+//given two arrays, it grabs the IDs from each array, compares them for uniques,
+// and then returns a new array of just the new video objects
+function comparesVideoArrays (newArray, mainArray) {
+	var newArrayIDs = getVideoIDs(newArray);
+	var mainArrayIDs = getVideoIDs(mainArray);
+	var uniqueIDs = _.difference(newArrayIDs, mainArrayIDs);
+	var uniqueVideos = [];
+	for (i = 0; i < uniqueIDs.length; i++) {
+		for (j = 0; j < newArray.length; j++) {
+			if (uniqueIDs[i] == newArray[j].id) {
+				uniqueVideos.push(newArray[j]);
+			}
+		}
+	}
+	return uniqueVideos;
+}
+
+//given an array a video objects, create a new array of just the video IDs for comparison
+function getVideoIDs (videoArray) {
+	var idArray = [];
+	for (i = 0; i < videoArray.length; i++) {
+		var id = videoArray[i].id;
+		idArray.push(id);
+	}
+	return idArray;
+}
+
+//inserts newest videos a few postitions after the user's current videoPosition
+function insertNewVideos (newestVideos) {
+	console.log("myVideoObjects length before:" + myVideoObjects.length)
+	// just a couple positions after the current video to avoid any weird bugs
+	var insertPosition = videoPosition + 2;
+	if (newestVideos.length > 0) {
+		for (i = 0; i < newestVideos.length; i++) {
+			myVideoObjects.splice(insertPosition, 0, newestVideos[i]);
+			insertPosition++;
+		}
+	}
+	console.log("myVideoObjects length after:" + myVideoObjects.length)
+}
+
+function continuousVideo () {
+	// var v = document.getElementById('video-active').getElementsByTagName("video")[0];
+	var v = document.querySelector(".video-active video");
+	v.addEventListener("ended", function() { 
+		console.log('Ended listener added');
+		nextVideo();
+	}, true);
+}
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
-function addVideoToUI (i) {
+function addVideoToUI (i, onFirstVideoLoad) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
-	$(".video").empty();
-	$(".video").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video-active").empty();
+	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
 	continuousVideo();
+	if (onFirstVideoLoad) {
+		$(".video-active video").one("play", function () {
+			pauseAndPlay();
+		})
+	}
 };
+
+//Adds the next video to the UI but hidden behind the active video
+function addHiddenVideo (i) {
+	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
+	console.log("hidden video link: " + videoLink);
+	$(".video-box").append('<div class="video-hidden"><video height="100%" width="100%" muted><source src="' + videoLink + '" type="video/mp4"></video></div>')
+}
+
+//Switches hidden video to active video and gets rid of the current active video
+function switchHiddenToActive () {
+	$(".video-active").hide();
+	$(".video-hidden").show();
+	$(".video-hidden video").get(0).play();
+	$('.video-active').remove();
+	$(".video-hidden").removeClass("video-hidden").addClass("video-active");
+	continuousVideo();
+}
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
-	//adds the video's caption
-	var fullCaption = myVideoObjects[i].caption.text;
-	var caption = fullCaption.substring(0, 170);
-	if (fullCaption.length >= 170) {
-		caption += "...";
-	}
-	$(".caption p").empty();
-	$(".caption p").text(caption);
+	//adds the video's caption and truncates to max 3 lines
+	var caption = myVideoObjects[i].caption.text;
+	$('.caption p').trunk8('update', caption);
 
 	//adds the username
 	var username = myVideoObjects[i].user.username;
@@ -191,41 +440,113 @@ function addMetadataToUI (i) {
 	var timeAgo = moment(unixTime).fromNow();
 	$(".timestamp").empty();
 	$(".timestamp").text(timeAgo);
-
-	//adds the location
-	$(".location-text").empty();
-	var position = "";
-	if (myVideoObjects[i].location == null) {
-		position = null;
-		myBubble = [];
-		myMap.bubbles(myBubble);
-		$(".location-text").text("Mystery location!");
-	} else {
-		var lat = myVideoObjects[i].location.latitude;
-		var lng = myVideoObjects[i].location.longitude;
-		position = lat + "," + lng;
-		console.log(position);
-		reverseGeocode(position);
-		myBubble = [{
-			radius: 10,
-			latitude: lat,
-			longitude: lng,
-			fillKey: "bubbleFill",
-			borderColor: "#000",
-			borderWidth: 1,
-		}];
-		myMap.bubbles(myBubble);
-	}
-
-	//adds the video count and total number of videos
 };
+
+//This function adds the map and location to the UI
+//It gets called the first time the location tab is clicked
+var myBubble = [];
+var myMap;
+//This variable allows the updatesLocationMap function to run only
+//after the map has been loaded.
+var hasMapsBeenCalled = false;
+function addMapToUI (i, callback) {
+	myMap = new Datamap({
+		element: document.getElementById('myMap'),
+		height: null,
+		fills: {
+			defaultFill: "#999",
+			"bubbleFill": "red",
+		},
+		geographyConfig: {
+			popupOnHover: false,
+			highlightOnHover: false,
+			borderColor: "#111",
+		},
+		data: {
+			"bubbleFill": {fillKey: "bubbleFill"},
+		},
+		bubblesConfig: {
+			borderWidth: 1,
+        	borderColor: '#000',
+        	popupOnHover: false,
+        	fillOpacity: 0.75,
+        	highlightOnHover: false,
+        	highlightFillColor: '#000',
+		}
+	})
+	console.log("map added to UI!");
+	callback();
+}
+
+//This function updates the map bubble and the location text
+var geoPosition = "";
+var lat;
+var lng;
+function updatesLocationText (i) {
+	$(".location-overlay").finish();
+	$(".location-overlay").css("opacity", "1");
+	if (myVideoObjects[i].location == null || myVideoObjects[i].location.latitude == undefined || myVideoObjects[i].location.longitude == undefined) {
+		geoPosition = null;
+		$(".location-text").text("Mystery location!");
+		$(".location-overlay-text").text("");
+	} else {
+		lat = myVideoObjects[i].location.latitude;
+		lng = myVideoObjects[i].location.longitude;
+		geoPosition = lat + "," + lng;
+		console.log(geoPosition);
+		reverseGeocode(geoPosition);
+	}
+	setTimeout(function () {
+		$(".location-overlay").animate({
+			"opacity": "0"
+		}, 3000)
+	}, 2000);
+}
+
+function updatesLocationMap (i) {
+	if (hasMapsBeenCalled) {
+		if (geoPosition === null) {
+			myBubble = [];
+			myMap.bubbles(myBubble);
+		} else {
+			myBubble = [{
+				radius: 10,
+				latitude: lat,
+				longitude: lng,
+				fillKey: "bubbleFill",
+				borderColor: "#000",
+				borderWidth: 1,
+			}];
+			myMap.bubbles(myBubble);
+		}
+	}
+}
+
+//When called, below two functions show or hide the location text overlayed
+// on top of the video
+function locationTextMouseEnter () {
+	$(".location-overlay").stop();
+	$(".location-overlay").animate({
+		"opacity": "1"
+	}, 150);
+}
+
+function locationTextMouseLeave () {
+	$(".location-overlay").stop();
+	$(".location-overlay").animate({
+		"opacity": "0"
+	}, 150);
+}
 
 //This function gets called when adding Metadata to the UI, and takes the longitude and latitude
 // of a video and converts it to an address: locality, administrative_level_1, country
 function reverseGeocode (position) {
+	$(".location-text").empty();
+	$(".location-overlay-text").empty();
 	loadGoogleResults(position, function (result) {
 		console.log(result);
 		$(".location-text").text(getAddressString(result));
+		$(".location-overlay-text").text(getAddressString(result));
 	});
 }
 
@@ -264,7 +585,7 @@ function getResultEntryOfType (result, type) {
 var soundcloudTracks = [];
 var currentSound = "";
 var songPosition = 0;
-function getPlaylist (playlistID) {
+function getPlaylist (playlistID, onFirstMusicLoad) {
 	$.ajax({
 		url: "http://api.soundcloud.com/playlists/" + playlistID + ".json?client_id=0e790e28fcdf924f78f80375ad74fcb8",
 		dataType: "json",
@@ -273,21 +594,32 @@ function getPlaylist (playlistID) {
 	.done(function (result) {
 		console.log(result);
 		soundcloudTracks = result.tracks;
-		initializePlaylist();
+		shuffle(soundcloudTracks);
+		initializePlaylist(onFirstMusicLoad);
 	})
 	.fail(function (error) {
 		console.log("error: " + error);
 	})
 }
 
-function scStream (songPosition) {
+function shuffle (o) {
+	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+function scStream (songPosition, onFirstMusicLoad) {
 	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
 		currentSound = sound;
+		checkMute(); //checks to see if the music has already been muted
 		currentSound.play({
 			onfinish: function () {
 				scNextStream();
 			}
 		});
+
+		if (onFirstMusicLoad) {
+			musicPauseAndPlay();
+		}
 	})
 }
 
@@ -303,9 +635,13 @@ function musicPauseAndPlay () {
 	if (currentSound.paused) {
 		scTogglePause();
 		toMusicPauseButton();
+		//uses Pause JS library to resume the songProgress animation
+		$(".music-text-bg").resume();
 	} else {
 		scTogglePause();
 		toMusicPlayButton();
+		//uses Pause JS library to pause the songProgress animation
+		$(".music-text-bg").pause();
 	}
 }
 
@@ -333,11 +669,11 @@ function scNextStream () {
 	}
 }
 
-function initializePlaylist () {
+function initializePlaylist (onFirstMusicLoad) {
 	SC.initialize({
 	  client_id: '0e790e28fcdf924f78f80375ad74fcb8'
 	});
-	scStream(0);
+	scStream(0, onFirstMusicLoad);
 	addSongMetadataToUI(0);
 }
 
@@ -350,7 +686,131 @@ function addSongMetadataToUI (i) {
 
 	var sourceLink = soundcloudTracks[i].permalink_url;
 	$(".sc-logo").attr("href", sourceLink);
+
+
+	// Resets the songProgress bar
+	$(".music-text-bg").finish();
+	$(".music-text-bg").css("background-position", "100% 0%");
+	// Calls the songProgress method to start tracking progress
+	songProgress(i);
 }
+
+function songProgress (i) {
+	var songTime = soundcloudTracks[i].duration; //time in milliseconds
+	$(".music-text-bg").animate({
+		"background-position": "0%"
+	}, songTime, "linear");
+}
+
+function toggleMute () {
+	currentSound.toggleMute();
+	$(".volume").toggleClass("muted");
+	if ($(".volume i").hasClass("fa-volume-up")) {
+		$(".volume i").removeClass("fa-volume-up").addClass("fa-volume-off");
+	} else {
+		$(".volume i").removeClass("fa-volume-off").addClass("fa-volume-up");
+	}
+	console.log("toggleMute executed");
+}
+
+function checkMute () {
+	var volumeButton = $(".volume")
+	if (volumeButton.hasClass("muted")) {
+		currentSound.mute();
+	}
+}
+
+//This function will switch the playlist to the one selected in the UI
+function switchPlaylist (playlistID) {
+	scStopStream();
+	getPlaylist(playlistID);
+	toMusicPauseButton();
+}
+
+
+
+//A bunch of functions related to the UI
+
+//This function adds a class "selected" to the nav tab that has been selected
+function selectedNav (navClicked) {
+	$(".nav-items .selected").removeClass("selected");
+	$(navClicked).addClass("selected");
+}
+
+//This funtion returns the pageClass for a given nav element that was clicked
+function navToPageClass (navClicked) {
+	var pageClass = "";
+	if (navClicked.hasClass("home-nav")) {
+		pageClass = ".home-page";
+		console.log("home-nav was selected");
+	} else if (navClicked.hasClass("location-nav")) {
+		pageClass = ".location-page";
+		console.log("location-nav was selected");
+	} else if (navClicked.hasClass("music-nav")) {
+		pageClass = ".music-page";
+		console.log("music-nav was selected");
+	} else if (navClicked.hasClass("about-nav")) {
+		pageClass = ".about-page";
+		console.log("about-nav was selected");
+	}
+	return pageClass;
+}
+
+//this function displays the correct page that was selected in the nav by toggling
+//the active-page class
+
+function activePage (navClicked) {
+	var pageClass = navToPageClass(navClicked);
+	// This resets the work done by the animatePageDown() function
+	$(".active-page .content-animation").css("top", "-100%");
+
+	$(".active-page").removeClass("active-page");
+	$(pageClass).addClass("active-page");
+}
+
+//When called, slides the content from a tab into view. Within the activePage function,
+//The slide gets reset to the top
+function animatePageDown (navClicked) {
+	var pageClass = navToPageClass(navClicked);
+	$(pageClass + " .content-animation").animate({
+		"top": "0"
+	}, 1000, "easeOutBounce");
+}
+
+//Toggles the .flexitem when the lightbulb control is clicked
+var isDarkMode = false;
+function toggleDarkMode () {
+	var halfWindowWith = $(window).width() / 2;
+	var halfVideoWidth = $(".video-box").width() / 2;
+	if (isDarkMode) {
+		$(".video-box").animate({
+			left: 0
+		}, 300, function () {
+			//because the stupid callback function isn't working properly
+			setTimeout(function () {
+				$(".flexitem").toggle("300");
+				console.log("animation has finished");
+			}, 300)
+		})
+		console.log("animation has started");
+		isDarkMode = false;
+	} else {
+		$(".flexitem").toggle("300", function () {
+			$(".video-box").animate({
+				left: halfWindowWith - halfVideoWidth
+			}, 300)
+		});
+		isDarkMode = true;
+	}
+}
+
+
+
+
+
+
+
+
 
 
 
