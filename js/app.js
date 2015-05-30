@@ -118,6 +118,33 @@ $(document).ready(function () {
 		}
 	})
 
+	document.addEventListener("mozfullscreenchange", function () {
+	    if (document.mozFullScreen) {
+	    	console.log("firefox entered fullscreen mode");
+	    } else {
+	    	collapseVideo();
+	    	console.log("firefox exited fullscreen mode");
+	    }
+	}, false);
+
+	document.addEventListener("webkitfullscreenchange", function () {
+	    if (document.webkitIsFullScreen) {
+	    	console.log("chrome entered fullscreen mode");
+	    } else {
+	    	collapseVideo();
+	    	console.log("chrome exited fullscreen mode");
+	    }
+	}, false);
+
+	document.addEventListener("msfullscreenchange", function () {
+	    if (document.msFullscreenElement) {
+	    	console.log("MS entered fullscreen mode");
+	    } else {
+	    	collapseVideo();
+	    	console.log("MS exited fullscreen mode");
+	    }
+	}, false);
+
 	//Will get the playlist ID from the playlist that was clicked in the UI and begin
 	//playing the new playlist
 	$(".playlist-choices li").on("click", function () {
@@ -773,7 +800,7 @@ function activePage (navClicked) {
 function animatePageDown (navClicked) {
 	var pageClass = navToPageClass(navClicked);
 	$(pageClass + " .content-animation").animate({
-		"top": "0"
+		"top": "0%"
 	}, 1000, "easeOutBounce");
 }
 
