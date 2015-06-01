@@ -434,13 +434,13 @@ function addVideoToUI (i, onFirstVideoLoad) {
 function addHiddenVideo (i) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log("hidden video link: " + videoLink);
-	$(".video-box").append('<div class="video-hidden"><video height="100%" width="100%" muted><source src="' + videoLink + '" type="video/mp4"></video></div>')
+	$(".video-box").append('<div class="video-hidden"><video height="100%" width="100%" muted preload="auto"><source src="' + videoLink + '" type="video/mp4"></video></div>')
 }
 
 //Switches hidden video to active video and gets rid of the current active video
 function switchHiddenToActive () {
 	$(".video-active").hide();
-	$(".video-hidden").show();
+	// $(".video-hidden").show();
 	$(".video-hidden video").get(0).play();
 	$('.video-active').remove();
 	$(".video-hidden").removeClass("video-hidden").addClass("video-active");
