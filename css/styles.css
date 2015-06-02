@@ -223,6 +223,7 @@ button:focus {
 }
 
 .active-page {
+	display: block;
 	display: initial;
 }
 
