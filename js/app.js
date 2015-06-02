@@ -2,7 +2,6 @@ $(document).ready(function () {
 	//Sets up the videos and the music, respectively
 	getVideoObjects();
 	getPlaylist(9875415, true);
-
 	//When the next button is hit, move to the next video in the videoObjects array
 	$(".next").on("click", function () {
 		nextVideo();
@@ -159,6 +158,19 @@ $(document).ready(function () {
 		lines: 3
 	});
 
+	//Every 100ms, check to see if the songs and videos have finished loading so play can begin
+	var intervalID = setInterval(function () {
+		if (videosLoaded & songsLoaded) {
+			console.log("videos and songs loaded!");
+			clearInterval(intervalID);
+			$(".spinner").fadeOut(500, function () {
+				$(".start").fadeIn(500);
+			})
+		} else {
+			console.log("videos and songs not loaded");
+		}
+	}, 100);
+
 	//every 5 minutes will pull any new instagram videos and push them to myVideoObjects array
 	setInterval(function () {
 		getNewestVideoObjects();
@@ -268,11 +280,14 @@ function toggleFullscreen () {
 
 //Adds the video to the UI, all the metadata, etc.
 //Also pauses the first video via a callback function
+var videosLoaded = false;
 function initializeContent () {
 	addVideoToUI(0, true);
 	addMetadataToUI(0);
 	updatesLocationText(0);
 	addHiddenVideo(1);
+	// sets videosLoaded to true, once the video is ready to be played
+	videosLoaded = true;
 	console.log("content initialized");
 }
 
@@ -290,8 +305,6 @@ function getVideoObjects () {
 		}
 	})
 	.done(function (result) {
-		console.log("success!");
-		console.log(result);
 		var returnedObjects = result.data;
 		for (i = 0; i < returnedObjects.length; i++) {
 			if (returnedObjects[i].type == "video") {
@@ -301,7 +314,6 @@ function getVideoObjects () {
 		console.log(myVideoObjects);
 		initializeContent();
 		callbackURL = result.pagination.next_url;
-		console.log("callback URL: " + callbackURL);
 	})
 	.fail(function (error) {
 		console.log("failure!");
@@ -634,6 +646,7 @@ function shuffle (o) {
     return o;
 }
 
+var songsLoaded = false;
 function scStream (songPosition, onFirstMusicLoad) {
 	SC.stream("/tracks/" + soundcloudTracks[songPosition].id, function (sound) {
 		currentSound = sound;
@@ -643,10 +656,11 @@ function scStream (songPosition, onFirstMusicLoad) {
 				scNextStream();
 			}
 		});
-
 		if (onFirstMusicLoad) {
 			musicPauseAndPlay();
 		}
+		// sets songsLoaded to true once the song is ready to play
+		songsLoaded = true;
 	})
 }
 

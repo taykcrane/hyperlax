@@ -223,8 +223,8 @@ button:focus {
 }
 
 .active-page {
-	display: block;
-	display: initial;
+	display: block; /*for IE only*/
+	display: initial; /*for all the normal browsers*/
 }
 
 .content-box {
@@ -302,6 +302,7 @@ button:focus {
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+	display: none;
 }
 
 .start h1 {
@@ -331,6 +332,58 @@ button:focus {
 .start p span:hover, .dark-mode:hover {
 	text-decoration: underline;
 	color: #fff;
+}
+
+.spinner {
+  margin: 0 auto;
+  height: 4em;
+  text-align: center;
+  font-size: 1em;
+  transform: translateY(-50%);
+}
+
+.spinner > div {
+  background-color: #fff;
+  height: 100%;
+  width: .5em;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
 }
 
 .dark-mode {
