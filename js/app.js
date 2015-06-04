@@ -433,7 +433,7 @@ function addVideoToUI (i, onFirstVideoLoad) {
 	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
 	console.log(videoLink);
 	$(".video-active").empty();
-	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"></video>');
+	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"><p>this is a fallback message</p></video>');
 	continuousVideo();
 	if (onFirstVideoLoad) {
 		$(".video-active video").one("play", function () {
@@ -527,7 +527,7 @@ function updatesLocationText (i) {
 	if (myVideoObjects[i].location == null || myVideoObjects[i].location.latitude == undefined || myVideoObjects[i].location.longitude == undefined) {
 		geoPosition = null;
 		$(".location-text").text("Mystery location!");
-		$(".location-overlay-text").text("");
+		$(".location-overlay").empty();
 	} else {
 		lat = myVideoObjects[i].location.latitude;
 		lng = myVideoObjects[i].location.longitude;
@@ -581,11 +581,11 @@ function locationTextMouseLeave () {
 // of a video and converts it to an address: locality, administrative_level_1, country
 function reverseGeocode (position) {
 	$(".location-text").empty();
-	$(".location-overlay-text").empty();
+	$(".location-overlay").empty();
 	loadGoogleResults(position, function (result) {
 		console.log(result);
 		$(".location-text").text(getAddressString(result));
-		$(".location-overlay-text").text(getAddressString(result));
+		$(".location-overlay").append('<p class="location-overlay-text">' + getAddressString(result) + '</p>')
 	});
 }
 
@@ -845,6 +845,13 @@ function toggleDarkMode () {
 	}
 }
 
+function testBrowsers () {
+	if (bowser.msie && bowser.version < 11) {
+	  console.log("this is IE10");
+	} else {
+		console.log("not IE6");
+	}
+}
 
 
 

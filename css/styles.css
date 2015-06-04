@@ -50,6 +50,11 @@ body {
 	text-align: center;
 }
 
+.location-overlay-text {
+	padding: .25em 0;
+	background-color: rgba(0,0,0,.3);
+}
+
 .video-controls {
 	position: absolute;
 	z-index: 1000;
@@ -74,8 +79,8 @@ button:focus {
 
 .next, .prev, .pause-play, .expand, .lightbulb {
 	display: inline;
-	color: rgba(365,365,365,.4);
-	background-color: rgba(0,0,0,.4);
+	color: rgba(365,365,365,.5);
+	background-color: rgba(0,0,0,.3);
 	padding: 1em 3em;
 }
 
