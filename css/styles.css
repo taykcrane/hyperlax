@@ -923,7 +923,12 @@ html .flexitem[max-width^='652px'] {
 	font-size: 15px;
 }
 
-
+/*MEDIA QUERIES*/
+@media screen and (max-width: 400px) {
+	.overlay-content {
+		width: 95%;
+	}
+}
 
 
 
