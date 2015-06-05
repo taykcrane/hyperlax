@@ -6,6 +6,49 @@ body {
 	font-family: "raleway",sans-serif;
 }
 
+.overlay {
+	background-color: rgba(0,0,0,.9);
+	color: #fff;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 10000;
+	display: none;
+}
+
+.overlay-content {
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.overlay-content h1 {
+	font-size: 2em;
+}
+
+.overlay-content p {
+	margin: 1em 0;
+}
+
+.overlay-content li {
+	margin: .5em 0;
+}
+
+.overlay-content a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.overlay-content a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
 .flexcontainer {
 	display: -webkit-flex;
 	display: -webkit-box;

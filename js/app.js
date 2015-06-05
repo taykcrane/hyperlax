@@ -1,4 +1,7 @@
 $(document).ready(function () {
+	//Determines if browser is unsupported
+	testBrowsers();
+
 	//Sets up the videos and the music, respectively
 	getVideoObjects();
 	getPlaylist(9875415, true);
@@ -848,10 +851,11 @@ function toggleDarkMode () {
 function testBrowsers () {
 	if ((bowser.msie && bowser.version < 11) || 
 		(bowser.chrome && bowser.version < 32) || 
-		(bowser.firefox && bowser.version < X) ||
+		(bowser.firefox && bowser.version < 35) ||
 		(bowser.mobile) ||
 		(bowser.tablet)) {
 	  console.log("this is a non-supported device or browser");
+	$(".overlay").toggle();
 	} else {
 		console.log("this IS supported");
 	}
