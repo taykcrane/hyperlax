@@ -846,10 +846,14 @@ function toggleDarkMode () {
 }
 
 function testBrowsers () {
-	if (bowser.msie && bowser.version < 11) {
-	  console.log("this is IE10");
+	if ((bowser.msie && bowser.version < 11) || 
+		(bowser.chrome && bowser.version < 32) || 
+		(bowser.firefox && bowser.version < X) ||
+		(bowser.mobile) ||
+		(bowser.tablet)) {
+	  console.log("this is a non-supported device or browser");
 	} else {
-		console.log("not IE6");
+		console.log("this IS supported");
 	}
 }
 
