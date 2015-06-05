@@ -4,6 +4,7 @@ body {
   	background-image: radial-gradient(circle at top right, #333, #111);*/
 	color: #999;
 	font-family: "raleway",sans-serif;
+	overflow: hidden;
 }
 
 .overlay {
@@ -59,8 +60,8 @@ body {
 }
 
 .video-box {
-	width: 99.5vh;
-	height: 99.5vh;
+	width: 100vh;
+	height: 100vh;
 	position: relative;
 	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
 	/*margin: 0 auto;*/
@@ -146,7 +147,7 @@ button:focus {
     -ms-flex: 1;
 	flex: 1;
     position: relative;
-    height: 99.5vh;
+    height: 100vh;
 }
 
 .nav {
@@ -929,9 +930,6 @@ html .flexitem[max-width^='652px'] {
 		width: 95%;
 	}
 }
-
-
-
 
 
 
