@@ -87,7 +87,7 @@ body {
 
 .location-overlay {
 	position: absolute;
-	top: 75%;
+	bottom: 0%;
 	font-size: 2em;
 	color: rgba(365,365,365,.5);
 	width: 100%;
@@ -97,6 +97,9 @@ body {
 .location-overlay-text {
 	padding: .25em 0;
 	background-color: rgba(0,0,0,.3);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .video-controls {
@@ -363,23 +366,26 @@ button:focus {
 	border-radius: 10px;
 }
 
-.start h1:hover, .start p span:hover, .dark-mode:hover {
+.start h1:hover, .start p span:hover, .dark-mode i:hover {
 	cursor: pointer;	
 }
 
 .start p {
 	margin-top: .2em;
+	text-decoration: underline;
 }
 
-.start p, .dark-mode {
+.start p span:hover {
 	text-decoration: underline;
+}
+
+.start p, .dark-mode i {
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;	
 }
 
-.start p span:hover, .dark-mode:hover {
-	text-decoration: underline;
+.start p span:hover, .dark-mode i:hover {
 	color: #fff;
 }
 
@@ -388,6 +394,8 @@ button:focus {
   height: 4em;
   text-align: center;
   font-size: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
@@ -433,6 +441,29 @@ button:focus {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+
+.social-share {
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: none;
+}
+
+.social-share p {
+	margin-bottom: .5em;
+}
+
+.social-share a {
+	color: inherit;
+	padding: 0 .5em;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.social-share a:hover {
+	color: #fff;
 }
 
 .dark-mode {
@@ -709,6 +740,7 @@ button:focus {
 	-webkit-transform: translateY(50%);
 	-ms-transform: translateY(50%);
 	transform: translateY(50%);
+	z-index: 2;
 }
 
 .about-content p {
