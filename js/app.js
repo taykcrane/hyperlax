@@ -78,7 +78,7 @@ $(document).ready(function () {
 	});
 
 	//When the "play without music?" link is clicked, only play the video
-	$(".start p").on("click", function () {
+	$(".start p span").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
