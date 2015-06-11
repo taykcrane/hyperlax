@@ -686,7 +686,7 @@ button:focus {
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	text-align: left;
-	width: 30%;
+	width: 50%;
 	margin: 0 auto;
 	font-size: 1.25em;
 }
