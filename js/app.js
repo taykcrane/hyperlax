@@ -833,7 +833,7 @@ function animatePageDown (navClicked) {
 	var pageClass = navToPageClass(navClicked);
 	$(pageClass + " .content-animation").animate({
 		"top": "0%"
-	}, 1000, "easeOutBounce");
+	}, 500, "easeOutCirc");
 }
 
 //Toggles the .flexitem when the lightbulb control is clicked
