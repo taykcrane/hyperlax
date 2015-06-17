@@ -358,17 +358,34 @@ button:focus {
 	display: none;
 }
 
-.start h1 {
+.hit-me {
 	display: inline-block;
-	font-size: 1.5em;
-	padding: 1.5em 3em;
+	height: 6em;
+	width: 12em;
 	background-color: #fff;
 	color: #111;
 	border-radius: 10px;
 }
 
-.start h1:hover, .start p span:hover, .dark-mode i:hover {
+.hit-me:hover, .start p span:hover, .dark-mode i:hover {
 	cursor: pointer;	
+}
+
+.hit-me h1, .hit-me .fa-play-circle-o {
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.hit-me .fa-play-circle-o {
+	vertical-align: top;
+	margin-right: .25em;
+}
+
+.hit-me h1 {
+	font-size: 1.5em;
+	vertical-align: middle;
 }
 
 .start p {

@@ -62,7 +62,7 @@ $(document).ready(function () {
 	})
 
 	//When the HIT ME button is clicked, the video and music begins
-	$(".start h1").on("click", function () {
+	$(".hit-me").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
