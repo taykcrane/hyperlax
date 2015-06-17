@@ -4,6 +4,51 @@ body {
   	background-image: radial-gradient(circle at top right, #333, #111);*/
 	color: #999;
 	font-family: "raleway",sans-serif;
+	overflow: hidden;
+}
+
+.overlay {
+	background-color: rgba(0,0,0,.9);
+	color: #fff;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10000;
+	display: none;
+}
+
+.overlay-content {
+	width: 50%;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.overlay-content h1 {
+	font-size: 2em;
+}
+
+.overlay-content p {
+	margin: 1em 0;
+}
+
+.overlay-content li {
+	margin: .5em 0;
+}
+
+.overlay-content a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.overlay-content a:hover {
+	color: #fff;
+	text-decoration: underline;
 }
 
 .flexcontainer {
@@ -16,8 +61,8 @@ body {
 }
 
 .video-box {
-	width: 99.5vh;
-	height: 99.5vh;
+	width: 100vh;
+	height: 100vh;
 	position: relative;
 	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
 	/*margin: 0 auto;*/
@@ -43,7 +88,7 @@ body {
 
 .location-overlay {
 	position: absolute;
-	top: 75%;
+	bottom: 0%;
 	font-size: 2em;
 	color: rgba(365,365,365,.5);
 	width: 100%;
@@ -53,6 +98,9 @@ body {
 .location-overlay-text {
 	padding: .25em 0;
 	background-color: rgba(0,0,0,.3);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .video-controls {
@@ -103,7 +151,7 @@ button:focus {
     -ms-flex: 1;
 	flex: 1;
     position: relative;
-    height: 99.5vh;
+    height: 100vh;
 }
 
 .nav {
@@ -319,23 +367,26 @@ button:focus {
 	border-radius: 10px;
 }
 
-.start h1:hover, .start p span:hover, .dark-mode:hover {
+.start h1:hover, .start p span:hover, .dark-mode i:hover {
 	cursor: pointer;	
 }
 
 .start p {
 	margin-top: .2em;
+	text-decoration: underline;
 }
 
-.start p, .dark-mode {
+.start p span:hover {
 	text-decoration: underline;
+}
+
+.start p, .dark-mode i {
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;	
 }
 
-.start p span:hover, .dark-mode:hover {
-	text-decoration: underline;
+.start p span:hover, .dark-mode i:hover {
 	color: #fff;
 }
 
@@ -344,6 +395,8 @@ button:focus {
   height: 4em;
   text-align: center;
   font-size: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
@@ -389,6 +442,29 @@ button:focus {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+
+.social-share {
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: none;
+}
+
+.social-share p {
+	margin-bottom: .5em;
+}
+
+.social-share a {
+	color: inherit;
+	padding: 0 .5em;
+	-webkit-transition: color ease 0.15s;
+	-moz-transition: color ease 0.15s;
+	transition: color ease 0.15s;
+}
+
+.social-share a:hover {
+	color: #fff;
 }
 
 .dark-mode {
@@ -610,7 +686,7 @@ button:focus {
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	text-align: left;
-	width: 30%;
+	width: 50%;
 	margin: 0 auto;
 	font-size: 1.25em;
 }
@@ -665,6 +741,7 @@ button:focus {
 	-webkit-transform: translateY(50%);
 	-ms-transform: translateY(50%);
 	transform: translateY(50%);
+	z-index: 2;
 }
 
 .about-content p {
@@ -880,10 +957,12 @@ html .flexitem[max-width^='652px'] {
 	font-size: 15px;
 }
 
-
-
-
-
+/*MEDIA QUERIES*/
+@media screen and (max-width: 400px) {
+	.overlay-content {
+		width: 95%;
+	}
+}
 
 
 

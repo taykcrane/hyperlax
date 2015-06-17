@@ -1,4 +1,7 @@
 $(document).ready(function () {
+	//Determines if browser is unsupported
+	testBrowsers();
+
 	//Sets up the videos and the music, respectively
 	getVideoObjects();
 	getPlaylist(9875415, true);
@@ -65,8 +68,9 @@ $(document).ready(function () {
 		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
 		musicPauseAndPlay();
-		$(".start").fadeOut(3000, function () {
-			$(".dark-mode").fadeIn(3000);
+		$(".start").fadeOut(1000, function () {
+			$(".dark-mode").fadeIn(1000);
+			$(".social-share").fadeIn(1000);
 		});
 		$(".start").css("pointer-events", "none");
 		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
@@ -74,18 +78,26 @@ $(document).ready(function () {
 	});
 
 	//When the "play without music?" link is clicked, only play the video
-	$(".start p").on("click", function () {
+	$(".start p span").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
 		pauseAndPlay();
-		$(".start").fadeOut(3000, function () {
-			$(".dark-mode").fadeIn(3000);
+		$(".start").fadeOut(1000, function () {
+			$(".dark-mode").fadeIn(1000);
+			$(".social-share").fadeIn(1000);
 		});
 		$(".start").css("pointer-events", "none");
 		$(".location-nav, .music-nav, .about-nav").css("color", "inherit");
 		$(".location-nav, .music-nav, .about-nav").css("pointer-events", "all");
 	});
+
+	//When the social share buttons are hovered over,
+	//change the text of the CTA
+	// $(".social-popup").on("mouseenter mouseleave", function () {
+	// 	$(".social-share p").text("this is a test");
+	// 	console.log("hover enabled");
+	// })
 
 	//When dark mode is clicked, hide the flexitem (content)
 	$(".dark-mode").on("click", function () {
@@ -157,6 +169,12 @@ $(document).ready(function () {
 	$('.caption p').trunk8({
 		lines: 3
 	});
+
+	//When a share icon is clicked, open the appropriate share box
+	$(".social-popup").on("click", function(e) {
+	  	e.preventDefault();
+		socialPopup($(this).attr("href"), 500, 300);
+	})
 
 	//Every 100ms, check to see if the songs and videos have finished loading so play can begin
 	var intervalID = setInterval(function () {
@@ -846,14 +864,28 @@ function toggleDarkMode () {
 }
 
 function testBrowsers () {
-	if (bowser.msie && bowser.version < 11) {
-	  console.log("this is IE10");
+	if ((bowser.msie && bowser.version < 11) || 
+		(bowser.chrome && bowser.version < 32) || 
+		(bowser.firefox && bowser.version < 35) ||
+		(bowser.mobile) ||
+		(bowser.tablet)) {
+	  console.log("this is a non-supported device or browser");
+	$(".overlay").toggle();
 	} else {
-		console.log("not IE6");
+		console.log("this IS supported");
 	}
 }
 
-
+function socialPopup (url, width, height) {
+	var left = (screen.width / 2) - (width / 2),
+		top = (screen.height / 2) - (height / 2);
+	
+	window.open(
+	    url,
+	    "",
+    	"menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
+  	);
+}
 
 
 
