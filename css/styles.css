@@ -1,9 +1,7 @@
 body {
 	background: #111;
-	/*background-image: -webkit-radial-gradient(circle at top right, #333, #111);
-  	background-image: radial-gradient(circle at top right, #333, #111);*/
 	color: #999;
-	font-family: "raleway",sans-serif;
+	font-family: "proxima-nova",sans-serif;
 	overflow: hidden;
 }
 
@@ -283,8 +281,8 @@ button:focus {
 .content-box {
 	height: 90%;
 	position: relative;
-	/*top: -90%;*/
-}
+/*	background-image: radial-gradient(circle 25em, blue, #222);
+*/}
 
 .content-animation {
 	height: 100%;
@@ -348,7 +346,7 @@ button:focus {
 
 .instructions li {
 	display: inline-block;
-	margin: 0 .33em;
+	margin: 0 .1em;
 }
 
 .start {
@@ -609,7 +607,7 @@ button:focus {
     float: left;
     width: 50%;
     height: 1rem;
-    line-height: 1rem;
+    line-height: 1.1rem;
     font-size: .75em;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
