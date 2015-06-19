@@ -62,7 +62,7 @@ $(document).ready(function () {
 	})
 
 	//When the HIT ME button is clicked, the video and music begins
-	$(".start h1").on("click", function () {
+	$(".hit-me").on("click", function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
@@ -833,7 +833,7 @@ function animatePageDown (navClicked) {
 	var pageClass = navToPageClass(navClicked);
 	$(pageClass + " .content-animation").animate({
 		"top": "0%"
-	}, 1000, "easeOutBounce");
+	}, 500, "easeOutCirc");
 }
 
 //Toggles the .flexitem when the lightbulb control is clicked
