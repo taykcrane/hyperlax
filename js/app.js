@@ -100,7 +100,7 @@ $(document).ready(function () {
 	// })
 
 	//When dark mode is clicked, hide the flexitem (content)
-	$(".dark-mode").on("click", function () {
+	$(".dark-mode i").on("click", function () {
 		toggleDarkMode();
 	})
 
@@ -181,7 +181,7 @@ $(document).ready(function () {
 		if (videosLoaded & songsLoaded) {
 			console.log("videos and songs loaded!");
 			clearInterval(intervalID);
-			$(".spinner").fadeOut(500, function () {
+			$(".spinner-container").fadeOut(500, function () {
 				$(".start").fadeIn(500);
 			})
 		} else {
@@ -512,7 +512,7 @@ function addMapToUI (i, callback) {
 		height: null,
 		fills: {
 			defaultFill: "#999",
-			"bubbleFill": "red",
+			"bubbleFill": "#009fc7",
 		},
 		geographyConfig: {
 			popupOnHover: false,

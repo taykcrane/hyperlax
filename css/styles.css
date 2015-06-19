@@ -1,5 +1,5 @@
 body {
-	background: #111;
+	background: #020F12;
 	color: #999;
 	font-family: "proxima-nova",sans-serif;
 	overflow: hidden;
@@ -153,9 +153,9 @@ button:focus {
 }
 
 .nav {
-	background-color: #222;
+	background-color: #020F12;
 	/*border-bottom: 1px solid #000;*/
-	box-shadow: 0 1px 0px rgba(255,255,255,0.16);
+	box-shadow: 0 1px 0px #062831;
 	height: 5%;
 	position: relative;
 	z-index: 1000;
@@ -213,7 +213,7 @@ button:focus {
 }
 .nav-items li:hover:after {
 	height: .33em;
-	background: #fff;
+	background: #009fc7;
 }
 
 .nav-items .selected:after {
@@ -223,7 +223,7 @@ button:focus {
 	left: 0;
 	height: .33em;
 	width: 100%;
-	background: #fff;
+	background: #009fc7;
 }
 
 #twitter {
@@ -281,8 +281,9 @@ button:focus {
 .content-box {
 	height: 90%;
 	position: relative;
-/*	background-image: radial-gradient(circle 25em, blue, #222);
-*/}
+	background-image: -webkit-radial-gradient(circle 20em, #062831, #020F12);
+	background-image: radial-gradient(circle 20em, #062831, #020F12);
+}
 
 .content-animation {
 	height: 100%;
@@ -303,13 +304,37 @@ button:focus {
 	bottom: 0;
 }
 
-
-.home-page .description {
+.main-box {
 	position: relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+}
+
+.logo {
+	height: 11em;
+}
+
+.logo-img, .hyperlax-img {
+	display: block;
+	margin: 0 auto;
+}
+
+.logo-img {
+	width: 5em;
+}
+
+.hyperlax-img {
+	width: 20em;
+}
+
+.description {
+	/*position: relative;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);*/
+	margin: 2em 0;
 }
 
 .tagline {
@@ -328,21 +353,14 @@ button:focus {
 	color: #fff;
 }
 
-#text-divide {
+/*#text-divide {
 	font-size: .75em;
 	color: #fff;
-}
+}*/
 
 .instructions {
-	/*text-align: justify;*/
 	margin-top: .75em;
 }
-
-/*.instructions:after {
-	content: '';
-  	width: 100%;  Ensures justification for single lines 
-  	display: inline-block;
-}*/
 
 .instructions li {
 	display: inline-block;
@@ -350,18 +368,19 @@ button:focus {
 }
 
 .start {
-	-webkit-transform: translateY(-50%);
+	/*-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+	transform: translateY(-50%);*/
 	display: none;
+	height: 11em;
 }
 
 .hit-me {
 	display: inline-block;
-	height: 6em;
-	width: 12em;
-	background-color: #fff;
-	color: #111;
+	height: 5em;
+	width: 15em;
+	background-color: #009fc7;
+	color: #fff;
 	border-radius: 10px;
 }
 
@@ -373,7 +392,9 @@ button:focus {
 	display: inline-block;
 	position: relative;
 	top: 50%;
-	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
 }
 
 .hit-me .fa-play-circle-o {
@@ -382,12 +403,12 @@ button:focus {
 }
 
 .hit-me h1 {
-	font-size: 1.5em;
+	font-size: 2em;
 	vertical-align: middle;
 }
 
 .start p {
-	margin-top: .2em;
+	margin-top: 2em;
 	text-decoration: underline;
 }
 
@@ -405,14 +426,18 @@ button:focus {
 	color: #fff;
 }
 
+.spinner-container {
+	height: 11em;
+}
+
 .spinner {
   margin: 0 auto;
   height: 4em;
   text-align: center;
   font-size: 1em;
-  -webkit-transform: translateY(-50%);
+  /*-webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  transform: translateY(-50%);*/
 }
 
 .spinner > div {
@@ -460,10 +485,11 @@ button:focus {
 }
 
 .social-share {
-	-webkit-transform: translateY(-50%);
+	/*-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+	transform: translateY(-50%);*/
 	display: none;
+	height: 8em;
 }
 
 .social-share p {
@@ -484,12 +510,8 @@ button:focus {
 
 .dark-mode {
 	position: relative;
-	top: 50%;
+	/*top: 50%;*/
 	text-align: center;
-	/*left: 50%;
-	-wekbit-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);*/
 	display: none;
 }
 
@@ -532,8 +554,6 @@ button:focus {
 }
 
 .location {
-	/*border-bottom: 1px solid #000;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.16);*/
 	height: 3em;
 }
 
@@ -629,7 +649,7 @@ button:focus {
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: .5em;
-    background-color: #222;
+    background-color: #020F12;
     color: #999;
     text-align: right;
 }
@@ -728,7 +748,7 @@ button:focus {
 }
 .playlist-choices li:hover:before {
 	width: .33em;
-	background: #fff;
+	background: #009fc7;
 }
 
 .playlist-choices li:hover, .playlist-choices .selected {
@@ -743,7 +763,7 @@ button:focus {
 	left: 0;
 	height: 100%;
 	width: .33em;
-	background-color: #fff;
+	background-color: #009fc7;
 }
 
 .num-likes {
@@ -794,13 +814,13 @@ button:focus {
 }
 
 .music-player {
-	background-color: #222;
+	background-color: #020F12;
 	height: 5%;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
 	/*border-top: 1px solid #000;*/
-	box-shadow: 0 -1px 0 rgba(255,255,255,0.16);
+	box-shadow: 0 -1px 0 #062831;
 }
 
 .music-player .container {
@@ -810,7 +830,7 @@ button:focus {
 
 .music-box {
 	display: inline-block;
-	background-color: #222;
+	background-color: #020F12;
 	height: 100%;
 }
 
