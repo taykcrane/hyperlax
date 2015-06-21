@@ -173,7 +173,7 @@ $(document).ready(function () {
 	//When a share icon is clicked, open the appropriate share box
 	$(".social-popup").on("click", function(e) {
 	  	e.preventDefault();
-		socialPopup($(this).attr("href"), 500, 300);
+		socialPopup($(this).attr("href"), 570, 612);
 	})
 
 	//Every 100ms, check to see if the songs and videos have finished loading so play can begin

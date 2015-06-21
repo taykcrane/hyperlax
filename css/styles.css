@@ -2,6 +2,7 @@ body {
 	background: #020F12;
 	color: #999;
 	font-family: "proxima-nova",sans-serif;
+	font-weight: 100;
 	overflow: hidden;
 }
 
@@ -248,7 +249,6 @@ button:focus {
 	bottom: 6%;
 	padding-left: .5em;
 	color: #444;
-/*	font-size: .9em;*/
 }
 
 .credit a {
@@ -388,7 +388,7 @@ button:focus {
 	cursor: pointer;	
 }
 
-.hit-me h1, .hit-me .fa-play-circle-o {
+.hit-me h1, .hit-me .fa-play {
 	display: inline-block;
 	position: relative;
 	top: 50%;
@@ -397,7 +397,7 @@ button:focus {
   	transform: translateY(-50%);
 }
 
-.hit-me .fa-play-circle-o {
+.hit-me .fa-play {
 	vertical-align: top;
 	margin-right: .25em;
 }
@@ -416,7 +416,7 @@ button:focus {
 	text-decoration: underline;
 }
 
-.start p, .dark-mode i {
+.start p span, .dark-mode i {
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;	
@@ -529,7 +529,7 @@ button:focus {
 	position: relative;
 	width: 20%;
 	text-align: center;
-	color: #444;
+	color: #062831;
 }
 
 .caption p {
@@ -560,7 +560,7 @@ button:focus {
 .location .fa-map-marker {
 	width: 20%;
 	text-align: center;
-	color: #444;
+	color: #062831;
 }
 
 .location-text {
@@ -641,7 +641,7 @@ button:focus {
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: .5em;
-    background-color: #444;
+    background-color: #062831;
     color: #999;
     text-align: left;
 }
@@ -879,8 +879,8 @@ button:focus {
 	height: 100%;
 	background-size: 200% 100%;
 	background-position: 100% 0;
-	background-image: -webkit-linear-gradient(left, #444 50%, rgba(0,0,0,0) 50%);
-	background-image: linear-gradient(to right, #444 50%, rgba(0,0,0,0) 50%);
+	background-image: -webkit-linear-gradient(left, #062831 50%, rgba(0,0,0,0) 50%);
+	background-image: linear-gradient(to right, #062831 50%, rgba(0,0,0,0) 50%);
 }
 
 .music-text {
