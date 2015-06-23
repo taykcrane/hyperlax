@@ -524,14 +524,13 @@ function addMapToUI (i, callback) {
 		},
 		bubblesConfig: {
 			borderWidth: 1,
-        	borderColor: '#000',
+        	borderColor: '#020F12',
         	popupOnHover: false,
         	fillOpacity: 0.75,
         	highlightOnHover: false,
-        	highlightFillColor: '#000',
+        	highlightFillColor: '#020F12',
 		}
 	})
-	console.log("map added to UI!");
 	callback();
 }
 

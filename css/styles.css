@@ -8,7 +8,7 @@ body {
 
 .overlay {
 	background-color: rgba(0,0,0,.9);
-	color: #fff;
+	color: #e1f5fa;
 	position: absolute;
 	top: 0;
 	height: 100%;
@@ -41,12 +41,12 @@ body {
 }
 
 .overlay-content a {
-	color: #fff;
+	color: #e1f5fa;
 	text-decoration: none;
 }
 
 .overlay-content a:hover {
-	color: #fff;
+	color: #e1f5fa;
 	text-decoration: underline;
 }
 
@@ -191,12 +191,25 @@ button:focus {
 	transform: translateY(-50%);
 }
 
-.nav-items i {
+.nav-icon {
+	background-image: url("../img/favicon.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: contain;
+	display: inline-block;
+	font-size: 18.66666px;
+	line-height: 1.25em;
+	vertical-align: -15%;
+	height: 1em;
+	width: 1em;
+}
+
+.nav-items i, .nav-items img {
 	padding-right: .5em;
 }
 
 .nav-items li:hover, .nav-items .selected, #twitter:hover {
-	color: #fff!important;
+	color: #e1f5fa!important;
 	cursor: pointer;
 }
 
@@ -252,14 +265,15 @@ button:focus {
 }
 
 .credit a {
-	color: #666;
+	color: #999;
+	text-decoration: none;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;
 }
 
 .credit a:hover {
-	color: #fff;
+	color: #009fc7;
 }
 
 .container {
@@ -343,20 +357,16 @@ button:focus {
 }
 
 .tagline a {
-	color: inherit;
+	color: #e1f5fa;
+	text-decoration: none;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;
 }
 
 .tagline a:hover {
-	color: #fff;
+	color: #009fc7;
 }
-
-/*#text-divide {
-	font-size: .75em;
-	color: #fff;
-}*/
 
 .instructions {
 	margin-top: .75em;
@@ -365,12 +375,10 @@ button:focus {
 .instructions li {
 	display: inline-block;
 	margin: 0 .1em;
+	letter-spacing: 0.5px;
 }
 
 .start {
-	/*-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);*/
 	display: none;
 	height: 11em;
 }
@@ -380,8 +388,17 @@ button:focus {
 	height: 5em;
 	width: 15em;
 	background-color: #009fc7;
-	color: #fff;
+	color: #e1f5fa;
 	border-radius: 10px;
+}
+
+.start p {
+	text-decoration: none;
+	margin-top: 2em;
+}
+
+ {
+	color: #009fc7;
 }
 
 .hit-me:hover, .start p span:hover, .dark-mode i:hover {
@@ -407,23 +424,15 @@ button:focus {
 	vertical-align: middle;
 }
 
-.start p {
-	margin-top: 2em;
-	text-decoration: underline;
-}
-
-.start p span:hover {
-	text-decoration: underline;
-}
-
 .start p span, .dark-mode i {
+	color: #e1f5fa;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;	
 }
 
 .start p span:hover, .dark-mode i:hover {
-	color: #fff;
+	color: #009fc7;
 }
 
 .spinner-container {
@@ -441,7 +450,7 @@ button:focus {
 }
 
 .spinner > div {
-  background-color: #fff;
+  background-color: #e1f5fa;
   height: 100%;
   width: .5em;
   display: inline-block;
@@ -485,9 +494,6 @@ button:focus {
 }
 
 .social-share {
-	/*-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);*/
 	display: none;
 	height: 8em;
 }
@@ -497,7 +503,7 @@ button:focus {
 }
 
 .social-share a {
-	color: inherit;
+	color: #e1f5fa;
 	padding: 0 .5em;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
@@ -505,7 +511,7 @@ button:focus {
 }
 
 .social-share a:hover {
-	color: #fff;
+	color: #009fc7;
 }
 
 .dark-mode {
@@ -679,11 +685,11 @@ button:focus {
 }
 
 .onoffswitch-label:hover .onoffswitch-inner:before, .onoffswitch-label:hover .onoffswitch-inner:after {
-	color: #fff;
+	color: #e1f5fa;
 }
 
 .onoffswitch-label:hover .onoffswitch-switch {
-	background-color: #fff;
+	background-color: #e1f5fa;
 }
 
 #myMap {
@@ -697,7 +703,7 @@ button:focus {
 	display: block;
 }
 
-.music-page .description {
+.music-sum {
 	position: relative;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
@@ -705,15 +711,16 @@ button:focus {
 	transform: translateY(-50%);
 }
 
-.music-page .description a {
-	color: #999;
+.music-sum a {
+	color: #e1f5fa;
+	text-decoration: none;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;
 }
 
-.music-page .description a:hover {
-	color: #fff;
+.music-sum a:hover {
+	color: #009fc7;
 }
 
 .playlist-choices {
@@ -752,7 +759,7 @@ button:focus {
 }
 
 .playlist-choices li:hover, .playlist-choices .selected {
-	color: #fff;
+	color: #e1f5fa;
 	cursor: pointer;
 }
 
@@ -779,20 +786,25 @@ button:focus {
 	z-index: 2;
 }
 
+.about-content p:first-child {
+	font-size: 1.25em;
+}
+
 .about-content p {
 	margin-bottom: 2em;
 	line-height: 1.2;
 }
 
 .about-content a {
-	color: inherit;
+	color: #ccc;
+	text-decoration: none;
 	-webkit-transition: color ease 0.15s;
 	-moz-transition: color ease 0.15s;
 	transition: color ease 0.15s;
 }
 
 .about-content a:hover {
-	color: #fff;
+	color: #009fc7;
 }
 
 .email {
@@ -852,7 +864,7 @@ button:focus {
 }
 
 .volume:hover, .music-pause-play:hover, .music-next:hover {
-	color: #fff;
+	color: #e1f5fa;
 	cursor: pointer;
 }
 
@@ -907,7 +919,7 @@ button:focus {
 }
 
 .music-text-bg:hover .title, .music-text-bg:hover .uploader {
-	color: #fff;
+	color: #e1f5fa;
 }
 
 .sc-logo {
