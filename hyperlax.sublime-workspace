@@ -5,15 +5,63 @@
 		[
 			[
 				"marg",
-				"margin-top"
+				"margin"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"inline",
+				"inline"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"social",
+				"socialPopup"
+			],
+			[
+				"max",
+				"max-width"
 			],
 			[
 				"text",
 				"text-decoration"
 			],
 			[
-				"inline",
-				"inline-block"
+				"dark",
+				"dark-mode"
+			],
+			[
+				"toggle",
+				"toggleDarkMode"
+			],
+			[
+				"is",
+				"isDarkMode"
+			],
+			[
+				"half",
+				"halfVideoWidth"
+			],
+			[
+				"music",
+				"music-pause-play"
+			],
+			[
+				"check",
+				"checkFullscreen"
+			],
+			[
+				"expan",
+				"expandVideo"
+			],
+			[
+				"pause",
+				"pauseAndPlay"
 			],
 			[
 				"padd",
@@ -120,16 +168,8 @@
 				"widthStart"
 			],
 			[
-				"wid",
-				"widthStart"
-			],
-			[
 				"q",
 				"qNum"
-			],
-			[
-				"check",
-				"checksAnswer"
 			],
 			[
 				"corre",
@@ -184,10 +224,6 @@
 				"text-align"
 			],
 			[
-				"max",
-				"max-width"
-			],
-			[
 				"bac",
 				"background-image"
 			],
@@ -211,7 +247,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4643,
+				"buffer_size": 12846,
 				"line_ending": "Unix"
 			}
 		},
@@ -219,7 +255,7 @@
 			"file": "css/styles.css",
 			"settings":
 			{
-				"buffer_size": 6531,
+				"buffer_size": 17373,
 				"line_ending": "Unix"
 			}
 		},
@@ -227,7 +263,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 18031,
+				"buffer_size": 25603,
 				"line_ending": "Unix"
 			}
 		}
@@ -281,6 +317,10 @@
 	],
 	"file_history":
 	[
+		"/Users/taylorcrane/Desktop/Projects/personal/personal-website.sublime-project",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/bowser.js",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/ResizeSensor.js",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/ElementQueries.js",
 		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/pause.js",
 		"/System/Library/Frameworks/AudioUnit.framework/Versions/A/Headers/AudioCodec.h",
 		"/Users/taylorcrane/Desktop/Projects/personal/CNAME",
@@ -329,6 +369,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"red",
+			".playlist-cho",
+			"background-image",
+			".descr",
+			".spinner",
+			".top-bo",
+			"box-shad",
+			".dark-mode",
+			".nav",
+			"#fff",
+			"gradient",
+			"#111",
+			"#222",
+			"animate",
+			"client_i",
+			".playlist-c",
+			".dark-mode",
+			"light",
+			"light-",
+			"a:hover",
+			"text-over",
+			"vh",
+			"musicPaus",
+			"get",
+			"musicPause",
+			"rem",
+			".taglin",
+			"expandVi",
 			"muted",
 			"updatesLocation",
 			".video-active",
@@ -367,32 +435,33 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4643,
+						"buffer_size": 12846,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2115,
-								2115
+								334,
+								334
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 582.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -401,26 +470,27 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6531,
+						"buffer_size": 17373,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2727,
-								2727
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2484.0,
+						"translation.y": 10908.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -429,15 +499,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18031,
+						"buffer_size": 25603,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7693,
-								7693
+								0,
+								0
 							]
 						],
 						"settings":
@@ -445,8 +515,8 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 1.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 2286.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -483,7 +553,7 @@
 		"cols":
 		[
 			0.0,
-			0.471377400116,
+			0.510085337471,
 			1.0
 		],
 		"rows":
@@ -531,7 +601,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
