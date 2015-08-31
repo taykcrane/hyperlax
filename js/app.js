@@ -474,7 +474,10 @@ function switchHiddenToActive () {
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
 	//adds the video's caption and truncates to max 3 lines
-	var caption = myVideoObjects[i].caption.text;
+	var caption = "";
+	if (myVideoObjects[i].caption) {
+		caption = myVideoObjects[i].caption.text;
+	}
 	$('.caption p').trunk8('update', caption);
 
 	//adds the username
