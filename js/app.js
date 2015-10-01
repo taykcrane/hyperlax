@@ -193,6 +193,7 @@ $(document).ready(function () {
 	setInterval(function () {
 		getNewestVideoObjects();
 	}, 300000);
+
 });
 
 var videoPosition = 0;
@@ -885,10 +886,6 @@ function socialPopup (url, width, height) {
     	"menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
   	);
 }
-
-
-
-
 
 
 
