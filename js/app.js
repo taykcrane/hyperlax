@@ -180,6 +180,7 @@ $(document).ready(function () {
 	var intervalID = setInterval(function () {
 		if (videosLoaded & songsLoaded) {
 			console.log("videos and songs loaded!");
+			$(".music-text-bg").pause();
 			clearInterval(intervalID);
 			$(".spinner-container").fadeOut(500, function () {
 				$(".start").fadeIn(500);
@@ -697,6 +698,7 @@ function musicPauseAndPlay () {
 		toMusicPlayButton();
 		//uses Pause JS library to pause the songProgress animation
 		$(".music-text-bg").pause();
+		console.log("THIS BAD BOY PAUSED THE PROGRESS BAR");
 	}
 }
 
