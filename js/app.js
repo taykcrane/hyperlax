@@ -185,7 +185,7 @@ $(document).ready(function () {
 				$(".start").fadeIn(500);
 			})
 		} else {
-			console.log("videos and songs not loaded");
+			// console.log("videos and songs not loaded");
 		}
 	}, 100);
 
@@ -684,20 +684,26 @@ function scStopStream () {
 }
 
 function scTogglePause () {
-	currentSound.togglePause();
+	// currentSound.togglePause();
+	currentSound.pause();
 }
 
 function musicPauseAndPlay () {
-	if (currentSound.paused) {
-		scTogglePause();
+	if (currentSound.getState() == "paused") {
+		currentSound.play();
 		toMusicPauseButton();
 		//uses Pause JS library to resume the songProgress animation
 		$(".music-text-bg").resume();
-	} else {
-		scTogglePause();
+	} else if (currentSound.getState() == "playing") {
+		currentSound.pause();
 		toMusicPlayButton();
 		//uses Pause JS library to pause the songProgress animation
 		$(".music-text-bg").pause();
+	} else if (currentSound.getState() == "loading") {
+		console.log("still fucking loading");
+		setTimeout(function () {
+			musicPauseAndPlay();
+		}, 10)
 	}
 }
 
@@ -759,7 +765,12 @@ function songProgress (i) {
 }
 
 function toggleMute () {
-	currentSound.toggleMute();
+	// currentSound.toggleMute();
+	if (currentSound.getVolume() == 0) {
+		currentSound.setVolume(1);
+	} else {
+		currentSound.setVolume(0);
+	}
 	$(".volume").toggleClass("muted");
 	if ($(".volume i").hasClass("fa-volume-up")) {
 		$(".volume i").removeClass("fa-volume-up").addClass("fa-volume-off");
@@ -772,7 +783,7 @@ function toggleMute () {
 function checkMute () {
 	var volumeButton = $(".volume")
 	if (volumeButton.hasClass("muted")) {
-		currentSound.mute();
+		currentSound.setVolume(0);
 	}
 }
 
