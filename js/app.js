@@ -238,14 +238,6 @@ function pauseAndPlay () {
 	}
 }
 
-function insertHiddenVideo () {
-	$(".video-active").hide();
-	$(".video-hidden").show();
-	$(".video-hidden video").get(0).play();
-	$('.video-active').remove();
-	$(".video-hidden").removeClass(".video-hidden").addClass(".video-active");
-}
-
 function toPauseButton () {
 	$(".pause-play i").removeClass("fa-play").addClass("fa-pause");
 }
@@ -453,6 +445,7 @@ function addVideoToUI (i, onFirstVideoLoad) {
 	console.log(videoLink);
 	$(".video-active").empty();
 	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"><p>this is a fallback message</p></video>');
+	$(".video-active").after("<div class='video-bg'></div>")
 	continuousVideo();
 	if (onFirstVideoLoad) {
 		$(".video-active video").one("play", function () {
@@ -471,17 +464,21 @@ function addHiddenVideo (i) {
 //Switches hidden video to active video and gets rid of the current active video
 function switchHiddenToActive () {
 	$(".video-active").hide();
-	// $(".video-hidden").show();
+	$(".video-bg").remove();
 	$(".video-hidden video").get(0).play();
 	$('.video-active').remove();
 	$(".video-hidden").removeClass("video-hidden").addClass("video-active");
+	$(".video-active").after("<div class='video-bg'></div>")
 	continuousVideo();
 }
 
 //When called, adds all the relevant metadata to the UI, at position i in the myVideoObjects array
 function addMetadataToUI (i) {
 	//adds the video's caption and truncates to max 3 lines
-	var caption = myVideoObjects[i].caption.text;
+	var caption = "";
+	if (myVideoObjects[i].caption) {
+		caption = myVideoObjects[i].caption.text;
+	}
 	$('.caption p').trunk8('update', caption);
 
 	//adds the username

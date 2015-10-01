@@ -71,20 +71,6 @@ body {
     transition: all 500ms ease;
 }
 
-.video-active {
-	height: 100%;
-	width: 100%;
-}
-
-.video-hidden {
-	/*display: none;*/
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	top: 0;
-	z-index: -1000;
-}
-
 .location-overlay {
 	position: absolute;
 	bottom: 0%;
@@ -92,6 +78,31 @@ body {
 	color: rgba(365,365,365,.5);
 	width: 100%;
 	text-align: center;
+	z-index: 4;
+}
+
+.video-active {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 3;
+}
+
+.video-bg {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	background-color: #020F12;
+}
+
+.video-hidden {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 1;
 }
 
 .location-overlay-text {
