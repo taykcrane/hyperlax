@@ -4,144 +4,320 @@
 		"selected_items":
 		[
 			[
-				"marg",
-				"margin"
+				"music",
+				"musicPauseAndPlay"
 			],
 			[
-				"tex",
-				"text-align"
-			],
-			[
-				"inline",
-				"inline"
-			],
-			[
-				"wid",
-				"width"
-			],
-			[
-				"social",
-				"socialPopup"
-			],
-			[
-				"max",
-				"max-width"
+				"current",
+				"currentSound"
 			],
 			[
 				"text",
 				"text-decoration"
 			],
 			[
-				"dark",
-				"dark-mode"
+				"tex",
+				"text-decoration"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"backgr",
+				"background-size"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"tran",
+				"translateY"
+			],
+			[
+				"inline",
+				"inline"
+			],
+			[
+				"songs",
+				"songsLoaded"
+			],
+			[
+				"videos",
+				"videosLoaded"
+			],
+			[
+				"keycod",
+				"keycodeF11"
+			],
+			[
+				"set",
+				"setTimeout"
+			],
+			[
+				"ful",
+				"fullCaption"
 			],
 			[
 				"toggle",
-				"toggleDarkMode"
+				"toggleMute"
 			],
 			[
-				"is",
-				"isDarkMode"
+				"lat",
+				"latitude"
 			],
 			[
-				"half",
-				"halfVideoWidth"
+				"swit",
+				"switchPlaylist"
 			],
 			[
-				"music",
-				"music-pause-play"
+				"bac",
+				"background-color"
 			],
 			[
-				"check",
-				"checkFullscreen"
+				"padd",
+				"padding-left"
 			],
 			[
-				"expan",
+				"key",
+				"keycodeEsc"
+			],
+			[
+				"disp",
+				"display"
+			],
+			[
+				"expa",
 				"expandVideo"
+			],
+			[
+				"list-s",
+				"list-style"
+			],
+			[
+				"curr",
+				"currentSound"
 			],
 			[
 				"pause",
 				"pauseAndPlay"
 			],
 			[
-				"padd",
-				"padding"
+				"update",
+				"updatesLocation"
 			],
 			[
-				"location",
-				"locationTextMouseEnter"
-			],
-			[
-				"video",
-				"videoPosition"
-			],
-			[
-				"updates",
-				"updatesLocationText"
-			],
-			[
-				"acti",
-				"activePage"
-			],
-			[
-				"home",
-				"home-nav"
-			],
-			[
-				"page",
-				"pageClass"
-			],
-			[
-				"has",
-				"hasClass"
-			],
-			[
-				"nav",
-				"navClicked"
-			],
-			[
-				"back",
-				"background-color"
+				"add",
+				"addMapToUI"
 			],
 			[
 				"in",
 				"inline"
 			],
 			[
-				"song",
-				"songProgress"
+				"page",
+				"pageClass"
 			],
 			[
-				"sound",
+				"elem",
+				"elementToAnimate"
+			],
+			[
+				"string",
+				"stringOfClasses"
+			],
+			[
+				"animate",
+				"animatePageDown"
+			],
+			[
+				"nav",
+				"navClicked"
+			],
+			[
+				"content",
+				"content-animation"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"sele",
+				"selectedNav"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"insert",
+				"insertPosition"
+			],
+			[
+				"newest",
+				"newestVideos"
+			],
+			[
+				"inse",
+				"insertNewVideos"
+			],
+			[
+				"inser",
+				"insertPosition"
+			],
+			[
+				"new",
+				"newestVideos"
+			],
+			[
+				"mainA",
+				"mainArrayIDs"
+			],
+			[
+				"main",
+				"mainArrayIDs"
+			],
+			[
+				"newArra",
+				"newArrayIDs"
+			],
+			[
+				"uniq",
+				"uniqueVideos"
+			],
+			[
+				"uniqu",
+				"uniqueIDs"
+			],
+			[
+				"get",
+				"getVideoIDs"
+			],
+			[
+				"my",
+				"myVideoObjects"
+			],
+			[
+				"newe",
+				"newestVideos"
+			],
+			[
+				"video",
+				"videosToCompare"
+			],
+			[
+				"return",
+				"returnedObjects"
+			],
+			[
+				"volume",
+				"volumeButton"
+			],
+			[
+				"soundCloud",
 				"soundcloudTracks"
 			],
 			[
-				"scSt",
-				"scStopStream"
+				"sour",
+				"sourceLink"
 			],
 			[
-				"backg",
-				"background-position"
+				"sc",
+				"scNextStream"
 			],
 			[
-				"background",
-				"background-attachment"
-			],
-			[
-				"border",
-				"border-right"
+				"on",
+				"onfinish"
 			],
 			[
 				"border-r",
 				"border-radius"
 			],
 			[
-				"my",
-				"myQuestions"
+				"border",
+				"border-bottom"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"inli",
+				"inline"
 			],
 			[
 				"font",
 				"font-size"
+			],
+			[
+				"bak",
+				"background-color"
+			],
+			[
+				"cont",
+				"continuousVideo"
+			],
+			[
+				"init",
+				"initializePlaylist"
+			],
+			[
+				"play",
+				"playlistID"
+			],
+			[
+				"sound",
+				"soundcloudTracks"
+			],
+			[
+				"toP",
+				"toPlayButton"
+			],
+			[
+				"next",
+				"nextVideo"
+			],
+			[
+				"addres",
+				"addressParts"
+			],
+			[
+				"callback",
+				"callback"
+			],
+			[
+				"bubb",
+				"bubbleFill"
+			],
+			[
+				"bub",
+				"bubbleFill"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"call",
+				"callbackURL"
+			],
+			[
+				"address",
+				"addressComponents"
 			],
 			[
 				"fon",
@@ -168,24 +344,24 @@
 				"widthStart"
 			],
 			[
+				"wid",
+				"widthStart"
+			],
+			[
 				"q",
 				"qNum"
+			],
+			[
+				"check",
+				"checksAnswer"
 			],
 			[
 				"corre",
 				"correctAnswer"
 			],
 			[
-				"font-",
-				"font-size"
-			],
-			[
-				"margin",
-				"margin-bottom"
-			],
-			[
-				"inlin",
-				"inline-block"
+				"background",
+				"background-color"
 			],
 			[
 				"backgroun",
@@ -194,10 +370,6 @@
 			[
 				"Tran",
 				"translateY"
-			],
-			[
-				"inli",
-				"inline-block"
 			],
 			[
 				"trans",
@@ -216,16 +388,12 @@
 				"position"
 			],
 			[
-				"tran",
-				"translateY"
-			],
-			[
 				"text-",
 				"text-align"
 			],
 			[
-				"bac",
-				"background-image"
+				"max",
+				"max-width"
 			],
 			[
 				"mar",
@@ -234,6 +402,10 @@
 			[
 				"list",
 				"list-style-type"
+			],
+			[
+				"backg",
+				"background-color"
 			],
 			[
 				"mari",
@@ -252,10 +424,19 @@
 			}
 		},
 		{
+			"file": "test.html",
+			"settings":
+			{
+				"buffer_size": 12916,
+				"line_ending": "Unix",
+				"name": "<script src=\"//connect.soundcloud.com/sdk-2.0.0.js"
+			}
+		},
+		{
 			"file": "css/styles.css",
 			"settings":
 			{
-				"buffer_size": 17373,
+				"buffer_size": 17511,
 				"line_ending": "Unix"
 			}
 		},
@@ -263,7 +444,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 25603,
+				"buffer_size": 25892,
 				"line_ending": "Unix"
 			}
 		}
@@ -313,17 +494,15 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/taylorcrane/Desktop/Projects/hyperlax"
+		"/Users/taylorcrane/Desktop/Projects/hyperlax",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/css",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js"
 	],
 	"file_history":
 	[
-		"/Users/taylorcrane/Desktop/Projects/personal/personal-website.sublime-project",
 		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/bowser.js",
-		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/ResizeSensor.js",
-		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/ElementQueries.js",
-		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/pause.js",
-		"/System/Library/Frameworks/AudioUnit.framework/Versions/A/Headers/AudioCodec.h",
-		"/Users/taylorcrane/Desktop/Projects/personal/CNAME",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/css/reset.css",
+		"/Users/taylorcrane/Desktop/Projects/hyperlax/js/datamaps.js",
 		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/app.js",
 		"/Users/taylorcrane/Desktop/Projects/stacker-ajax/index.html",
 		"/Users/taylorcrane/Desktop/Projects/crane-game/js/script.js",
@@ -369,42 +548,117 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"red",
-			".playlist-cho",
-			"background-image",
-			".descr",
-			".spinner",
-			".top-bo",
-			"box-shad",
-			".dark-mode",
-			".nav",
-			"#fff",
-			"gradient",
-			"#111",
-			"#222",
-			"animate",
-			"client_i",
-			".playlist-c",
-			".dark-mode",
-			"light",
-			"light-",
-			"a:hover",
-			"text-over",
-			"vh",
-			"musicPaus",
-			"get",
+			"setTime",
 			"musicPause",
-			"rem",
-			".taglin",
-			"expandVi",
-			"muted",
-			"updatesLocation",
-			".video-active",
-			".on(\"click",
-			"autoplay",
-			"#111",
-			"music-text",
+			"setTimeout",
+			"musicPauseAnd",
+			"onFirst",
+			"currentSound",
+			"toggleMute",
+			"currentSound.",
+			"musicPauseAndPlay",
+			"scTogglePause()",
+			"currentSound",
+			"#fff",
+			"#fffe1f5fa",
+			"#fff",
+			".dark-",
+			"#999",
+			".about",
+			"#666",
+			"#fff",
+			".description",
+			"description",
+			".descri",
+			".nav",
+			".fa",
+			"socialP",
+			".social-pop",
+			"https://",
+			"#999",
+			"#666",
+			"#444",
+			"circle",
+			"h1",
+			".location-overlay-text",
+			"videosLoaded",
+			"songsLoaded",
+			"songsLo",
+			"pauseAndPlay",
+			"initializeP",
+			"addVideoTo",
+			"getPlay",
+			"getVideoObjects",
+			"addVideo",
+			".ajax",
+			".dark-mode",
+			"contin",
+			"expandVideo",
+			"toggleFull",
+			".content-animation",
+			"selectedNav",
+			"top: 0",
+			"activePage",
+			"transform:",
+			".location-nav",
+			"cursor: pointer",
+			"font-size",
+			".location-overlay-te",
+			"updatesLoc",
+			"addMetadata",
+			"caption",
+			"dotdot",
+			"height: 3",
+			"h3",
+			"toggleMute",
+			".descript",
+			"switchPl",
+			"getPlaylist",
+			"scStop",
+			"bubble",
+			".next",
+			".nect",
+			".fa",
 			"scStream",
+			"checkMute",
+			".pause()",
+			"getVideoObjects",
+			"initializeContent",
+			".content",
+			"addMapTo",
+			"wink",
+			"addMapTo",
+			"addMetaData",
+			"addMapTo",
+			"var myBubb",
+			"myBubble",
+			"myMap",
+			"metadata",
+			"myMap",
+			"credit",
+			"activePage",
+			"color",
+			"controls",
+			".video-active",
+			"id=",
+			"#video",
+			".video",
+			"nextVid",
+			"addVideoTo",
+			"addVideo",
+			"addMetadata",
+			"nextVideo",
+			"640",
+			".video",
+			"addVideoToUI",
+			".empty",
+			"prev",
+			"addMetaData",
+			"button",
+			"location",
+			"videoPos",
+			"addEndedListener",
+			"myBubble",
 			"transform",
 			"20px",
 			"2px",
@@ -426,7 +680,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -442,8 +696,8 @@
 						"selection":
 						[
 							[
-								334,
-								334
+								11860,
+								11860
 							]
 						],
 						"settings":
@@ -452,10 +706,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 8727.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12091,
+								12091
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<script src=\"//connect.soundcloud.com/sdk-2.0.0.js",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 8760.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -465,49 +748,48 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "css/styles.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17373,
+						"buffer_size": 17511,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								13600,
+								13600
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 10908.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25603,
+						"buffer_size": 25892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								20740,
+								20740
 							]
 						],
 						"settings":
@@ -516,10 +798,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2286.0,
+						"translation.y": 11989.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -553,7 +835,7 @@
 		"cols":
 		[
 			0.0,
-			0.510085337471,
+			0.394263994471,
 			1.0
 		],
 		"rows":
@@ -601,7 +883,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
@@ -609,7 +891,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 233.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
