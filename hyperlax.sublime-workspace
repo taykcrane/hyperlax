@@ -444,7 +444,7 @@
 			"file": "js/app.js",
 			"settings":
 			{
-				"buffer_size": 25892,
+				"buffer_size": 25933,
 				"line_ending": "Unix"
 			}
 		}
@@ -548,6 +548,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"continuousVideo()",
+			"nextVideo",
 			"setTime",
 			"musicPause",
 			"setTimeout",
@@ -732,10 +734,11 @@
 						"settings":
 						{
 							"auto_name": "<script src=\"//connect.soundcloud.com/sdk-2.0.0.js",
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 8760.0,
+						"translation.y": 9780.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -766,7 +769,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -781,15 +785,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25892,
+						"buffer_size": 25933,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20740,
-								20740
+								14201,
+								14218
 							]
 						],
 						"settings":
@@ -798,7 +802,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 11989.0,
+						"translation.y": 7797.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -835,7 +839,7 @@
 		"cols":
 		[
 			0.0,
-			0.394263994471,
+			0.379057424844,
 			1.0
 		],
 		"rows":

@@ -210,6 +210,7 @@ function nextVideo () {
 	if (videoPosition == myVideoObjects.length - 2) {
 		getMoreVideoObjects();
 	}
+	console.log("moved to the next video!")
 }
 
 function prevVideo () {
