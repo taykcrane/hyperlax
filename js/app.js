@@ -66,7 +66,7 @@ $(document).ready(function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
-		pauseAndPlay();
+		// pauseAndPlay();
 		musicPauseAndPlay();
 		$(".start").fadeOut(1000, function () {
 			$(".dark-mode").fadeIn(1000);
@@ -82,7 +82,7 @@ $(document).ready(function () {
 		$(".video-box").css("pointer-events", "all");
 		$(".music-pause-play").css("pointer-events", "all");
 		$(".music-next").css("pointer-events", "all");
-		pauseAndPlay();
+		// pauseAndPlay();
 		$(".start").fadeOut(1000, function () {
 			$(".dark-mode").fadeIn(1000);
 			$(".social-share").fadeIn(1000);
@@ -292,7 +292,7 @@ function toggleFullscreen () {
 
 //Adds the video to the UI, all the metadata, etc.
 //Also pauses the first video via a callback function
-var videosLoaded = false;
+var videosLoaded = true;
 function initializeContent () {
 	addVideoToUI(0, true);
 	addMetadataToUI(0);

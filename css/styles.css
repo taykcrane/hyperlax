@@ -63,12 +63,38 @@ body {
 	width: 100vh;
 	height: 100vh;
 	position: relative;
-	pointer-events: none; /*gets reversed when HIT ME button is clicked*/
+	/*pointer-events: none;*/ /*gets reversed when HIT ME button is clicked*/
 	/*margin: 0 auto;*/
+	background-image: url("../img/ig-bg.png");
+	background-size: cover;
 	-moz-transition: all 500ms ease;
     -o-transition: all 500ms ease;
     -webkit-transition: all 500ms ease;
     transition: all 500ms ease;
+}
+
+.cryo-text {
+	color: #FFF;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.cryo-text h1 {
+	font-size: 2.5em;
+	margin-bottom: 1em;
+}
+
+.cryo-text p {
+	font-size: 1.25em;
+	margin: .5em;
+}
+
+.cryo-text p a {
+	color: #009fc7;
 }
 
 .location-overlay {
