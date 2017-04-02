@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 	$(".video-box").on("mouseleave", function () {
 		locationTextMouseLeave();
-	})	
+	})
 
 	//music controls
 	$(".music-pause-play").on("click", function () {
@@ -306,26 +306,21 @@ function initializeContent () {
 //Makes an AJAX call to Instagram and GETs the 20 most recent video objects with #hyperlapse
 //Stores these objects in the myVideoObjects array
 var myVideoObjects = [];
-var callbackURL = "";
+var next_page = 1;
 function getVideoObjects () {
 	$.ajax({
-		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
-		dataType: "jsonp",
-		type: "GET",
-		data: {
-			count: 33
-		}
+		url: "http://138.197.110.189",
+		dataType: "json",
+		type: "GET"
 	})
 	.done(function (result) {
-		var returnedObjects = result.data;
-		for (i = 0; i < returnedObjects.length; i++) {
-			if (returnedObjects[i].type == "video") {
-				myVideoObjects.push(returnedObjects[i]);
-			}
-		}
+		var returnedObjects = result.videos;
+    for (i = 0; i < returnedObjects.length; i++) {
+      myVideoObjects.push(returnedObjects[i]);
+    }
 		console.log(myVideoObjects);
 		initializeContent();
-		callbackURL = result.pagination.next_url;
+		next_page = result.next_page;
 	})
 	.fail(function (error) {
 		console.log("failure!");
@@ -336,22 +331,20 @@ function getVideoObjects () {
 //When called, will add more videos to the myVideoObjects array
 function getMoreVideoObjects () {
 	$.ajax({
-		url: callbackURL,
-		dataType: "jsonp",
+		url: "http://138.197.110.189?page=" + next_page,
+		dataType: "json",
 		type: "GET",
 	})
 	.done(function (result) {
 		console.log("success!");
 		console.log(result);
-		var returnedObjects = result.data;
-		for (i = 0; i < returnedObjects.length; i++) {
-			if (returnedObjects[i].type == "video") {
-				myVideoObjects.push(returnedObjects[i]);
-			}
+		var returnedObjects = result.videos;
+    for (i = 0; i < returnedObjects.length; i++) {
+			myVideoObjects.push(returnedObjects[i]);
 		}
 		console.log(myVideoObjects);
-		callbackURL = result.pagination.next_url;
-		console.log("callback URL: " + callbackURL);
+		next_page = result.next_page;
+		console.log("callback URL: http://138.197.110.189?page=" + next_page);
 	})
 	.fail(function (error) {
 		console.log("failure!");
@@ -363,20 +356,15 @@ function getMoreVideoObjects () {
 // Then, will push the new ones to the array
 function getNewestVideoObjects () {
 	$.ajax({
-		url: "https://api.instagram.com/v1/tags/hyperlapse/media/recent?client_id=425a6039c8274956bc10387bba3597e8",
-		dataType: "jsonp",
-		type: "GET",
-		data: {
-			count: 33
-		}
+		url: "http://138.197.110.189?page=1",
+		dataType: "json",
+		type: "GET"
 	})
 	.done(function (result) {
-		var returnedObjects = result.data;
+		var returnedObjects = result.videos;
 		var videosToCompare = [];
 		for (i = 0; i < returnedObjects.length; i++) {
-			if (returnedObjects[i].type == "video") {
-				videosToCompare.push(returnedObjects[i]);
-			}
+			videosToCompare.push(returnedObjects[i]);
 		}
 		var newestVideos = comparesVideoArrays(videosToCompare, myVideoObjects);
 		console.log("newestVideos: ");
@@ -407,7 +395,7 @@ function comparesVideoArrays (newArray, mainArray) {
 	return uniqueVideos;
 }
 
-//given an array a video objects, create a new array of just the video IDs for comparison
+// given an array a video objects, create a new array of just the video IDs for comparison
 function getVideoIDs (videoArray) {
 	var idArray = [];
 	for (i = 0; i < videoArray.length; i++) {
@@ -434,7 +422,7 @@ function insertNewVideos (newestVideos) {
 function continuousVideo () {
 	// var v = document.getElementById('video-active').getElementsByTagName("video")[0];
 	var v = document.querySelector(".video-active video");
-	v.addEventListener("ended", function() { 
+	v.addEventListener("ended", function() {
 		console.log('Ended listener added');
 		nextVideo();
 	}, true);
@@ -442,7 +430,7 @@ function continuousVideo () {
 
 //When called, adds a new video to the UI, at position i in the myVideoObjects array
 function addVideoToUI (i, onFirstVideoLoad) {
-	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
+	var videoLink = myVideoObjects[i].i_video_url;
 	console.log(videoLink);
 	$(".video-active").empty();
 	$(".video-active").append('<video height="100%" width="100%" autoplay muted><source src="' + videoLink + '" type="video/mp4"><p>this is a fallback message</p></video>');
@@ -457,7 +445,7 @@ function addVideoToUI (i, onFirstVideoLoad) {
 
 //Adds the next video to the UI but hidden behind the active video
 function addHiddenVideo (i) {
-	var videoLink = myVideoObjects[i].videos.standard_resolution.url;
+	var videoLink = myVideoObjects[i].i_video_url;
 	console.log("hidden video link: " + videoLink);
 	$(".video-box").append('<div class="video-hidden"><video height="100%" width="100%" muted preload="auto"><source src="' + videoLink + '" type="video/mp4"></video></div>')
 }
@@ -477,13 +465,13 @@ function switchHiddenToActive () {
 function addMetadataToUI (i) {
 	//adds the video's caption and truncates to max 3 lines
 	var caption = "";
-	if (myVideoObjects[i].caption) {
-		caption = myVideoObjects[i].caption.text;
+	if (myVideoObjects[i].i_caption) {
+		caption = myVideoObjects[i].i_caption;
 	}
 	$('.caption p').trunk8('update', caption);
 
 	//adds the username
-	var username = myVideoObjects[i].user.username;
+	var username = myVideoObjects[i].i_username;
 	$(".credit").empty();
 	$(".credit").html('Taken by <a href="#" target="_blank">@' + username + '</a>');
 
@@ -492,7 +480,7 @@ function addMetadataToUI (i) {
 	$(".credit a").attr("href", profileLink);
 
 	// adds the unit of time since the video was uploaded
-	var unixTime = myVideoObjects[i].created_time * 1000;
+	var unixTime = myVideoObjects[i].i_taken_at * 1000;
 	var timeAgo = moment(unixTime).fromNow();
 	$(".timestamp").empty();
 	$(".timestamp").text(timeAgo);
@@ -540,13 +528,13 @@ var lng;
 function updatesLocationText (i) {
 	$(".location-overlay").finish();
 	$(".location-overlay").css("opacity", "1");
-	if (myVideoObjects[i].location == null || myVideoObjects[i].location.latitude == undefined || myVideoObjects[i].location.longitude == undefined) {
+	if (myVideoObjects[i].i_lat == '' || myVideoObjects[i].i_lng == '') {
 		geoPosition = null;
 		$(".location-text").text("Mystery location!");
 		$(".location-overlay").empty();
 	} else {
-		lat = myVideoObjects[i].location.latitude;
-		lng = myVideoObjects[i].location.longitude;
+		lat = myVideoObjects[i].i_lat;
+		lng = myVideoObjects[i].i_lng;
 		geoPosition = lat + "," + lng;
 		console.log(geoPosition);
 		reverseGeocode(geoPosition);
@@ -863,8 +851,8 @@ function toggleDarkMode () {
 }
 
 function testBrowsers () {
-	if ((bowser.msie && bowser.version < 11) || 
-		(bowser.chrome && bowser.version < 32) || 
+	if ((bowser.msie && bowser.version < 11) ||
+		(bowser.chrome && bowser.version < 32) ||
 		(bowser.firefox && bowser.version < 35) ||
 		(bowser.mobile) ||
 		(bowser.tablet)) {
@@ -878,21 +866,10 @@ function testBrowsers () {
 function socialPopup (url, width, height) {
 	var left = (screen.width / 2) - (width / 2),
 		top = (screen.height / 2) - (height / 2);
-	
+
 	window.open(
 	    url,
 	    "",
     	"menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
   	);
 }
-
-
-
-
-
-
-
-
-
-
-
