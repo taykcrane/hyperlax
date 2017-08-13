@@ -309,7 +309,7 @@ var myVideoObjects = [];
 var next_page = 1;
 function getVideoObjects () {
 	$.ajax({
-		url: "http://138.197.110.189",
+		url: "http://159.203.70.104/",
 		dataType: "json",
 		type: "GET"
 	})
@@ -331,7 +331,7 @@ function getVideoObjects () {
 //When called, will add more videos to the myVideoObjects array
 function getMoreVideoObjects () {
 	$.ajax({
-		url: "http://138.197.110.189?page=" + next_page,
+		url: "http://159.203.70.104/?page=" + next_page,
 		dataType: "json",
 		type: "GET",
 	})
@@ -344,7 +344,7 @@ function getMoreVideoObjects () {
 		}
 		console.log(myVideoObjects);
 		next_page = result.next_page;
-		console.log("callback URL: http://138.197.110.189?page=" + next_page);
+		console.log("callback URL: http://159.203.70.104/?page=" + next_page);
 	})
 	.fail(function (error) {
 		console.log("failure!");
@@ -356,7 +356,7 @@ function getMoreVideoObjects () {
 // Then, will push the new ones to the array
 function getNewestVideoObjects () {
 	$.ajax({
-		url: "http://138.197.110.189?page=1",
+		url: "http://159.203.70.104/?page=1",
 		dataType: "json",
 		type: "GET"
 	})
